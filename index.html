@@ -78,7 +78,7 @@
       <div class="nav-links">
         <a href="#bento" class="nav-link">核心主张</a>
         <a href="#pipeline" class="nav-link">工作流程</a>
-        <a href="#calculator" class="nav-link">效率测算</a>
+        <a href="#stack" class="nav-link">技术军火库</a>
         <a href="#matrix" class="nav-link">社媒矩阵</a>
         <a href="#showcase" class="nav-link">精选内容</a>
         <a href="about.html" class="nav-link">关于主理人</a>
@@ -139,7 +139,7 @@
         <a href="#hero" class="drawer-link">首页</a>
         <a href="#bento" class="drawer-link">核心主张</a>
         <a href="#pipeline" class="drawer-link">工作流程</a>
-        <a href="#calculator" class="drawer-link">效率测算</a>
+        <a href="#stack" class="drawer-link">技术军火库</a>
         <a href="#matrix" class="drawer-link">社媒矩阵</a>
         <a href="#showcase" class="drawer-link">精选内容</a>
         <a href="about.html" class="drawer-link">关于主理人</a>
@@ -200,26 +200,26 @@
           </a>
         </div>
 
-        <!-- Metric Ribbon (Stats Bar with Count-up Animation) -->
+        <!-- Architecture Highlights Ribbon (Engineering Principles) -->
         <div class="stats-ribbon glass" id="stats-ribbon">
           <div class="stat-item">
-            <span class="stat-num" data-count-target="6" data-count-suffix="+">0</span>
-            <span class="stat-label">全网主流分发矩阵</span>
+            <span class="stat-badge-text">Single Source</span>
+            <span class="stat-label">本地纯文本单一母稿</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-num" data-count-target="100" data-count-suffix="%">0</span>
-            <span class="stat-label">一手实践与源码驱动</span>
+            <span class="stat-badge-text">Local-First</span>
+            <span class="stat-label">无平台锁定的独立资产</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-num" data-count-target="85" data-count-prefix="≈" data-count-suffix="%">0</span>
-            <span class="stat-label">机械重复操作节省</span>
+            <span class="stat-badge-text">CLI & Scripts</span>
+            <span class="stat-label">工程化流水线分发</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-num" data-count-target="24" data-count-suffix="/7">0</span>
-            <span class="stat-label">长期资产自动化流转</span>
+            <span class="stat-badge-text">Open Source</span>
+            <span class="stat-label">一手实操与代码复现</span>
           </div>
         </div>
       </div>
@@ -270,7 +270,7 @@
             </div>
             <h3 class="bento-title">全网矩阵协同分发</h3>
             <p class="bento-text">
-              打破单点平台局限，在 Twitter/X、今日头条、小红书、微信公众号、即刻和 GitHub 建立差异化内容触角，兼顾即时探讨与长期数字资产沉淀。
+              打破单点平台局限，在 GitHub、Twitter/X、微信公众号、即刻和小红书建立差异化内容触角，兼顾即时探讨与长期数字资产沉淀。
             </p>
             <div class="code-chip">
               <code>Multi-Channel · Unified Presence</code>
@@ -410,7 +410,7 @@
         <div class="section-header">
           <span class="section-tag">Arsenal & Stack</span>
           <h2 class="section-title">威特流 · 极客数字军火库</h2>
-          <p class="section-desc">工欲善其事，必先利其器。拆解支撑威特流 ≈85% 自动化提效的底层硬核工具链</p>
+          <p class="section-desc">工欲善其事，必先利其器。拆解支撑威特流高效流转与自动化生产的底层硬核工具链</p>
         </div>
 
         <div class="stack-grid">
@@ -517,80 +517,6 @@
       </div>
     </section>
 
-    <!-- Workflow Efficiency Calculator (Interactive ROI Tool) -->
-    <section id="calculator" class="section calculator-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Interactive ROI</span>
-          <h2 class="section-title">自媒体与工作流效率计算器</h2>
-          <p class="section-desc">测一测：通过工程化自动化流水线，你每年可以夺回多少机械重复时间？</p>
-        </div>
-
-        <div class="calculator-box glass">
-          <div class="calculator-inputs">
-            <!-- Slider 1 -->
-            <div class="calc-control-group">
-              <div class="calc-label-row">
-                <span class="calc-title">每周制作 / 分发内容篇数</span>
-                <span class="calc-val-badge" id="calc-pieces-display">3 篇 / 周</span>
-              </div>
-              <input type="range" id="calc-pieces-slider" class="calc-range" min="1" max="14" value="3" step="1">
-              <div class="calc-range-marks">
-                <span>1篇</span>
-                <span>轻量更 (3篇)</span>
-                <span>日更 (7篇)</span>
-                <span>团队 (14篇)</span>
-              </div>
-            </div>
-
-            <!-- Slider 2 -->
-            <div class="calc-control-group">
-              <div class="calc-label-row">
-                <span class="calc-title">每篇多平台排版、分发与调整耗时</span>
-                <span class="calc-val-badge" id="calc-time-display">60 分钟 / 篇</span>
-              </div>
-              <input type="range" id="calc-time-slider" class="calc-range" min="20" max="150" value="60" step="5">
-              <div class="calc-range-marks">
-                <span>20分钟 (快手发)</span>
-                <span>1小时 (常态痛点)</span>
-                <span>2小时+ (深度打磨)</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="calculator-results">
-            <!-- Card 1 -->
-            <div class="calc-result-card spotlight-card">
-              <span class="result-label">每年可夺回的有效时间</span>
-              <div class="result-highlight">
-                <span class="result-big-num" id="calc-saved-hours">117</span>
-                <span class="result-unit">小时 / 年</span>
-              </div>
-              <p class="result-subtext" id="calc-days-text">相当于每年凭空多出 <strong>14.6 个完整工作日</strong></p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="calc-result-card spotlight-card">
-              <span class="result-label">机械动作解放率</span>
-              <div class="result-highlight">
-                <span class="result-big-num highlight-amber" id="calc-ratio-text">75%</span>
-                <span class="result-unit">自动化接管率</span>
-              </div>
-              <p class="result-subtext">将宝贵注意力留给独家思考与高价值创作</p>
-            </div>
-          </div>
-
-          <div class="calculator-cta-row">
-            <button id="calc-apply-cta" class="btn primary-btn calc-cta-btn">
-              <span>一键获取此自动化方案</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </button>
-            <span class="calc-hint">💡 点击将自动平滑滚动到底部留言框并预填此项意向</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Social Matrix Link Tree (shadcn/ui & HyperUI Inspired) -->
     <section id="matrix" class="section matrix-section">
       <div class="container">
@@ -669,22 +595,6 @@
             </div>
           </a>
 
-          <!-- 今日头条 -->
-          <a href="https://www.toutiao.com" target="_blank" rel="noopener" class="matrix-card glass" data-platform="toutiao">
-            <div class="card-top">
-              <div class="platform-icon toutiao">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 8h10M7 12h7M7 16h10" stroke="#fff" stroke-width="2"/></svg>
-              </div>
-              <span class="platform-badge">行业深度</span>
-            </div>
-            <h3 class="platform-name">今日头条</h3>
-            <p class="platform-desc">深度行业观察、科技趋势解析与结构化观点输出。</p>
-            <div class="matrix-action-btn">
-              <span>阅读文章</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </a>
-
           <!-- 即刻 -->
           <a href="https://web.okjike.com" target="_blank" rel="noopener" class="matrix-card glass" data-platform="jike">
             <div class="card-top">
@@ -735,7 +645,7 @@
             </div>
             <div class="showcase-body">
               <span class="category-tag">系统构建</span>
-              <h4 class="showcase-title">单兵作战系统：创作者如何借助自动化解放 80% 重复操作？</h4>
+              <h4 class="showcase-title">单兵作战系统：如何用脚本与自动化接管繁琐的排版分发？</h4>
               <p class="showcase-summary">系统拆解从素材收集、信息过滤到排版分发的流水线设计，用代码和自动化替代机械劳动。</p>
               <div class="card-meta">
                 <span>⚡ 生产力实测</span>
@@ -752,7 +662,7 @@
             </div>
             <div class="showcase-body">
               <span class="category-tag">方法论</span>
-              <h4 class="showcase-title">跨平台内容架构：同一核心主张在多生态的协同飞轮</h4>
+              <h4 class="showcase-title">跨平台内容架构：单一母稿如何低损耗适配不同平台调性？</h4>
               <p class="showcase-summary">剖析如何在 X、公众号、小红书与即刻实现差异化定位，让深度沉淀与轻量传播互为支撑。</p>
               <div class="card-meta">
                 <span>📘 架构逻辑</span>
@@ -786,7 +696,7 @@
             </div>
             <div class="showcase-body">
               <span class="category-tag">深度思考</span>
-              <h4 class="showcase-title">信息降噪艺术：如何为创作者搭建高纯度输入与输出漏斗？</h4>
+              <h4 class="showcase-title">信息降噪实践：从 RSS 订阅源到本地纯文本资产库的高效管线</h4>
               <p class="showcase-summary">从 RSS 订阅源精简到自动化标签分拣，建立个人知识资产库，把注意力留给真正重要的创造。</p>
               <div class="card-meta">
                 <span>🧠 认知减负</span>
@@ -834,7 +744,7 @@
             </button>
             <div class="faq-content">
               <p class="faq-answer">
-                我们目前布局了 6 大主流渠道：<strong>Twitter / X</strong>（即时思考与全球连接）、<strong>微信公众号</strong>（深度长文与方法论）、<strong>小红书</strong>（视觉化知识卡片与效率桌面）、<strong>即刻</strong>（创作者日常碎片与工具调优）、<strong>今日头条</strong>（行业观察与宏观趋势）以及 <strong>GitHub</strong>（开源脚本与工程代码）。
+                我们目前布局了 5 大核心渠道：<strong>GitHub</strong>（开源脚本与工程代码）、<strong>Twitter / X</strong>（即时思考与前沿连接）、<strong>微信公众号</strong>（深度长文与方法论）、<strong>即刻</strong>（创作者手记与工具调优）以及 <strong>小红书</strong>（视觉化知识卡片与数码日常）。
               </p>
             </div>
           </div>
@@ -946,7 +856,7 @@
           </div>
         </div>
         <p class="footer-slogan">Wit in, Flow out. · Where Engineering Precision Meets Creative Flow.</p>
-        <p class="vps-info">🚀 部署就绪: Ubuntu 24.04 LTS · 生产节点准备</p>
+        <p class="vps-info">🚀 生产就绪: GitHub Pages 边缘分发 · 持续交付</p>
       </div>
 
       <div class="footer-right">
@@ -1128,15 +1038,10 @@
           <span class="cmd-item-title">极客数字军火库与工具链</span>
           <span class="cmd-item-tag">技术栈</span>
         </div>
-        <div class="cmd-item" data-action="nav" data-target="#calculator">
-          <span class="cmd-icon">🧮</span>
-          <span class="cmd-item-title">效率节省计算器</span>
-          <span class="cmd-item-tag">ROI测算</span>
-        </div>
         <div class="cmd-item" data-action="nav" data-target="#matrix">
           <span class="cmd-icon">🌐</span>
           <span class="cmd-item-title">全网社媒矩阵入口</span>
-          <span class="cmd-item-tag">6大平台</span>
+          <span class="cmd-item-tag">5大平台</span>
         </div>
         <div class="cmd-item" data-action="nav" data-target="#showcase">
           <span class="cmd-icon">📑</span>

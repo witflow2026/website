@@ -695,6 +695,14 @@ button {
   letter-spacing: -0.03em;
 }
 
+.stat-badge-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-forest);
+  letter-spacing: -0.01em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
 .stat-label {
   font-size: 0.8rem;
   font-weight: 500;

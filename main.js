@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initShowcaseModal();
   initCountUp();
   initGithubLiveStatus();
-  initCalculator();
   initCommandPalette();
   initReadingProgressBar();
   initInteractiveCanvas();
@@ -616,12 +615,12 @@ function initShowcaseModal() {
   const caseData = {
     'case-1': {
       category: '效率工作流',
-      title: '单兵作战系统：创作者如何借助自动化解放 80% 重复操作？',
+      title: '单兵作战系统：如何用脚本与自动化接管繁琐的排版分发？',
       summary: '从分散的灵感收集到排版分发，通过自研批处理脚本与标准工作流模板构建闭环。',
       topology: [
         { num: 'Step 01', name: '全网高纯输入', desc: 'RSS 聚合源过滤与剪藏标签自动打标' },
         { num: 'Step 02', name: '结构化脚本处理', desc: 'Python/Shell 批处理提取图文核心逻辑' },
-        { num: 'Step 03', name: '一键飞轮分发', desc: '按平台调性生成多版本排版并存入草稿箱' }
+        { num: 'Step 03', name: '一键多端分发', desc: '按平台调性生成多版本排版并存入草稿箱' }
       ],
       takeaways: [
         '系统大于意志力：把重复执行超过 3 次的机械动作全部写成脚本固化。',
@@ -631,7 +630,7 @@ function initShowcaseModal() {
     },
     'case-2': {
       category: '矩阵运营',
-      title: '跨平台内容架构：同一核心主张在多生态的协同飞轮',
+      title: '跨平台内容架构：单一母稿如何低损耗适配不同平台调性？',
       summary: '剖析如何在 X、公众号、小红书与即刻实现差异化定位，让深度沉淀与轻量传播互为支撑。',
       topology: [
         { num: 'Step 01', name: '即刻 / X 发酵', desc: '短动态收集反馈与真实讨论摩擦点' },
@@ -661,8 +660,8 @@ function initShowcaseModal() {
     },
     'case-4': {
       category: '效率工作流',
-      title: '信息降噪艺术：如何为创作者搭建高纯度输入与输出漏斗？',
-      summary: '从 RSS 订阅源精简到自动化标签分拣，建立个人知识资产库，把注意力留给真正重要的创造。',
+      title: '信息降噪实践：从 RSS 订阅源到本地纯文本资产库的高效管线',
+      summary: '从 RSS 订阅源精简到自动化标签分拣，建立本地纯文本知识库，把注意力留给真正重要的创造。',
       topology: [
         { num: 'Step 01', name: '信息源白名单化', desc: '无情取关低信噪比账号，精选硬核输入源' },
         { num: 'Step 02', name: '中间层降噪过滤', desc: '自动化规则初筛，归并同质化热点' },
@@ -679,7 +678,7 @@ function initShowcaseModal() {
         <div class="article-callout">
           <strong>威特流黄金法则：</strong>如果一个信息源在 14 天内没有为你贡献过哪怕一条高价值构想，立即取关或移出常驻列表。
         </div>
-        <h4>二、搭建高纯度输入漏斗的三步法则</h4>
+        <h4>二、搭建高纯度输入管线的三步法则</h4>
         <p>1. <strong>无算法主动订阅</strong>：重回 RSS 与官方高质量 Newsletter，严格按专业度筛选不超过 20 个高信噪比源。</p>
         <p>2. <strong>快捷闪念剪藏</strong>：配置快捷键（如 Raycast / Alfred 脚本），在阅读到闪光点时 3 秒内将其提取至 Inbox 本地文件夹，打上时间与核心关键词标签。</p>
         <p>3. <strong>周度归档与复盘</strong>：每周日定时运行批处理程序，将 Inbox 笔记整合到主题索引库，完成从外部信息到个人知识资产的飞跃。</p>
@@ -690,7 +689,7 @@ function initShowcaseModal() {
   // Add deep dive article texts for case 1, 2, 3
   caseData['case-1'].article = `
     <h4>一、单兵作战的核心痛点：机械重复消耗心力</h4>
-    <p>很多独立创作者之所以感到精疲力竭，是因为大量时间被消耗在格式转换、图片重命名、多平台分发排版等重复机械动作上。这些动作毫无创造性，却占据了 80% 的工作时长。</p>
+    <p>很多独立创作者之所以感到精疲力竭，是因为大量时间被消耗在格式转换、图片重命名、多平台分发排版等重复机械动作上。这些动作毫无创造性，却占据了绝大部分日常工作时长。</p>
     <div class="article-callout">
       <strong>系统大于意志力：</strong>人脑是用来思考的，不是用来充当剪贴板与搬运工的。把任何重复操作超过 3 次的动作固化为工程流水线。
     </div>
@@ -705,7 +704,7 @@ function initShowcaseModal() {
     <h4>一、拒绝简单机械搬运的“同质化陷阱”</h4>
     <p>很多自媒体矩阵之所以反响平平，是因为在不同生态中只是机械地粘贴同一段文字。X 的用户追求极速观点交锋，公众号读者渴望严谨深度的方法论，小红书用户注重即时视觉抓力，即刻创作者更青睐未经雕琢的真实思考碎片。</p>
     <div class="article-callout">
-      <strong>飞轮理念：</strong>同一核心命题，按平台文化“量身剪裁”，让各平台互为支点，形成互相引流与共振的内容飞轮。
+      <strong>生态协同原则：</strong>同一核心命题，按平台文化“量身剪裁”，让各平台互为支点，形成互相引流与共振的良性循环。
     </div>
     <h4>二、跨生态协同的四维坐标</h4>
     <p>1. <strong>X (Twitter)</strong>：作为灵感实验田，快速抛出核心论点，收集真实反馈与辩题。</p>
@@ -799,6 +798,7 @@ function initCountUp() {
   if (!statsRibbon) return;
 
   const statNums = statsRibbon.querySelectorAll('.stat-num[data-count-target]');
+  if (!statNums || statNums.length === 0) return;
   let hasAnimated = false;
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -881,74 +881,6 @@ function initGithubLiveStatus() {
       // Graceful fallback without errors
       commitStatusEl.textContent = '代码持续维护更新中';
     });
-}
-
-/* --------------------------------------------------------------------------
-   17. Interactive Workflow ROI Calculator
-   -------------------------------------------------------------------------- */
-function initCalculator() {
-  const piecesSlider = document.getElementById('calc-pieces-slider');
-  const timeSlider = document.getElementById('calc-time-slider');
-  const piecesDisplay = document.getElementById('calc-pieces-display');
-  const timeDisplay = document.getElementById('calc-time-display');
-  const savedHoursEl = document.getElementById('calc-saved-hours');
-  const daysTextEl = document.getElementById('calc-days-text');
-  const applyBtn = document.getElementById('calc-apply-cta');
-
-  if (!piecesSlider || !timeSlider) return;
-
-  function recalculate() {
-    const pieces = parseInt(piecesSlider.value, 10);
-    const time = parseInt(timeSlider.value, 10);
-
-    if (piecesDisplay) piecesDisplay.textContent = `${pieces} 篇 / 周`;
-    if (timeDisplay) timeDisplay.textContent = `${time} 分钟 / 篇`;
-
-    // 75% mechanical reduction formula: pieces * time * 0.75 * 52 / 60
-    const annualHours = Math.round((pieces * time * 0.75 * 52) / 60);
-    const annualDays = (annualHours / 8).toFixed(1);
-
-    if (savedHoursEl) savedHoursEl.textContent = annualHours;
-    if (daysTextEl) {
-      daysTextEl.innerHTML = `相当于每年凭空多出 <strong>${annualDays} 个完整工作日</strong>`;
-    }
-  }
-
-  [piecesSlider, timeSlider].forEach(slider => {
-    slider.addEventListener('input', () => {
-      recalculate();
-      if (typeof playTick === 'function') playTick(680, 0.008);
-    });
-  });
-
-  recalculate();
-
-  // CTA button auto-fill to contact form
-  if (applyBtn) {
-    applyBtn.addEventListener('click', () => {
-      const pieces = piecesSlider.value;
-      const time = timeSlider.value;
-      const annualHours = Math.round((pieces * time * 0.75 * 52) / 60);
-
-      const contactSection = document.getElementById('contact');
-      const messageInput = document.getElementById('sender-message');
-
-      if (messageInput) {
-        messageInput.value = `你好！我对每周产出约 ${pieces} 篇、年预计省时约 ${annualHours} 小时的自动化工作流方案很感兴趣，希望与威特流开展合作与工具流交流。`;
-        // Trigger auto-save
-        messageInput.dispatchEvent(new Event('input', { bubbles: true }));
-      }
-
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => {
-          if (messageInput) messageInput.focus();
-        }, 600);
-      }
-
-      showToast('已为你自动带入计算方案并定位至留言区！');
-    });
-  }
 }
 
 /* --------------------------------------------------------------------------
