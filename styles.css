@@ -2938,3 +2938,70 @@ button {
     display: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   25. Global Toast Notification System & Feedback States
+   -------------------------------------------------------------------------- */
+.toast-notification {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-card-solid);
+  color: var(--text-main);
+  border: 1px solid var(--border-focus);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 0 25px rgba(26, 56, 43, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-size: 0.92rem;
+  font-weight: 600;
+  z-index: 99999;
+  pointer-events: auto;
+  animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+[data-theme="dark"] .toast-notification {
+  background: #151A18;
+  border-color: rgba(52, 211, 153, 0.4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 30px rgba(52, 211, 153, 0.2);
+}
+
+.toast-notification.hidden {
+  display: none !important;
+}
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-forest);
+  flex-shrink: 0;
+}
+
+.toast-msg {
+  white-space: nowrap;
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.btn-success {
+  background: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
+}

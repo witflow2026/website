@@ -1498,8 +1498,6 @@ function initPosterGenerator() {
   ];
 
   let currentQuoteIndex = 0;
-  const logoImage = new Image();
-  logoImage.src = 'assets/logo.png';
 
   function renderPoster() {
     const ctx = canvas.getContext('2d');
@@ -1538,15 +1536,36 @@ function initPosterGenerator() {
     ctx.beginPath(); ctx.moveTo(22, height - 22 - cornerSize); ctx.lineTo(22, height - 22); ctx.lineTo(22 + cornerSize, height - 22); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(width - 22 - cornerSize, height - 22); ctx.lineTo(width - 22, height - 22); ctx.lineTo(width - 22, height - 22 - cornerSize); ctx.stroke();
 
-    // 2. Header Brand Mark
-    if (logoImage.complete && logoImage.naturalWidth > 0) {
-      ctx.drawImage(logoImage, 42, 46, 42, 42);
-    } else {
-      ctx.fillStyle = isDark ? '#34D399' : '#1A382B';
-      ctx.beginPath();
-      ctx.arc(63, 67, 21, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    // 2. Header Brand Mark (Pure Canvas 2D Vector - Zero Taint Guarantee)
+    const logoX = 63;
+    const logoY = 67;
+    const logoR = 21;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(logoX, logoY, logoR, 0, Math.PI * 2);
+    ctx.fillStyle = isDark ? 'rgba(52, 211, 153, 0.16)' : 'rgba(26, 56, 43, 0.08)';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = isDark ? '#34D399' : '#1A382B';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.strokeStyle = isDark ? '#34D399' : '#1A382B';
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.moveTo(logoX - 10, logoY - 5);
+    ctx.lineTo(logoX - 5, logoY + 6);
+    ctx.lineTo(logoX, logoY - 2);
+    ctx.lineTo(logoX + 5, logoY + 6);
+    ctx.lineTo(logoX + 10, logoY - 5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(logoX, logoY - 8, 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = isDark ? '#FBBF24' : '#C69248';
+    ctx.fill();
+    ctx.restore();
 
     ctx.fillStyle = isDark ? '#F4F6F5' : '#1A1918';
     ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
@@ -1658,38 +1677,80 @@ function initPosterGenerator() {
     });
   });
 
+  const origCopyHtml = copyBtn ? copyBtn.innerHTML : '';
+  const origDownloadHtml = downloadBtn ? downloadBtn.innerHTML : '';
+
+  function setButtonFeedback(btn, tempHtml, isSuccess = true) {
+    if (!btn) return;
+    btn.innerHTML = tempHtml;
+    if (isSuccess) btn.classList.add('btn-success');
+    setTimeout(() => {
+      btn.innerHTML = (btn === copyBtn) ? origCopyHtml : origDownloadHtml;
+      btn.classList.remove('btn-success');
+    }, 2400);
+  }
+
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
+      if (typeof playTick === 'function') playTick(720, 0.02);
+      setButtonFeedback(copyBtn, '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>正在导出...</span>', false);
+
       try {
-        canvas.toBlob(async (blob) => {
-          if (blob && navigator.clipboard && navigator.clipboard.write) {
-            await navigator.clipboard.write([
-              new ClipboardItem({ 'image/png': blob })
-            ]);
-            showToast('海报图片已复制到剪贴板！可直接粘贴至微信或小红书 🖼️');
-          } else {
+        if (canvas.toBlob) {
+          canvas.toBlob(async (blob) => {
+            if (blob && navigator.clipboard && navigator.clipboard.write) {
+              try {
+                await navigator.clipboard.write([
+                  new ClipboardItem({ 'image/png': blob })
+                ]);
+                setButtonFeedback(copyBtn, '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>已复制海报！</span>', true);
+                showToast('海报图片已复制到剪贴板！可直接粘贴至微信或小红书 🖼️');
+                return;
+              } catch (clipboardErr) {
+                // Clipboard permissions blocked or non-secure context, fallback to direct download
+                downloadPoster();
+                setButtonFeedback(copyBtn, '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>已自动保存图片！</span>', true);
+                showToast('系统剪贴板受限，已自动为你下载海报至本地！');
+                return;
+              }
+            }
             downloadPoster();
+            setButtonFeedback(copyBtn, '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>已保存海报图片！</span>', true);
             showToast('已为你自动下载海报图片至本地！');
-          }
-        });
+          }, 'image/png');
+        } else {
+          downloadPoster();
+          setButtonFeedback(copyBtn, '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>已保存海报图片！</span>', true);
+        }
       } catch (err) {
         downloadPoster();
+        setButtonFeedback(copyBtn, '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>已保存海报图片！</span>', true);
         showToast('已为你自动下载海报图片至本地！');
       }
     });
   }
 
   function downloadPoster() {
-    const dataUrl = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.download = `witflow-quote-poster-${currentQuoteIndex + 1}.png`;
-    link.href = dataUrl;
-    link.click();
-    showToast('海报高清 PNG 图片已成功保存至本地！');
+    try {
+      const dataUrl = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = `witflow-quote-poster-${currentQuoteIndex + 1}.png`;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      if (typeof playTick === 'function') playTick(800, 0.02);
+      showToast('海报高清 PNG 图片已成功保存至本地！');
+    } catch (err) {
+      showToast('海报导出失败，请重试');
+    }
   }
 
   if (downloadBtn) {
-    downloadBtn.addEventListener('click', downloadPoster);
+    downloadBtn.addEventListener('click', () => {
+      setButtonFeedback(downloadBtn, '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>已保存到本地！</span>', true);
+      downloadPoster();
+    });
   }
 }
 
