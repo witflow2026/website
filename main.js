@@ -1199,70 +1199,197 @@ function initInteractiveCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   21. Interactive CLI Terminal Simulator (Pipeline Engine Demo)
+   21. Interactive CLI Terminal Simulator (Dynamic Shell & Pipeline Engine)
    -------------------------------------------------------------------------- */
 function initTerminalDemo() {
   const terminalScreen = document.getElementById('terminal-screen');
   const terminalOutput = document.getElementById('terminal-output');
   const activeCmdSpan = document.getElementById('term-active-cmd');
+  const hiddenInput = document.getElementById('term-hidden-input');
   const termButtons = document.querySelectorAll('.term-btn');
   if (!terminalScreen || !terminalOutput || !activeCmdSpan) return;
 
   let isTyping = false;
+  const cmdHistory = [];
+  let historyIdx = -1;
 
-  const commands = {
-    'build': {
-      cmd: 'witflow build --all',
-      logs: [
-        { type: 'muted', text: '[00:00:01] ⚙ 正在载入单一母稿源: content/articles/2026-workflow.md' },
-        { type: 'info', text: '[00:00:01] ✓ Markdown AST 解析完成: 2,840 字符, 4 个系统拓扑块, 3 张高清信息图' },
-        { type: 'step', text: '[00:00:02] 📦 跨生态矩阵编译管线运行中:' },
-        { type: 'bullet', text: '  → 微信公众号: 生成自适应排版 HTML 与代码着色高亮主题' },
-        { type: 'bullet', text: '  → X / Twitter: 智能提炼 1 篇观点钩子 + 5 篇串联 Thread 视觉切片' },
-        { type: 'bullet', text: '  → 小红书: 自动生成 6 张 3:4 比例高信噪比纯净视觉卡片' },
-        { type: 'bullet', text: '  → 即刻 (Jike): 提取闪念思考短动态并附带官方站永久归档' },
-        { type: 'success', text: '[00:00:02] ⚡ 构建成功！用时 348ms。4 大生态草稿已全部就绪。' }
-      ]
-    },
-    'optimize': {
-      cmd: 'witflow optimize --images',
-      logs: [
-        { type: 'muted', text: '[00:00:01] 🖼 扫描本地工作区媒体资源: 找到 18 张图片文件' },
-        { type: 'info', text: '[00:00:01] ⚙ 转换为下一代现代格式 WebP / AVIF 并执行无损感知压缩...' },
-        { type: 'success', text: '[00:00:02] ✓ 资源总体积骤降: 24.6MB → 2.8MB (空间节省 -88.6%)' },
-        { type: 'step', text: '[00:00:02] ☁ 多区域 CDN 边缘节点已完成自动同步分发' },
-        { type: 'success', text: '[00:00:02] 🚀 图床流水线优化完毕，耗时 482ms！' }
-      ]
-    },
-    'status': {
-      cmd: 'witflow status --pipeline',
-      logs: [
-        { type: 'info', text: '[00:00:01] 📊 witflow 内容流水线全生态健康度检查:' },
-        { type: 'step', text: '  ● 单一母稿源 (Markdown Obsidian): ONLINE [实时监听]' },
-        { type: 'step', text: '  ● 本地批处理引擎 (Python 3.12 / Node.js): READY [就绪]' },
-        { type: 'step', text: '  ● 全局快捷触发 (Raycast Custom Extension): ACTIVE [活跃]' },
-        { type: 'step', text: '  ● 云端自动化构建 (GitHub Actions CI/CD): GREEN [正常]' },
-        { type: 'success', text: '  ● 6 大社媒矩阵分发端点: 100% 畅通可用 [零阻塞]' }
-      ]
+  // Real dynamic timestamp helper
+  function getTimestamp() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    return `[${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}]`;
+  }
+
+  // Dynamic articles pool for realistic variation
+  const articlesPool = [
+    { title: '单兵作战系统：从 Obsidian 到全网自媒体矩阵', path: 'content/articles/2026-obsidian-pipeline.md' },
+    { title: '跨生态飞轮：微信公众号与社交平台语态解耦实践', path: 'content/articles/2026-cross-platform-flywheel.md' },
+    { title: '自媒体定制脚本实践：消灭 85% 重复机械排版', path: 'content/articles/2026-creator-script-arsenal.md' },
+    { title: '信息降噪艺术：创作者的高纯度输入输出漏斗', path: 'content/articles/2026-noise-filtering-funnel.md' },
+    { title: 'Claude 3.5 与 Cursor 赋能：极客创作者的数字副驾', path: 'content/articles/2026-ai-assisted-workflow.md' }
+  ];
+
+  // Dynamic log generator for "build"
+  function generateBuildLogs(customTarget) {
+    const ts = getTimestamp;
+    const article = articlesPool[Math.floor(Math.random() * articlesPool.length)];
+    const targetName = customTarget || article.title;
+    const targetPath = customTarget ? `content/articles/${encodeURIComponent(customTarget)}.md` : article.path;
+    const words = Math.floor(Math.random() * 2200) + 1850;
+    const blocks = Math.floor(Math.random() * 3) + 3;
+    const images = Math.floor(Math.random() * 4) + 2;
+    const threads = Math.floor(Math.random() * 3) + 4;
+    const slides = Math.floor(Math.random() * 3) + 5;
+    const duration = Math.floor(Math.random() * 180) + 260;
+
+    return [
+      { type: 'muted', text: `${ts()} ⚙ 正在载入单一母稿源: ${targetPath}` },
+      { type: 'info', text: `${ts()} ✓ Markdown AST 解析完成: ${words.toLocaleString()} 字符, ${blocks} 个系统拓扑块, ${images} 张信息图` },
+      { type: 'step', text: `${ts()} 📦 跨生态矩阵编译管线并发处理: 《${targetName}》` },
+      { type: 'bullet', text: '  → 微信公众号: 生成自适应排版 HTML 与代码着色高亮主题 (已就绪)' },
+      { type: 'bullet', text: `  → X / Twitter: 智能提炼 1 篇观点钩子 + ${threads} 篇串联 Thread 视觉切片` },
+      { type: 'bullet', text: `  → 小红书: 自动生成 ${slides} 张 3:4 比例高信噪比纯净视觉卡片` },
+      { type: 'bullet', text: '  → 即刻 (Jike): 提取闪念思考短动态并附带官方站永久归档' },
+      { type: 'success', text: `${ts()} ⚡ 构建成功！耗时 ${duration}ms。4 大生态草稿已全部就绪。` }
+    ];
+  }
+
+  // Dynamic log generator for "optimize"
+  function generateOptimizeLogs() {
+    const ts = getTimestamp;
+    const imgCount = Math.floor(Math.random() * 12) + 12;
+    const origSize = (Math.random() * 12 + 18).toFixed(1);
+    const compSize = (origSize * (Math.random() * 0.08 + 0.1)).toFixed(1);
+    const savedPct = (100 - (compSize / origSize * 100)).toFixed(1);
+    const duration = Math.floor(Math.random() * 200) + 360;
+
+    return [
+      { type: 'muted', text: `${ts()} 🖼 扫描本地工作区媒体资源: 找到 ${imgCount} 张图片文件` },
+      { type: 'info', text: `${ts()} ⚙ 转换为下一代现代格式 WebP / AVIF 并执行感知无损压缩...` },
+      { type: 'success', text: `${ts()} ✓ 资源总体积骤降: ${origSize}MB → ${compSize}MB (空间节省 -${savedPct}%)` },
+      { type: 'step', text: `${ts()} ☁ 多区域 CDN 边缘节点已完成自动同步分发` },
+      { type: 'success', text: `${ts()} 🚀 图床流水线优化完毕，耗时 ${duration}ms！` }
+    ];
+  }
+
+  // Dynamic log generator for "status"
+  function generateStatusLogs() {
+    const ts = getTimestamp;
+    const latency = Math.floor(Math.random() * 15) + 18;
+    return [
+      { type: 'info', text: `${ts()} 📊 witflow 内容流水线全生态实时健康度体检:` },
+      { type: 'step', text: '  ● 单一母稿源 (Markdown Obsidian): ONLINE [实时监听中]' },
+      { type: 'step', text: '  ● 本地批处理引擎 (Python 3.12 / Node.js): READY [空闲备用]' },
+      { type: 'step', text: '  ● 全局快捷触发 (Raycast Custom Extension): ACTIVE [活跃就绪]' },
+      { type: 'step', text: `  ● 云端 CI/CD 构建 (GitHub Actions): GREEN [边缘延迟 ${latency}ms]` },
+      { type: 'success', text: '  ● 6 大社媒矩阵分发端点: 100% 畅通可用 [零阻塞 · 可持续流转]' }
+    ];
+  }
+
+  // Execute arbitrary command line
+  function executeRawCommand(rawInput) {
+    const cleanCmd = rawInput.trim();
+    if (!cleanCmd) return;
+
+    cmdHistory.push(cleanCmd);
+    historyIdx = cmdHistory.length;
+
+    const promptLine = document.createElement('div');
+    promptLine.className = 'term-log-line';
+    promptLine.innerHTML = `<span class="term-prompt">witflow@macbook ~ %</span> <span style="color:#FFF;font-weight:600;">${cleanCmd}</span>`;
+    terminalOutput.appendChild(promptLine);
+
+    const parts = cleanCmd.split(' ').filter(Boolean);
+    const mainCmd = parts[0].toLowerCase();
+
+    let outputLogs = [];
+
+    if (mainCmd === 'clear') {
+      terminalOutput.innerHTML = '';
+      if (typeof playTick === 'function') playTick(750, 0.02);
+      return;
+    } else if (mainCmd === 'help') {
+      outputLogs = [
+        { type: 'info', text: 'witflow 极客终端支持的命令列表：' },
+        { type: 'bullet', text: '  witflow build [自定义标题]   - 执行母稿多生态矩阵自动化编译' },
+        { type: 'bullet', text: '  witflow optimize              - 执行图床资源转码与感知无损极限压缩' },
+        { type: 'bullet', text: '  witflow status                - 检查自动化流水线与矩阵各端点健康度' },
+        { type: 'bullet', text: '  ls                            - 查看当前工作区母稿与工程目录' },
+        { type: 'bullet', text: '  whoami                        - 查看创作者与品牌身份标识' },
+        { type: 'bullet', text: '  date                          - 打印本地实时系统时间戳' },
+        { type: 'bullet', text: '  clear                         - 清空终端当前所有输出' }
+      ];
+    } else if (mainCmd === 'witflow') {
+      const subCmd = parts[1] ? parts[1].toLowerCase() : '';
+      if (subCmd === 'build') {
+        const targetTitle = parts.slice(2).join(' ').replace(/^--target[= ]?/, '').replace(/^-t[= ]?/, '');
+        outputLogs = generateBuildLogs(targetTitle);
+      } else if (subCmd === 'optimize') {
+        outputLogs = generateOptimizeLogs();
+      } else if (subCmd === 'status') {
+        outputLogs = generateStatusLogs();
+      } else {
+        outputLogs = [
+          { type: 'warn', text: `未知 witflow 子命令: "${subCmd || ''}"。可用: build, optimize, status。输入 "help" 查看说明。` }
+        ];
+      }
+    } else if (mainCmd === 'ls') {
+      outputLogs = [
+        { type: 'step', text: 'total 48' },
+        { type: 'muted', text: 'drwxr-xr-x   6 witflow  staff   192B  content/ (Markdown母稿源库)' },
+        { type: 'muted', text: 'drwxr-xr-x   4 witflow  staff   128B  scripts/ (Python/Node自动化引擎)' },
+        { type: 'muted', text: 'drwxr-xr-x   5 witflow  staff   160B  dist/    (各平台输出草稿箱)' },
+        { type: 'info', text: '-rw-r--r--   1 witflow  staff   2.4K  witflow.config.yaml' },
+        { type: 'info', text: '-rw-r--r--   1 witflow  staff   3.1K  README.md' }
+      ];
+    } else if (mainCmd === 'whoami') {
+      outputLogs = [
+        { type: 'success', text: 'witflow (威特流) · 专注内容流水线工程与效率自媒体实践' },
+        { type: 'muted', text: 'Slogan: "Wit in, Flow out. 智慧进入，结果流出。"' },
+        { type: 'info', text: '官网: https://wkn001.github.io/website/' }
+      ];
+    } else if (mainCmd === 'date') {
+      outputLogs = [
+        { type: 'info', text: `本地当前时间: ${new Date().toLocaleString()}` }
+      ];
+    } else {
+      outputLogs = [
+        { type: 'warn', text: `zsh: command not found: ${cleanCmd}。输入 "help" 查看可用指令列表。` }
+      ];
     }
-  };
 
-  function typeAndExecute(cmdKey) {
+    renderLogs(outputLogs);
+  }
+
+  // Sequentially print logs with dynamic sound
+  function renderLogs(logs) {
+    logs.forEach((log, index) => {
+      setTimeout(() => {
+        const logLine = document.createElement('div');
+        logLine.className = `term-log-line term-log-${log.type}`;
+        logLine.textContent = log.text;
+        terminalOutput.appendChild(logLine);
+        terminalScreen.scrollTop = terminalScreen.scrollHeight;
+        if (typeof playTick === 'function') playTick(520 + (index % 5) * 35, 0.01);
+      }, (index + 1) * 65);
+    });
+  }
+
+  // Typewriter animation trigger for preset buttons
+  function typeAndExecute(cmdText) {
     if (isTyping) return;
 
-    if (cmdKey === 'clear') {
+    if (cmdText === 'clear') {
       terminalOutput.innerHTML = '';
       activeCmdSpan.textContent = '';
+      if (hiddenInput) hiddenInput.value = '';
       if (typeof playTick === 'function') playTick(750, 0.02);
       return;
     }
 
-    const target = commands[cmdKey];
-    if (!target) return;
-
     isTyping = true;
     activeCmdSpan.textContent = '';
-    const cmdText = target.cmd;
+    if (hiddenInput) hiddenInput.value = '';
     let charIdx = 0;
 
     const timer = setInterval(() => {
@@ -1273,38 +1400,70 @@ function initTerminalDemo() {
       if (charIdx >= cmdText.length) {
         clearInterval(timer);
         setTimeout(() => {
-          runLogs(cmdText, target.logs);
+          executeRawCommand(cmdText);
           activeCmdSpan.textContent = '';
+          if (hiddenInput) hiddenInput.value = '';
           isTyping = false;
         }, 180);
       }
-    }, 28);
+    }, 25);
   }
 
-  function runLogs(cmdText, logs) {
-    const promptLine = document.createElement('div');
-    promptLine.className = 'term-log-line';
-    promptLine.innerHTML = `<span class="term-prompt">witflow@macbook ~ %</span> <span style="color:#FFF;font-weight:600;">${cmdText}</span>`;
-    terminalOutput.appendChild(promptLine);
-
-    logs.forEach((log, index) => {
-      setTimeout(() => {
-        const logLine = document.createElement('div');
-        logLine.className = `term-log-line term-log-${log.type}`;
-        logLine.textContent = log.text;
-        terminalOutput.appendChild(logLine);
-        terminalScreen.scrollTop = terminalScreen.scrollHeight;
-        if (typeof playTick === 'function') playTick(540 + index * 30, 0.012);
-      }, (index + 1) * 75);
-    });
-  }
-
+  // Button clicks
   termButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const cmdKey = btn.getAttribute('data-cmd');
-      typeAndExecute(cmdKey);
+      if (cmdKey === 'build') typeAndExecute('witflow build');
+      else if (cmdKey === 'optimize') typeAndExecute('witflow optimize');
+      else if (cmdKey === 'status') typeAndExecute('witflow status');
+      else if (cmdKey === 'clear') typeAndExecute('clear');
     });
   });
+
+  // Focus hidden input on clicking terminal screen
+  terminalScreen.addEventListener('click', () => {
+    if (hiddenInput) hiddenInput.focus();
+  });
+
+  // Keyboard input synchronization
+  if (hiddenInput) {
+    hiddenInput.addEventListener('input', () => {
+      if (!isTyping) {
+        activeCmdSpan.textContent = hiddenInput.value;
+      }
+    });
+
+    hiddenInput.addEventListener('keydown', (e) => {
+      if (isTyping) return;
+
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const val = hiddenInput.value;
+        hiddenInput.value = '';
+        activeCmdSpan.textContent = '';
+        executeRawCommand(val);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (cmdHistory.length > 0 && historyIdx > 0) {
+          historyIdx--;
+          hiddenInput.value = cmdHistory[historyIdx];
+          activeCmdSpan.textContent = hiddenInput.value;
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyIdx < cmdHistory.length - 1) {
+          historyIdx++;
+          hiddenInput.value = cmdHistory[historyIdx];
+          activeCmdSpan.textContent = hiddenInput.value;
+        } else {
+          historyIdx = cmdHistory.length;
+          hiddenInput.value = '';
+          activeCmdSpan.textContent = '';
+        }
+      }
+    });
+  }
 }
 
 /* --------------------------------------------------------------------------
