@@ -1,0 +1,19 @@
+﻿{
+  "name": "witflow 威特流 · 个人媒体自动化工作流实践",
+  "short_name": "witflow",
+  "description": "专注内容流水线工程、多平台自媒体矩阵协同与自动化生产实践",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0B0D0C",
+  "theme_color": "#1A382B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalculator();
   initCommandPalette();
   initReadingProgressBar();
+  initInteractiveCanvas();
+  initTerminalDemo();
+  initPosterGenerator();
+  initMarkdownExporter();
+  initServiceWorker();
 });
 
 /* --------------------------------------------------------------------------
@@ -1053,6 +1058,9 @@ function initCommandPalette() {
     if (action === 'nav' && target) {
       const el = document.querySelector(target);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else if (action === 'open-poster') {
+      const openPosterBtn = document.getElementById('open-poster-btn');
+      if (openPosterBtn) openPosterBtn.click();
     } else if (action === 'toggle-theme') {
       const themeBtn = document.getElementById('theme-toggle');
       if (themeBtn) themeBtn.click();
@@ -1086,6 +1094,508 @@ function initReadingProgressBar() {
       progressBar.style.width = `${Math.min(progress, 100)}%`;
     }
   }, { passive: true });
+}
+
+/* --------------------------------------------------------------------------
+   20. Interactive Hero Ambient Canvas (Particle & Grid Glow)
+   -------------------------------------------------------------------------- */
+function initInteractiveCanvas() {
+  const canvas = document.getElementById('hero-ambient-canvas');
+  const heroSection = document.getElementById('hero');
+  if (!canvas || !heroSection) return;
+
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let mouse = { x: -1000, y: -1000, active: false, targetRadius: 0, currentRadius: 0 };
+  let isVisible = true;
+  let animId = null;
+
+  function resize() {
+    width = canvas.width = heroSection.offsetWidth;
+    height = canvas.height = heroSection.offsetHeight;
+  }
+
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const observer = new IntersectionObserver((entries) => {
+    isVisible = entries[0].isIntersecting;
+    if (isVisible && !animId) {
+      loop();
+    }
+  }, { threshold: 0.05 });
+  observer.observe(heroSection);
+
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    mouse.active = true;
+    mouse.targetRadius = 140;
+  });
+
+  heroSection.addEventListener('mouseleave', () => {
+    mouse.active = false;
+    mouse.targetRadius = 0;
+  });
+
+  const gridSpacing = 28;
+
+  function loop() {
+    if (!isVisible) {
+      animId = null;
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    mouse.currentRadius += (mouse.targetRadius - mouse.currentRadius) * 0.12;
+
+    if (mouse.currentRadius > 1) {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      
+      const startX = Math.max(0, Math.floor((mouse.x - mouse.currentRadius) / gridSpacing) * gridSpacing);
+      const endX = Math.min(width, Math.ceil((mouse.x + mouse.currentRadius) / gridSpacing) * gridSpacing);
+      const startY = Math.max(0, Math.floor((mouse.y - mouse.currentRadius) / gridSpacing) * gridSpacing);
+      const endY = Math.min(height, Math.ceil((mouse.y + mouse.currentRadius) / gridSpacing) * gridSpacing);
+
+      for (let x = startX; x <= endX; x += gridSpacing) {
+        for (let y = startY; y <= endY; y += gridSpacing) {
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < mouse.currentRadius) {
+            const intensity = 1 - (dist / mouse.currentRadius);
+            const alpha = intensity * (isDark ? 0.75 : 0.45);
+            const radius = 1.2 + intensity * 2.2;
+
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fillStyle = isDark 
+              ? `rgba(52, 211, 153, ${alpha})` 
+              : `rgba(26, 56, 43, ${alpha})`;
+            ctx.fill();
+
+            if (dist < 70) {
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              ctx.lineTo(x, y);
+              ctx.strokeStyle = isDark
+                ? `rgba(251, 191, 36, ${(1 - dist / 70) * 0.18})`
+                : `rgba(198, 146, 72, ${(1 - dist / 70) * 0.15})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+    }
+
+    animId = requestAnimationFrame(loop);
+  }
+
+  loop();
+}
+
+/* --------------------------------------------------------------------------
+   21. Interactive CLI Terminal Simulator (Pipeline Engine Demo)
+   -------------------------------------------------------------------------- */
+function initTerminalDemo() {
+  const terminalScreen = document.getElementById('terminal-screen');
+  const terminalOutput = document.getElementById('terminal-output');
+  const activeCmdSpan = document.getElementById('term-active-cmd');
+  const termButtons = document.querySelectorAll('.term-btn');
+  if (!terminalScreen || !terminalOutput || !activeCmdSpan) return;
+
+  let isTyping = false;
+
+  const commands = {
+    'build': {
+      cmd: 'witflow build --all',
+      logs: [
+        { type: 'muted', text: '[00:00:01] ⚙ 正在载入单一母稿源: content/articles/2026-workflow.md' },
+        { type: 'info', text: '[00:00:01] ✓ Markdown AST 解析完成: 2,840 字符, 4 个系统拓扑块, 3 张高清信息图' },
+        { type: 'step', text: '[00:00:02] 📦 跨生态矩阵编译管线运行中:' },
+        { type: 'bullet', text: '  → 微信公众号: 生成自适应排版 HTML 与代码着色高亮主题' },
+        { type: 'bullet', text: '  → X / Twitter: 智能提炼 1 篇观点钩子 + 5 篇串联 Thread 视觉切片' },
+        { type: 'bullet', text: '  → 小红书: 自动生成 6 张 3:4 比例高信噪比纯净视觉卡片' },
+        { type: 'bullet', text: '  → 即刻 (Jike): 提取闪念思考短动态并附带官方站永久归档' },
+        { type: 'success', text: '[00:00:02] ⚡ 构建成功！用时 348ms。4 大生态草稿已全部就绪。' }
+      ]
+    },
+    'optimize': {
+      cmd: 'witflow optimize --images',
+      logs: [
+        { type: 'muted', text: '[00:00:01] 🖼 扫描本地工作区媒体资源: 找到 18 张图片文件' },
+        { type: 'info', text: '[00:00:01] ⚙ 转换为下一代现代格式 WebP / AVIF 并执行无损感知压缩...' },
+        { type: 'success', text: '[00:00:02] ✓ 资源总体积骤降: 24.6MB → 2.8MB (空间节省 -88.6%)' },
+        { type: 'step', text: '[00:00:02] ☁ 多区域 CDN 边缘节点已完成自动同步分发' },
+        { type: 'success', text: '[00:00:02] 🚀 图床流水线优化完毕，耗时 482ms！' }
+      ]
+    },
+    'status': {
+      cmd: 'witflow status --pipeline',
+      logs: [
+        { type: 'info', text: '[00:00:01] 📊 witflow 内容流水线全生态健康度检查:' },
+        { type: 'step', text: '  ● 单一母稿源 (Markdown Obsidian): ONLINE [实时监听]' },
+        { type: 'step', text: '  ● 本地批处理引擎 (Python 3.12 / Node.js): READY [就绪]' },
+        { type: 'step', text: '  ● 全局快捷触发 (Raycast Custom Extension): ACTIVE [活跃]' },
+        { type: 'step', text: '  ● 云端自动化构建 (GitHub Actions CI/CD): GREEN [正常]' },
+        { type: 'success', text: '  ● 6 大社媒矩阵分发端点: 100% 畅通可用 [零阻塞]' }
+      ]
+    }
+  };
+
+  function typeAndExecute(cmdKey) {
+    if (isTyping) return;
+
+    if (cmdKey === 'clear') {
+      terminalOutput.innerHTML = '';
+      activeCmdSpan.textContent = '';
+      if (typeof playTick === 'function') playTick(750, 0.02);
+      return;
+    }
+
+    const target = commands[cmdKey];
+    if (!target) return;
+
+    isTyping = true;
+    activeCmdSpan.textContent = '';
+    const cmdText = target.cmd;
+    let charIdx = 0;
+
+    const timer = setInterval(() => {
+      activeCmdSpan.textContent += cmdText[charIdx];
+      if (typeof playTick === 'function') playTick(620, 0.01);
+      charIdx++;
+
+      if (charIdx >= cmdText.length) {
+        clearInterval(timer);
+        setTimeout(() => {
+          runLogs(cmdText, target.logs);
+          activeCmdSpan.textContent = '';
+          isTyping = false;
+        }, 180);
+      }
+    }, 28);
+  }
+
+  function runLogs(cmdText, logs) {
+    const promptLine = document.createElement('div');
+    promptLine.className = 'term-log-line';
+    promptLine.innerHTML = `<span class="term-prompt">witflow@macbook ~ %</span> <span style="color:#FFF;font-weight:600;">${cmdText}</span>`;
+    terminalOutput.appendChild(promptLine);
+
+    logs.forEach((log, index) => {
+      setTimeout(() => {
+        const logLine = document.createElement('div');
+        logLine.className = `term-log-line term-log-${log.type}`;
+        logLine.textContent = log.text;
+        terminalOutput.appendChild(logLine);
+        terminalScreen.scrollTop = terminalScreen.scrollHeight;
+        if (typeof playTick === 'function') playTick(540 + index * 30, 0.012);
+      }, (index + 1) * 75);
+    });
+  }
+
+  termButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cmdKey = btn.getAttribute('data-cmd');
+      typeAndExecute(cmdKey);
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   22. Shareable Canvas Poster Generator
+   -------------------------------------------------------------------------- */
+function initPosterGenerator() {
+  const modal = document.getElementById('poster-modal');
+  const triggerBtn = document.getElementById('open-poster-btn');
+  const canvas = document.getElementById('poster-canvas');
+  const copyBtn = document.getElementById('copy-poster-btn');
+  const downloadBtn = document.getElementById('download-poster-btn');
+  const quotePills = document.querySelectorAll('#quote-pills-list .quote-pill');
+
+  if (!modal || !canvas) return;
+
+  const quotes = [
+    {
+      theme: "01 流水线哲学",
+      body: "把任何重复执行超过3次的机械动作，全部固化为工程流水线。人脑是用来思考与创造的，不是用来充当剪贴板与搬运工的。",
+      tag: "内容工程主义"
+    },
+    {
+      theme: "02 人脑不当搬运工",
+      body: "系统的力量永远大于意志力。单兵作战的最高境界，不是比别人工作得更辛苦，而是拥有一套为你7×24小时流转的自动化闭环。",
+      tag: "系统飞轮思维"
+    },
+    {
+      theme: "03 系统大于意志力",
+      body: "拒绝同质化的粗暴搬运。以 Markdown 为单一真理源，按平台心智量身剪裁，让深度长文与视觉卡片在全网形成互为共振的飞轮。",
+      tag: "全网矩阵协同"
+    }
+  ];
+
+  let currentQuoteIndex = 0;
+  const logoImage = new Image();
+  logoImage.src = 'assets/logo.png';
+
+  function renderPoster() {
+    const ctx = canvas.getContext('2d');
+    const width = 600;
+    const height = 750;
+    canvas.width = width;
+    canvas.height = height;
+
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    // 1. Background gradient
+    const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+    if (isDark) {
+      bgGrad.addColorStop(0, '#101412');
+      bgGrad.addColorStop(0.5, '#0B0D0C');
+      bgGrad.addColorStop(1, '#080A09');
+    } else {
+      bgGrad.addColorStop(0, '#FAF7F0');
+      bgGrad.addColorStop(0.5, '#F4EFE6');
+      bgGrad.addColorStop(1, '#EAE3D5');
+    }
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, width, height);
+
+    // Subtle border
+    ctx.strokeStyle = isDark ? 'rgba(52, 211, 153, 0.25)' : 'rgba(26, 56, 43, 0.18)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(16, 16, width - 32, height - 32);
+
+    // Decorative inner corner marks
+    ctx.strokeStyle = isDark ? '#34D399' : '#C69248';
+    ctx.lineWidth = 3;
+    const cornerSize = 14;
+    ctx.beginPath(); ctx.moveTo(22, 22 + cornerSize); ctx.lineTo(22, 22); ctx.lineTo(22 + cornerSize, 22); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(width - 22 - cornerSize, 22); ctx.lineTo(width - 22, 22); ctx.lineTo(width - 22, 22 + cornerSize); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(22, height - 22 - cornerSize); ctx.lineTo(22, height - 22); ctx.lineTo(22 + cornerSize, height - 22); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(width - 22 - cornerSize, height - 22); ctx.lineTo(width - 22, height - 22); ctx.lineTo(width - 22, height - 22 - cornerSize); ctx.stroke();
+
+    // 2. Header Brand Mark
+    if (logoImage.complete && logoImage.naturalWidth > 0) {
+      ctx.drawImage(logoImage, 42, 46, 42, 42);
+    } else {
+      ctx.fillStyle = isDark ? '#34D399' : '#1A382B';
+      ctx.beginPath();
+      ctx.arc(63, 67, 21, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.fillStyle = isDark ? '#F4F6F5' : '#1A1918';
+    ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('witflow 威特流', 98, 65);
+
+    ctx.fillStyle = isDark ? '#9CA3AF' : '#6B6864';
+    ctx.font = '13px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('Wit in, Flow out. · 内容流水线工程实践', 98, 85);
+
+    // Header Divider Line
+    ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(42, 110);
+    ctx.lineTo(width - 42, 110);
+    ctx.stroke();
+
+    // 3. Category Tag Badge
+    const quote = quotes[currentQuoteIndex];
+    ctx.fillStyle = isDark ? 'rgba(52, 211, 153, 0.15)' : 'rgba(26, 56, 43, 0.08)';
+    ctx.beginPath();
+    ctx.roundRect(42, 140, 120, 28, 14);
+    ctx.fill();
+
+    ctx.fillStyle = isDark ? '#34D399' : '#1A382B';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.fillText(`● ${quote.tag}`, 54, 158);
+
+    // 4. Large Quotation Mark
+    ctx.fillStyle = isDark ? 'rgba(251, 191, 36, 0.15)' : 'rgba(198, 146, 72, 0.18)';
+    ctx.font = 'bold 88px serif';
+    ctx.fillText('“', 40, 240);
+
+    // 5. Quote Body Text with automatic wrapping
+    ctx.fillStyle = isDark ? '#FFFFFF' : '#1A1918';
+    ctx.font = 'bold 23px "Noto Serif SC", serif';
+    const maxWidth = width - 88;
+    const lineHeight = 42;
+    const words = quote.body;
+    let line = '';
+    let y = 260;
+
+    for (let i = 0; i < words.length; i++) {
+      const testLine = line + words[i];
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && i > 0) {
+        ctx.fillText(line, 44, y);
+        line = words[i];
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line, 44, y);
+
+    // 6. Signature
+    y += 50;
+    ctx.fillStyle = isDark ? '#FBBF24' : '#C69248';
+    ctx.font = 'italic bold 15px sans-serif';
+    ctx.fillText('—— 摘自《witflow 威特流 · 自动化创作者手记》', 44, y);
+
+    // 7. Footer metadata bar
+    const footerY = height - 60;
+    ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)';
+    ctx.beginPath();
+    ctx.moveTo(42, footerY - 20);
+    ctx.lineTo(width - 42, footerY - 20);
+    ctx.stroke();
+
+    ctx.fillStyle = isDark ? '#6B7280' : '#99958F';
+    ctx.font = '12px "Plus Jakarta Sans", monospace';
+    ctx.fillText('2026.09 · GITHUB: wkn001/website', 44, footerY + 5);
+
+    ctx.fillStyle = isDark ? '#34D399' : '#1A382B';
+    ctx.font = 'bold 12px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('witflow.com · 全网矩阵', width - 180, footerY + 5);
+  }
+
+  function openModal() {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    renderPoster();
+    if (typeof playTick === 'function') playTick(680, 0.02);
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', openModal);
+  }
+
+  const closeBtn = modal.querySelector('.modal-close-btn');
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  quotePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      quotePills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentQuoteIndex = parseInt(pill.getAttribute('data-quote'), 10) || 0;
+      renderPoster();
+      if (typeof playTick === 'function') playTick(720, 0.015);
+    });
+  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        canvas.toBlob(async (blob) => {
+          if (blob && navigator.clipboard && navigator.clipboard.write) {
+            await navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+            ]);
+            showToast('海报图片已复制到剪贴板！可直接粘贴至微信或小红书 🖼️');
+          } else {
+            downloadPoster();
+            showToast('已为你自动下载海报图片至本地！');
+          }
+        });
+      } catch (err) {
+        downloadPoster();
+        showToast('已为你自动下载海报图片至本地！');
+      }
+    });
+  }
+
+  function downloadPoster() {
+    const dataUrl = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = `witflow-quote-poster-${currentQuoteIndex + 1}.png`;
+    link.href = dataUrl;
+    link.click();
+    showToast('海报高清 PNG 图片已成功保存至本地！');
+  }
+
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', downloadPoster);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   23. Markdown Case Exporter (Obsidian / Notion Ready)
+   -------------------------------------------------------------------------- */
+function initMarkdownExporter() {
+  const copyMdBtn = document.getElementById('modal-copy-md-btn');
+  if (!copyMdBtn) return;
+
+  copyMdBtn.addEventListener('click', () => {
+    const modalTitle = document.getElementById('modal-title')?.textContent || '案例母稿';
+    const modalCategory = document.getElementById('modal-category')?.textContent || '效率工作流';
+    const modalSummary = document.getElementById('modal-summary')?.textContent || '';
+    const topologySteps = document.querySelectorAll('#modal-topology .topology-step');
+    const takeaways = document.querySelectorAll('#modal-takeaways li');
+    const articleContent = document.getElementById('modal-article-body')?.innerText || '';
+
+    let md = `---
+title: "${modalTitle}"
+category: "${modalCategory}"
+date: 2026-09
+author: "witflow 威特流"
+tags: ["内容工程", "自动化工作流", "自媒体矩阵"]
+---
+
+# ${modalTitle}
+
+> 摘要：${modalSummary}
+> 归档：[witflow 威特流官方主页](https://wkn001.github.io/website/)
+
+---
+
+## 🧩 系统流转拓扑（System Pipeline）
+
+`;
+
+    topologySteps.forEach((step, idx) => {
+      const name = step.querySelector('.step-name')?.textContent || `Step ${idx + 1}`;
+      const desc = step.querySelector('.step-desc')?.textContent || '';
+      md += `${idx + 1}. **${name}**：${desc}\n`;
+    });
+
+    md += `\n## 💡 核心实操沉淀与复用经验\n\n`;
+    takeaways.forEach(item => {
+      md += `- ${item.textContent}\n`;
+    });
+
+    if (articleContent) {
+      md += `\n## 📖 深度长文研读母稿\n\n${articleContent}\n`;
+    }
+
+    copyText(md, `已复制《${modalTitle.substring(0, 16)}...》完整 Markdown 母稿！可直接粘贴至 Obsidian / Notion。`);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   24. PWA Service Worker Registration
+   -------------------------------------------------------------------------- */
+function initServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
 }
 
 

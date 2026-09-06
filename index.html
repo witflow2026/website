@@ -28,6 +28,30 @@
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
 
+  <!-- PWA Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Schema.org JSON-LD Structured Data for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "witflow 威特流",
+    "alternateName": "witflow",
+    "url": "https://wkn001.github.io/website/",
+    "description": "Wit in, Flow out. 用工程化思维探索效率工具链、自动化工作流与全网自媒体矩阵。",
+    "inLanguage": "zh-CN",
+    "publisher": {
+      "@type": "Organization",
+      "name": "witflow 威特流",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://wkn001.github.io/website/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,6 +152,7 @@
     <section id="hero" class="hero-section">
       <!-- Ambient Background Dot Grid & Radial Glow -->
       <div class="hero-grid-bg" aria-hidden="true"></div>
+      <canvas id="hero-ambient-canvas" class="hero-ambient-canvas" aria-hidden="true"></canvas>
       <div class="hero-glow-orb glow-top" aria-hidden="true"></div>
       <div class="hero-glow-orb glow-bottom" aria-hidden="true"></div>
 
@@ -332,6 +357,160 @@
             </div>
           </div>
         </div>
+
+        <!-- Interactive Terminal Simulator (CLI Pipeline Engine Demo) -->
+        <div class="terminal-container">
+          <div class="terminal-header-bar">
+            <div class="terminal-badge-group">
+              <span class="pulse-beacon sm"></span>
+              <span class="terminal-badge-title">实时流水线模拟执行器 · INTERACTIVE CLI</span>
+            </div>
+            <div class="terminal-quick-actions">
+              <button class="term-btn" data-cmd="build"><span>▶ 构建多端</span></button>
+              <button class="term-btn" data-cmd="optimize"><span>⚡ 格式优化</span></button>
+              <button class="term-btn" data-cmd="status"><span>📊 管线健康</span></button>
+              <button class="term-btn text-only" data-cmd="clear"><span>清屏</span></button>
+            </div>
+          </div>
+
+          <div class="terminal-window glass">
+            <div class="terminal-window-bar">
+              <div class="term-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="term-window-title">witflow-engine@pipeline-v2: ~ (zsh)</div>
+              <div class="term-actions-hint">支持点击上方按钮或输入</div>
+            </div>
+            <div class="terminal-body" id="terminal-screen" tabindex="0">
+              <div class="term-log-line muted">witflow 内容流水线内核 [版本 2.4.1-release]</div>
+              <div class="term-log-line muted">单兵自媒体自动化架构就绪。点击上方快捷指令进行实时模拟。</div>
+              <div class="term-divider"></div>
+              <div class="term-output-area" id="terminal-output">
+                <!-- Executed outputs will append here -->
+              </div>
+              <div class="term-input-line">
+                <span class="term-prompt">witflow@macbook ~ %</span>
+                <span class="term-active-cmd" id="term-active-cmd"></span>
+                <span class="term-cursor">█</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack & Gear Arsenal Section -->
+    <section id="stack" class="section stack-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Arsenal & Stack</span>
+          <h2 class="section-title">威特流 · 极客数字军火库</h2>
+          <p class="section-desc">工欲善其事，必先利其器。拆解支撑威特流 ≈85% 自动化提效的底层硬核工具链</p>
+        </div>
+
+        <div class="stack-grid">
+          <!-- Stack Category 1 -->
+          <div class="stack-card glass spotlight-card">
+            <div class="stack-card-header">
+              <div class="stack-icon-frame">📝</div>
+              <div>
+                <h3 class="stack-card-title">知识源点 · Source of Truth</h3>
+                <p class="stack-card-subtitle">本地优先，文本唯一真理源</p>
+              </div>
+            </div>
+            <div class="stack-tags-list">
+              <div class="stack-item" title="核心笔记与网状双链系统">
+                <span class="stack-item-name">Obsidian</span>
+                <span class="stack-item-role">本地知识库</span>
+              </div>
+              <div class="stack-item" title="通用跨平台轻量文本源">
+                <span class="stack-item-name">Markdown</span>
+                <span class="stack-item-role">单一母稿格式</span>
+              </div>
+              <div class="stack-item" title="代码高亮与批量排版工程">
+                <span class="stack-item-name">VS Code</span>
+                <span class="stack-item-role">工程编辑器</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stack Category 2 -->
+          <div class="stack-card glass spotlight-card">
+            <div class="stack-card-header">
+              <div class="stack-icon-frame">⚙️</div>
+              <div>
+                <h3 class="stack-card-title">流水线引擎 · Pipeline Core</h3>
+                <p class="stack-card-subtitle">批处理裁剪与排版自动化</p>
+              </div>
+            </div>
+            <div class="stack-tags-list">
+              <div class="stack-item" title="多平台差异化格式转换主引擎">
+                <span class="stack-item-name">Python 3</span>
+                <span class="stack-item-role">批处理主引擎</span>
+              </div>
+              <div class="stack-item" title="自建 CLI 命令行工具链与静态站点">
+                <span class="stack-item-name">Node.js</span>
+                <span class="stack-item-role">脚本运行时</span>
+              </div>
+              <div class="stack-item" title="多设备无缝版本追踪与历史还原">
+                <span class="stack-item-name">Git / GitHub</span>
+                <span class="stack-item-role">版本管理与协作</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stack Category 3 -->
+          <div class="stack-card glass spotlight-card">
+            <div class="stack-card-header">
+              <div class="stack-icon-frame">⚡</div>
+              <div>
+                <h3 class="stack-card-title">敏捷调度 · Quick Triggers</h3>
+                <p class="stack-card-subtitle">毫秒级闪念剪藏与一键批处理</p>
+              </div>
+            </div>
+            <div class="stack-tags-list">
+              <div class="stack-item" title="全局快捷呼出自定义流水线指令">
+                <span class="stack-item-name">Raycast</span>
+                <span class="stack-item-role">系统快捷启动器</span>
+              </div>
+              <div class="stack-item" title="本地多图无损压缩与图床同步">
+                <span class="stack-item-name">Sharp / Pillow</span>
+                <span class="stack-item-role">图像自动化处理</span>
+              </div>
+              <div class="stack-item" title="开箱即用的轻量终端脚本">
+                <span class="stack-item-name">Zsh / Shell</span>
+                <span class="stack-item-role">原生环境驱动</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stack Category 4 -->
+          <div class="stack-card glass spotlight-card">
+            <div class="stack-card-header">
+              <div class="stack-icon-frame">🤖</div>
+              <div>
+                <h3 class="stack-card-title">智能赋能 · AI Augmentation</h3>
+                <p class="stack-card-subtitle">灵感发酵与多生态语态迁移</p>
+              </div>
+            </div>
+            <div class="stack-tags-list">
+              <div class="stack-item" title="严谨逻辑推演与深度长文结构化梳理">
+                <span class="stack-item-name">Claude 3.5</span>
+                <span class="stack-item-role">逻辑推演与长文辅助</span>
+              </div>
+              <div class="stack-item" title="实时极客编程辅助与自动化工具迭代">
+                <span class="stack-item-name">Cursor</span>
+                <span class="stack-item-role">AI 工程辅助</span>
+              </div>
+              <div class="stack-item" title="海量资料交叉比对与多模态解析">
+                <span class="stack-item-name">Gemini 2.0</span>
+                <span class="stack-item-role">信息检索与降噪</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -531,12 +710,18 @@
           <p class="section-desc">坚持亲测驱动与一手实操，记录数字工作流与技术演进中的高价值样板</p>
         </div>
 
-        <!-- Filter Tabs (Magic UI / shadcn style) -->
-        <div class="filter-tabs-group">
-          <button class="filter-tab active" data-filter="all">全部内容</button>
-          <button class="filter-tab" data-filter="workflow">效率工作流</button>
-          <button class="filter-tab" data-filter="matrix">矩阵运营</button>
-          <button class="filter-tab" data-filter="tools">独立工程</button>
+        <!-- Filter Tabs & Poster Trigger (Magic UI / shadcn style) -->
+        <div class="filter-tabs-row">
+          <div class="filter-tabs-group">
+            <button class="filter-tab active" data-filter="all">全部内容</button>
+            <button class="filter-tab" data-filter="workflow">效率工作流</button>
+            <button class="filter-tab" data-filter="matrix">矩阵运营</button>
+            <button class="filter-tab" data-filter="tools">独立工程</button>
+          </div>
+          <button id="open-poster-btn" class="btn sm secondary-btn poster-trigger-btn" title="一键生成威特流精美社交金句海报">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            <span>生成金句海报</span>
+          </button>
         </div>
 
         <div class="showcase-grid">
@@ -825,6 +1010,10 @@
           <button class="modal-tab-btn" id="tab-btn-article">
             <span>📖 沉浸深度长文</span>
           </button>
+          <button class="modal-tab-btn modal-copy-md-btn" id="modal-copy-md-btn" title="一键复制完整 Markdown 母稿至剪贴板">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>复制母稿 (Markdown)</span>
+          </button>
         </div>
       </div>
 
@@ -863,6 +1052,46 @@
     </div>
   </div>
 
+  <!-- Modal: Brand Quote Shareable Poster Generator -->
+  <div id="poster-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card poster-modal-card glass">
+      <button class="modal-close-btn" aria-label="关闭弹窗">&times;</button>
+      <div class="poster-modal-header">
+        <span class="category-tag">Social Share</span>
+        <h3 class="modal-title">生成威特流 · 极客金句海报</h3>
+        <p class="modal-desc">挑选启发性思想切片，实时渲染高清社交卡片，一键保存或复制</p>
+      </div>
+
+      <div class="poster-modal-body">
+        <!-- Quote Selector -->
+        <div class="poster-quote-selector">
+          <span class="poster-selector-label">选择分享金句：</span>
+          <div class="quote-pills-list" id="quote-pills-list">
+            <button class="quote-pill active" data-quote="0">01 流水线哲学</button>
+            <button class="quote-pill" data-quote="1">02 人脑不当搬运工</button>
+            <button class="quote-pill" data-quote="2">03 系统大于意志力</button>
+          </div>
+        </div>
+
+        <!-- Canvas Poster Preview Area -->
+        <div class="poster-canvas-wrapper">
+          <canvas id="poster-canvas" width="600" height="750" class="poster-canvas"></canvas>
+        </div>
+      </div>
+
+      <div class="poster-modal-footer">
+        <button id="copy-poster-btn" class="btn primary-btn poster-action-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <span>复制海报图片</span>
+        </button>
+        <button id="download-poster-btn" class="btn secondary-btn poster-action-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          <span>保存到本地</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Command Palette Modal (Raycast & Linear style Ctrl+K) -->
   <div id="cmd-palette-modal" class="modal-overlay hidden cmd-palette-overlay" role="dialog" aria-modal="true">
     <div class="cmd-palette-box glass">
@@ -889,6 +1118,11 @@
           <span class="cmd-icon">⚙️</span>
           <span class="cmd-item-title">内容工程流水线</span>
           <span class="cmd-item-tag">管线</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#stack">
+          <span class="cmd-icon">🛠️</span>
+          <span class="cmd-item-title">极客数字军火库与工具链</span>
+          <span class="cmd-item-tag">技术栈</span>
         </div>
         <div class="cmd-item" data-action="nav" data-target="#calculator">
           <span class="cmd-icon">🧮</span>
@@ -918,6 +1152,11 @@
 
         <!-- Actions Group -->
         <div class="cmd-group-title">功能指令 · ACTIONS</div>
+        <div class="cmd-item" data-action="open-poster">
+          <span class="cmd-icon">🖼️</span>
+          <span class="cmd-item-title">生成精美社交金句分享海报</span>
+          <span class="cmd-item-tag">海报</span>
+        </div>
         <div class="cmd-item" data-action="toggle-theme">
           <span class="cmd-icon">🌗</span>
           <span class="cmd-item-title">切换深色 / 浅色模式</span>
