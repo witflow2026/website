@@ -5,17 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>witflow 威特流 · 效率工作流与全网自媒体矩阵</title>
   <meta name="description" content="witflow 威特流 - Wit in, Flow out. 用工程化思维探索效率工具链、自动化工作流与全网自媒体矩阵。">
+  
+  <!-- Open Graph / Meta for Social Shares (WeChat, Twitter, Telegram) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://witflow.com/">
+  <meta property="og:title" content="witflow 威特流 · 探索数字内容与效率工作流">
+  <meta property="og:description" content="Wit in, Flow out. · 智慧进入，结果流出。专注数字工作流自动化、工具链工程与全网多平台自媒体矩阵。">
+  <meta property="og:image" content="assets/logo.png">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@witflow">
+  <meta name="twitter:title" content="witflow 威特流 · Wit in, Flow out.">
+  <meta name="twitter:description" content="用工程化思维打造高效流畅的数字系统与内容生态。智慧进入，结果流出。">
+  <meta name="twitter:image" content="assets/logo.png">
+
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#1E3A2F" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B0D0C" media="(prefers-color-scheme: dark)">
+
+  <!-- Favicon & Apple Touch Icons -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- Floating Navigation Bar -->
-  <header class="navbar-wrapper">
+  <header id="navbar-wrapper" class="navbar-wrapper">
     <nav class="navbar glass">
       <a href="#hero" class="brand-logo">
         <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img">
@@ -36,6 +58,12 @@
       </div>
 
       <div class="nav-actions">
+        <!-- Web Audio Micro-sound Toggle (Linear/Raycast style) -->
+        <button id="sound-toggle" class="icon-btn" aria-label="微音效开关" title="切换交互微音效">
+          <svg class="sound-on-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="sound-off-icon hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+
         <!-- Theme Toggle -->
         <button id="theme-toggle" class="icon-btn" aria-label="切换主题" title="切换深色/浅色模式">
           <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -99,7 +127,7 @@
             <img src="assets/logo.png" alt="witflow 威特流 Logo" class="hero-logo-img">
           </div>
           <div class="slogan-tag">
-            <span class="slogan-en">Wit in, Flow out.</span>
+            <span class="slogan-en shimmer-text">Wit in, Flow out.</span>
             <span class="slogan-divider">·</span>
             <span class="slogan-zh">智慧进入，结果流出</span>
           </div>
@@ -108,7 +136,7 @@
         <!-- Pill Badge -->
         <div class="pill-badge">
           <span class="pulse-beacon"></span>
-          <span class="pill-text">Wit in, Flow out. · 探索数字内容与效率工作流</span>
+          <span class="pill-text shimmer-text">Wit in, Flow out. · 探索数字内容与效率工作流</span>
         </div>
 
         <!-- Main Typography -->
@@ -424,7 +452,7 @@
 
         <div class="showcase-grid">
           <!-- Case 1 -->
-          <div class="showcase-card glass" data-category="workflow">
+          <div class="showcase-card glass" data-category="workflow" data-case-id="case-1">
             <div class="showcase-thumb thumb-1">
               <span class="badge-overlay">效率工作流</span>
             </div>
@@ -435,12 +463,13 @@
               <div class="card-meta">
                 <span>⚡ 生产力实测</span>
                 <span>🛠️ 工具流闭环</span>
+                <button class="card-detail-btn" data-case="case-1">拆解架构 ➔</button>
               </div>
             </div>
           </div>
 
           <!-- Case 2 -->
-          <div class="showcase-card glass" data-category="matrix">
+          <div class="showcase-card glass" data-category="matrix" data-case-id="case-2">
             <div class="showcase-thumb thumb-2">
               <span class="badge-overlay">矩阵运营</span>
             </div>
@@ -451,12 +480,13 @@
               <div class="card-meta">
                 <span>📘 架构逻辑</span>
                 <span>🌐 全网协同</span>
+                <button class="card-detail-btn" data-case="case-2">拆解架构 ➔</button>
               </div>
             </div>
           </div>
 
           <!-- Case 3 -->
-          <div class="showcase-card glass" data-category="tools">
+          <div class="showcase-card glass" data-category="tools" data-case-id="case-3">
             <div class="showcase-thumb thumb-3">
               <span class="badge-overlay">开源实践</span>
             </div>
@@ -467,12 +497,13 @@
               <div class="card-meta">
                 <span>💻 源码驱动</span>
                 <span>🚀 极简主义</span>
+                <button class="card-detail-btn" data-case="case-3">拆解架构 ➔</button>
               </div>
             </div>
           </div>
 
           <!-- Case 4 -->
-          <div class="showcase-card glass" data-category="workflow">
+          <div class="showcase-card glass" data-category="workflow" data-case-id="case-4">
             <div class="showcase-thumb thumb-4">
               <span class="badge-overlay">信息架构</span>
             </div>
@@ -483,6 +514,7 @@
               <div class="card-meta">
                 <span>🧠 认知减负</span>
                 <span>📈 长期复利</span>
+                <button class="card-detail-btn" data-case="case-4">拆解架构 ➔</button>
               </div>
             </div>
           </div>
@@ -605,10 +637,16 @@
               <label for="sender-message" class="form-label">合作意向 / 交流留言</label>
               <textarea id="sender-message" class="form-textarea" rows="3" placeholder="简述你的合作需求、技术交流探讨或想法..." required></textarea>
             </div>
-            <button type="submit" class="btn primary-btn form-submit-btn">
-              <span>一键提交留言</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            </button>
+            <div class="form-footer-row">
+              <button type="submit" class="btn primary-btn form-submit-btn">
+                <span>一键提交留言</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              </button>
+              <span id="form-draft-badge" class="draft-indicator hidden">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>已自动保存本地草稿</span>
+              </span>
+            </div>
           </form>
 
           <div class="contact-footnote">
@@ -660,8 +698,9 @@
       </div>
 
       <div class="qr-box">
-        <!-- Generative Modern SVG QR Placeholder with Logo in center -->
-        <div class="qr-placeholder">
+        <!-- Real WeChat QR code image if placed at assets/wechat-qr.png, fallback to SVG placeholder -->
+        <img id="real-wechat-qr" src="assets/wechat-qr.png" alt="微信二维码" class="real-qr-img hidden">
+        <div class="qr-placeholder" id="svg-wechat-qr">
           <div class="qr-corner top-left"></div>
           <div class="qr-corner top-right"></div>
           <div class="qr-corner bottom-left"></div>
@@ -679,6 +718,46 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal: Showcase Detail Dialog (Logic & Architecture Reader) -->
+  <div id="showcase-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card showcase-modal-card glass">
+      <button class="modal-close-btn" aria-label="关闭弹窗">&times;</button>
+      <div class="showcase-modal-header">
+        <span class="category-tag modal-category-badge" id="modal-category">效率工作流</span>
+        <h3 class="modal-title" id="modal-title">工作流逻辑与系统架构拆解</h3>
+        <p class="modal-desc" id="modal-summary">深度拆解工作流核心原理与实战经验</p>
+      </div>
+
+      <div class="showcase-modal-body">
+        <div class="flow-breakdown">
+          <h5 class="breakdown-heading">🧩 系统流转拓扑（System Pipeline）：</h5>
+          <div class="topology-steps" id="modal-topology">
+            <!-- Dynamic topology steps inserted by JS -->
+          </div>
+        </div>
+
+        <div class="takeaways-box">
+          <h5 class="breakdown-heading">💡 核心实操沉淀与复用经验：</h5>
+          <ul class="takeaways-list" id="modal-takeaways">
+            <!-- Dynamic takeaways inserted by JS -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="showcase-modal-footer">
+        <a href="#matrix" class="btn primary-btn modal-action-btn" id="modal-action-btn">
+          <span>前往全网平台深入探讨</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Floating Button -->
+  <button id="back-to-top" class="back-to-top-btn hidden" aria-label="返回顶部" title="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
 
   <!-- Toast Notification System (shadcn/ui style) -->
   <div id="toast" class="toast-notification hidden" role="status" aria-live="polite">

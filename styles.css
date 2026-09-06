@@ -154,6 +154,14 @@ button {
   transition: all var(--transition-smooth);
 }
 
+.navbar-wrapper.scrolled .navbar {
+  height: 50px;
+  padding: 0 1rem;
+  background: var(--bg-card-solid);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 0, 0, 0.18);
+  border-color: var(--border-focus);
+}
+
 .brand-logo {
   display: flex;
   align-items: center;
@@ -217,10 +225,50 @@ button {
   font-weight: 500;
   color: var(--text-muted);
   transition: color var(--transition-fast);
+  position: relative;
+  padding: 0.25rem 0;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
   color: var(--brand-forest);
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--brand-forest);
+}
+
+/* Animated Shimmer Text (Magic UI style) */
+.shimmer-text {
+  background: linear-gradient(
+    110deg,
+    var(--text-main) 20%,
+    var(--brand-forest) 45%,
+    var(--brand-amber) 55%,
+    var(--text-main) 75%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 6s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes textShimmer {
+  0%, 15% { background-position: 150% 0; }
+  85%, 100% { background-position: -150% 0; }
 }
 
 .nav-actions {
@@ -1149,6 +1197,28 @@ button {
   padding-top: 0.75rem;
 }
 
+.card-detail-btn {
+  margin-left: auto;
+  color: var(--brand-forest);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--brand-forest-light);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.card-detail-btn:hover {
+  background: var(--brand-forest);
+  color: #FFFFFF;
+  transform: translateX(2px);
+}
+
+[data-theme="dark"] .card-detail-btn:hover {
+  color: #0B0D0C;
+}
+
 /* --------------------------------------------------------------------------
    9.5 FAQ Accordion Section (shadcn/ui Inspired)
    -------------------------------------------------------------------------- */
@@ -1367,10 +1437,29 @@ button {
 }
 
 .form-submit-btn {
-  align-self: flex-start;
   margin-top: 0.25rem;
   padding: 0.75rem 1.6rem;
   font-size: 0.92rem;
+}
+
+.form-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.draft-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--brand-forest);
+  font-weight: 500;
+  background: var(--brand-forest-light);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
 }
 
 .contact-footnote {
@@ -1614,12 +1703,144 @@ button {
   color: #FFFFFF;
 }
 
+/* Real QR Code Image */
+.real-qr-img {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-md);
+  object-fit: contain;
+  background: #FFFFFF;
+  border: 8px solid #FFFFFF;
+  box-shadow: var(--shadow-md);
+}
+
+/* Showcase Detail Modal (Architecture & Logic Reader) */
+.showcase-modal-card {
+  max-width: 640px;
+  width: 92%;
+  text-align: left;
+  padding: 2.25rem 2.25rem 2rem;
+}
+
+.showcase-modal-header {
+  margin-bottom: 1.25rem;
+}
+
+.modal-category-badge {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.flow-breakdown,
+.takeaways-box {
+  margin-bottom: 1.25rem;
+}
+
+.breakdown-heading {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.topology-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.topo-step {
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+}
+
+.topo-num {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--brand-amber);
+  margin-bottom: 0.2rem;
+}
+
+.topo-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.topo-desc {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.takeaways-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.takeaways-list li {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.55;
+}
+
+.takeaways-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--brand-forest);
+}
+
+.modal-action-btn {
+  width: 100%;
+}
+
+/* Back to Top Floating Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card-solid);
+  color: var(--text-main);
+  border: 1px solid var(--border-focus);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 95;
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.back-to-top-btn:hover {
+  transform: translateY(-3px);
+  background: var(--brand-forest);
+  color: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(var(--brand-forest-rgb), 0.35);
+}
+
+[data-theme="dark"] .back-to-top-btn:hover {
+  color: #0B0D0C;
+}
+
 /* --------------------------------------------------------------------------
    13. Toast Notification
    -------------------------------------------------------------------------- */
 .toast-notification {
   position: fixed;
-  bottom: 2rem;
+  bottom: 5.25rem;
   right: 2rem;
   display: flex;
   align-items: center;
