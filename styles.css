@@ -1884,6 +1884,415 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   Top Reading Progress Bar
+   -------------------------------------------------------------------------- */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--brand-forest), var(--brand-amber));
+  box-shadow: 0 0 10px rgba(var(--brand-forest-rgb), 0.6);
+  z-index: 1000;
+  transition: width 0.08s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   Command Palette Trigger & Modal (Raycast / Linear style Ctrl+K)
+   -------------------------------------------------------------------------- */
+.cmd-palette-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cmd-palette-trigger:hover {
+  border-color: var(--border-focus);
+  color: var(--text-main);
+  background: var(--bg-card);
+}
+
+.cmd-shortcut-text {
+  font-size: 0.8rem;
+}
+
+.cmd-kbd-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-subtle);
+  color: var(--brand-amber);
+}
+
+.cmd-palette-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  z-index: 500;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14vh;
+}
+
+.cmd-palette-box {
+  width: 90%;
+  max-width: 580px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), 0 0 45px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-focus);
+  background: var(--bg-card-solid);
+  animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cmd-search-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 0.75rem;
+}
+
+.cmd-search-icon {
+  color: var(--brand-forest);
+  flex-shrink: 0;
+}
+
+.cmd-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  font-family: inherit;
+}
+
+.cmd-input::placeholder {
+  color: var(--text-subtle);
+  font-size: 0.92rem;
+}
+
+.cmd-esc-badge {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.cmd-results-list {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.cmd-group-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
+  padding: 0.6rem 0.8rem 0.25rem;
+  text-transform: uppercase;
+}
+
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.cmd-item:hover,
+.cmd-item.selected {
+  background: var(--bg-subtle);
+  color: var(--brand-forest);
+}
+
+.cmd-item.hidden-by-filter {
+  display: none !important;
+}
+
+.cmd-icon {
+  font-size: 1.1rem;
+}
+
+.cmd-item-title {
+  flex-grow: 1;
+}
+
+.cmd-item-tag {
+  font-size: 0.72rem;
+  color: var(--text-subtle);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+}
+
+.cmd-footer {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-subtle);
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   Workflow Efficiency Calculator (Interactive ROI)
+   -------------------------------------------------------------------------- */
+.calculator-section {
+  background: var(--bg-subtle);
+}
+
+.calculator-box {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.75rem 2.5rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.calculator-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.calc-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.calc-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.calc-val-badge {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand-forest);
+  background: var(--brand-forest-light);
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+}
+
+.calc-range {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--border-subtle);
+  outline: none;
+  accent-color: var(--brand-forest);
+  cursor: pointer;
+}
+
+.calc-range-marks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+}
+
+.calculator-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.calc-result-card {
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  text-align: center;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.calc-result-card:hover {
+  border-color: var(--border-focus);
+  transform: translateY(-2px);
+}
+
+.result-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.result-highlight {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.result-big-num {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--brand-forest);
+  line-height: 1;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.result-big-num.highlight-amber {
+  color: var(--brand-amber);
+}
+
+.result-unit {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.result-subtext {
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+}
+
+.calculator-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.calc-hint {
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+}
+
+/* GitHub Live Info Badge */
+.github-live-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  width: fit-content;
+}
+
+.live-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand-forest);
+  box-shadow: 0 0 6px var(--brand-forest);
+  animation: pulse 1.8s infinite;
+}
+
+/* Showcase Modal Tab Bar & Deep Dive Article */
+.modal-tabs-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.modal-tab-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modal-tab-btn:hover {
+  color: var(--text-main);
+  background: var(--bg-card);
+}
+
+.modal-tab-btn.active {
+  background: var(--brand-forest);
+  color: #FFFFFF;
+  border-color: var(--brand-forest);
+}
+
+[data-theme="dark"] .modal-tab-btn.active {
+  color: #0B0D0C;
+}
+
+.article-reader-content {
+  line-height: 1.75;
+  color: var(--text-main);
+  font-size: 0.92rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.article-reader-content h4 {
+  font-size: 1.1rem;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.article-reader-content p {
+  margin-bottom: 0.85rem;
+  color: var(--text-muted);
+}
+
+.article-callout {
+  padding: 0.85rem 1.15rem;
+  border-left: 3px solid var(--brand-amber);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  margin: 1rem 0;
+  font-size: 0.88rem;
+  color: var(--text-main);
+}
+
+/* --------------------------------------------------------------------------
    14. Responsive Breakpoints
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
@@ -1902,6 +2311,10 @@ button {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .calculator-results {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1917,6 +2330,16 @@ button {
     display: flex;
   }
 
+  .cmd-palette-trigger .cmd-shortcut-text,
+  .cmd-palette-trigger .cmd-kbd-badge {
+    display: none;
+  }
+
+  .cmd-palette-box {
+    width: 95%;
+    margin-top: 4vh;
+  }
+
   .stats-ribbon {
     flex-direction: column;
     gap: 1.25rem;
@@ -1929,6 +2352,14 @@ button {
   }
 
   .pipeline-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-box {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .calculator-results {
     grid-template-columns: 1fr;
   }
 

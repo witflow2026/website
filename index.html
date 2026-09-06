@@ -36,6 +36,9 @@
 </head>
 <body>
 
+  <!-- Top Reading Progress Indicator (Magic UI inspired) -->
+  <div id="reading-progress-bar" class="reading-progress-bar"></div>
+
   <!-- Floating Navigation Bar -->
   <header id="navbar-wrapper" class="navbar-wrapper">
     <nav class="navbar glass">
@@ -51,6 +54,7 @@
       <div class="nav-links">
         <a href="#bento" class="nav-link">核心主张</a>
         <a href="#pipeline" class="nav-link">工作流程</a>
+        <a href="#calculator" class="nav-link">效率计算</a>
         <a href="#matrix" class="nav-link">社媒矩阵</a>
         <a href="#showcase" class="nav-link">精选内容</a>
         <a href="#faq" class="nav-link">常见问题</a>
@@ -58,6 +62,13 @@
       </div>
 
       <div class="nav-actions">
+        <!-- Command Palette Trigger (Raycast style Ctrl+K) -->
+        <button id="cmd-palette-btn" class="cmd-palette-trigger" title="全站快捷指令 (Ctrl+K)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="cmd-shortcut-text">快捷指令</span>
+          <kbd class="cmd-kbd-badge">⌘K</kbd>
+        </button>
+
         <!-- Web Audio Micro-sound Toggle (Linear/Raycast style) -->
         <button id="sound-toggle" class="icon-btn" aria-label="微音效开关" title="切换交互微音效">
           <svg class="sound-on-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
@@ -104,6 +115,7 @@
         <a href="#hero" class="drawer-link">首页</a>
         <a href="#bento" class="drawer-link">核心主张</a>
         <a href="#pipeline" class="drawer-link">工作流程</a>
+        <a href="#calculator" class="drawer-link">效率计算</a>
         <a href="#matrix" class="drawer-link">社媒矩阵</a>
         <a href="#showcase" class="drawer-link">精选内容</a>
         <a href="#faq" class="drawer-link">常见问题</a>
@@ -162,26 +174,26 @@
           </a>
         </div>
 
-        <!-- Metric Ribbon (Stats Bar) -->
-        <div class="stats-ribbon glass">
+        <!-- Metric Ribbon (Stats Bar with Count-up Animation) -->
+        <div class="stats-ribbon glass" id="stats-ribbon">
           <div class="stat-item">
-            <span class="stat-num">6+</span>
+            <span class="stat-num" data-count-target="6" data-count-suffix="+">0</span>
             <span class="stat-label">全网主流分发矩阵</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-num">100%</span>
+            <span class="stat-num" data-count-target="100" data-count-suffix="%">0</span>
             <span class="stat-label">一手实践与源码驱动</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-num">Flow</span>
-            <span class="stat-label">自动化与工作流工程</span>
+            <span class="stat-num" data-count-target="85" data-count-prefix="≈" data-count-suffix="%">0</span>
+            <span class="stat-label">机械重复操作节省</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-num">24/7</span>
-            <span class="stat-label">长期价值与知识沉淀</span>
+            <span class="stat-num" data-count-target="24" data-count-suffix="/7">0</span>
+            <span class="stat-label">长期资产自动化流转</span>
           </div>
         </div>
       </div>
@@ -324,6 +336,80 @@
       </div>
     </section>
 
+    <!-- Workflow Efficiency Calculator (Interactive ROI Tool) -->
+    <section id="calculator" class="section calculator-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive ROI</span>
+          <h2 class="section-title">自媒体与工作流效率计算器</h2>
+          <p class="section-desc">测一测：通过工程化自动化流水线，你每年可以夺回多少机械重复时间？</p>
+        </div>
+
+        <div class="calculator-box glass">
+          <div class="calculator-inputs">
+            <!-- Slider 1 -->
+            <div class="calc-control-group">
+              <div class="calc-label-row">
+                <span class="calc-title">每周制作 / 分发内容篇数</span>
+                <span class="calc-val-badge" id="calc-pieces-display">3 篇 / 周</span>
+              </div>
+              <input type="range" id="calc-pieces-slider" class="calc-range" min="1" max="14" value="3" step="1">
+              <div class="calc-range-marks">
+                <span>1篇</span>
+                <span>轻量更 (3篇)</span>
+                <span>日更 (7篇)</span>
+                <span>团队 (14篇)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2 -->
+            <div class="calc-control-group">
+              <div class="calc-label-row">
+                <span class="calc-title">每篇多平台排版、分发与调整耗时</span>
+                <span class="calc-val-badge" id="calc-time-display">60 分钟 / 篇</span>
+              </div>
+              <input type="range" id="calc-time-slider" class="calc-range" min="20" max="150" value="60" step="5">
+              <div class="calc-range-marks">
+                <span>20分钟 (快手发)</span>
+                <span>1小时 (常态痛点)</span>
+                <span>2小时+ (深度打磨)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="calculator-results">
+            <!-- Card 1 -->
+            <div class="calc-result-card spotlight-card">
+              <span class="result-label">每年可夺回的有效时间</span>
+              <div class="result-highlight">
+                <span class="result-big-num" id="calc-saved-hours">117</span>
+                <span class="result-unit">小时 / 年</span>
+              </div>
+              <p class="result-subtext" id="calc-days-text">相当于每年凭空多出 <strong>14.6 个完整工作日</strong></p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="calc-result-card spotlight-card">
+              <span class="result-label">机械动作解放率</span>
+              <div class="result-highlight">
+                <span class="result-big-num highlight-amber" id="calc-ratio-text">75%</span>
+                <span class="result-unit">自动化接管率</span>
+              </div>
+              <p class="result-subtext">将宝贵注意力留给独家思考与高价值创作</p>
+            </div>
+          </div>
+
+          <div class="calculator-cta-row">
+            <button id="calc-apply-cta" class="btn primary-btn calc-cta-btn">
+              <span>一键获取此自动化方案</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+            <span class="calc-hint">💡 点击将自动平滑滚动到底部留言框并预填此项意向</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Social Matrix Link Tree (shadcn/ui & HyperUI Inspired) -->
     <section id="matrix" class="section matrix-section">
       <div class="container">
@@ -383,17 +469,21 @@
           </a>
 
           <!-- GitHub -->
-          <a href="https://github.com" target="_blank" rel="noopener" class="matrix-card glass" data-platform="github">
+          <a href="https://github.com/wkn001/website" target="_blank" rel="noopener" class="matrix-card glass" data-platform="github">
             <div class="card-top">
               <div class="platform-icon github">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
               </div>
-              <span class="platform-badge">开源工具</span>
+              <span class="platform-badge" id="github-live-badge">持续构建中</span>
             </div>
             <h3 class="platform-name">GitHub</h3>
             <p class="platform-desc">自动化脚本、发布配置、效率工具与工程代码沉淀。</p>
+            <div id="github-live-info" class="github-live-info">
+              <span class="live-indicator-dot"></span>
+              <span class="live-info-text" id="github-commit-status">代码活跃同步中</span>
+            </div>
             <div class="matrix-action-btn">
-              <span>查看仓库</span>
+              <span>直达 @wkn001/website</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
             </div>
           </a>
@@ -727,21 +817,41 @@
         <span class="category-tag modal-category-badge" id="modal-category">效率工作流</span>
         <h3 class="modal-title" id="modal-title">工作流逻辑与系统架构拆解</h3>
         <p class="modal-desc" id="modal-summary">深度拆解工作流核心原理与实战经验</p>
+        
+        <!-- Reader View Switcher Tabs -->
+        <div class="modal-tabs-bar">
+          <button class="modal-tab-btn active" id="tab-btn-topo">
+            <span>🧩 系统拓扑简报</span>
+          </button>
+          <button class="modal-tab-btn" id="tab-btn-article">
+            <span>📖 沉浸深度长文</span>
+          </button>
+        </div>
       </div>
 
       <div class="showcase-modal-body">
-        <div class="flow-breakdown">
-          <h5 class="breakdown-heading">🧩 系统流转拓扑（System Pipeline）：</h5>
-          <div class="topology-steps" id="modal-topology">
-            <!-- Dynamic topology steps inserted by JS -->
+        <!-- Panel 1: Topology -->
+        <div id="modal-panel-topo" class="modal-view-panel active">
+          <div class="flow-breakdown">
+            <h5 class="breakdown-heading">🧩 系统流转拓扑（System Pipeline）：</h5>
+            <div class="topology-steps" id="modal-topology">
+              <!-- Dynamic topology steps inserted by JS -->
+            </div>
+          </div>
+
+          <div class="takeaways-box">
+            <h5 class="breakdown-heading">💡 核心实操沉淀与复用经验：</h5>
+            <ul class="takeaways-list" id="modal-takeaways">
+              <!-- Dynamic takeaways inserted by JS -->
+            </ul>
           </div>
         </div>
 
-        <div class="takeaways-box">
-          <h5 class="breakdown-heading">💡 核心实操沉淀与复用经验：</h5>
-          <ul class="takeaways-list" id="modal-takeaways">
-            <!-- Dynamic takeaways inserted by JS -->
-          </ul>
+        <!-- Panel 2: Deep Dive Reader View -->
+        <div id="modal-panel-article" class="modal-view-panel hidden">
+          <div class="article-reader-content" id="modal-article-body">
+            <!-- Dynamic full markdown-style article inserted by JS -->
+          </div>
         </div>
       </div>
 
@@ -750,6 +860,91 @@
           <span>前往全网平台深入探讨</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette Modal (Raycast & Linear style Ctrl+K) -->
+  <div id="cmd-palette-modal" class="modal-overlay hidden cmd-palette-overlay" role="dialog" aria-modal="true">
+    <div class="cmd-palette-box glass">
+      <div class="cmd-search-header">
+        <svg class="cmd-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="cmd-palette-input" class="cmd-input" placeholder="输入搜索板块、快速复制或执行操作..." autocomplete="off">
+        <kbd class="cmd-esc-badge">Esc</kbd>
+      </div>
+
+      <div class="cmd-results-list" id="cmd-results">
+        <!-- Navigation Group -->
+        <div class="cmd-group-title">快捷导航 · NAVIGATE</div>
+        <div class="cmd-item" data-action="nav" data-target="#hero">
+          <span class="cmd-icon">🏠</span>
+          <span class="cmd-item-title">返回页面首屏</span>
+          <span class="cmd-item-tag">Top</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#bento">
+          <span class="cmd-icon">🍱</span>
+          <span class="cmd-item-title">核心业务与主张</span>
+          <span class="cmd-item-tag">定位</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#pipeline">
+          <span class="cmd-icon">⚙️</span>
+          <span class="cmd-item-title">内容工程流水线</span>
+          <span class="cmd-item-tag">管线</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#calculator">
+          <span class="cmd-icon">🧮</span>
+          <span class="cmd-item-title">效率节省计算器</span>
+          <span class="cmd-item-tag">ROI测算</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#matrix">
+          <span class="cmd-icon">🌐</span>
+          <span class="cmd-item-title">全网社媒矩阵入口</span>
+          <span class="cmd-item-tag">6大平台</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#showcase">
+          <span class="cmd-icon">📑</span>
+          <span class="cmd-item-title">精选内容与方法沉淀</span>
+          <span class="cmd-item-tag">案例</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#faq">
+          <span class="cmd-icon">❓</span>
+          <span class="cmd-item-title">常见问题解答</span>
+          <span class="cmd-item-tag">FAQ</span>
+        </div>
+        <div class="cmd-item" data-action="nav" data-target="#contact">
+          <span class="cmd-icon">✉️</span>
+          <span class="cmd-item-title">商务合作与快速留言</span>
+          <span class="cmd-item-tag">联络</span>
+        </div>
+
+        <!-- Actions Group -->
+        <div class="cmd-group-title">功能指令 · ACTIONS</div>
+        <div class="cmd-item" data-action="toggle-theme">
+          <span class="cmd-icon">🌗</span>
+          <span class="cmd-item-title">切换深色 / 浅色模式</span>
+          <span class="cmd-item-tag">Theme</span>
+        </div>
+        <div class="cmd-item" data-action="toggle-sound">
+          <span class="cmd-icon">🔊</span>
+          <span class="cmd-item-title">开启 / 静音按键微音效</span>
+          <span class="cmd-item-tag">Audio</span>
+        </div>
+        <div class="cmd-item" data-action="copy-email">
+          <span class="cmd-icon">📋</span>
+          <span class="cmd-item-title">一键复制商务邮箱 (contact@witflow.com)</span>
+          <span class="cmd-item-tag">Email</span>
+        </div>
+        <div class="cmd-item" data-action="open-wechat">
+          <span class="cmd-icon">💬</span>
+          <span class="cmd-item-title">弹出官方微信公众号二维码</span>
+          <span class="cmd-item-tag">WeChat</span>
+        </div>
+      </div>
+
+      <div class="cmd-footer">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> 切换选项</span>
+        <span><kbd>↵ Enter</kbd> 确认执行</span>
+        <span><kbd>Esc</kbd> 关闭面板</span>
       </div>
     </div>
   </div>

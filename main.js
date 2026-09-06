@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initQrImageFallback();
   initShowcaseModal();
+  initCountUp();
+  initGithubLiveStatus();
+  initCalculator();
+  initCommandPalette();
+  initReadingProgressBar();
 });
 
 /* --------------------------------------------------------------------------
@@ -662,9 +667,79 @@ function initShowcaseModal() {
         '输入的质量决定输出的上限：远离信息流算法投喂，重回主动订阅。',
         '建立第二大脑：所有灵感与好想法在闪现的 60 秒内通过快捷指令存入库中。',
         '以输出倒逼输入：只收集能够被当前工作流或内容计划调用的高纯度资料。'
-      ]
+      ],
+      article: `
+        <h4>一、信息过载时代的认知赤字</h4>
+        <p>当今绝大多数创作者的时间并不是被创造消耗的，而是被无止境的低质信息噪音蚕食。面对各算法平台千篇一律的热点分发，创作者如果不主动构建防御漏斗，极易陷入认知疲惫。</p>
+        <div class="article-callout">
+          <strong>威特流黄金法则：</strong>如果一个信息源在 14 天内没有为你贡献过哪怕一条高价值构想，立即取关或移出常驻列表。
+        </div>
+        <h4>二、搭建高纯度输入漏斗的三步法则</h4>
+        <p>1. <strong>无算法主动订阅</strong>：重回 RSS 与官方高质量 Newsletter，严格按专业度筛选不超过 20 个高信噪比源。</p>
+        <p>2. <strong>快捷闪念剪藏</strong>：配置快捷键（如 Raycast / Alfred 脚本），在阅读到闪光点时 3 秒内将其提取至 Inbox 本地文件夹，打上时间与核心关键词标签。</p>
+        <p>3. <strong>周度归档与复盘</strong>：每周日定时运行批处理程序，将 Inbox 笔记整合到主题索引库，完成从外部信息到个人知识资产的飞跃。</p>
+      `
     }
   };
+
+  // Add deep dive article texts for case 1, 2, 3
+  caseData['case-1'].article = `
+    <h4>一、单兵作战的核心痛点：机械重复消耗心力</h4>
+    <p>很多独立创作者之所以感到精疲力竭，是因为大量时间被消耗在格式转换、图片重命名、多平台分发排版等重复机械动作上。这些动作毫无创造性，却占据了 80% 的工作时长。</p>
+    <div class="article-callout">
+      <strong>系统大于意志力：</strong>人脑是用来思考的，不是用来充当剪贴板与搬运工的。把任何重复操作超过 3 次的动作固化为工程流水线。
+    </div>
+    <h4>二、witflow 自动化流水线的设计理念</h4>
+    <p>我们采用“单点输入、流水线加工、矩阵式交付”的工程模型：</p>
+    <p>1. <strong>统一内容源（Single Source of Truth）</strong>：以纯纯的 Markdown 作为唯一母稿源。</p>
+    <p>2. <strong>自动化批处理加工</strong>：自研轻量脚本，自动将母稿按不同平台规范裁剪为长文排版、卡片图文与即时简评。</p>
+    <p>3. <strong>一键跨平台注入</strong>：借力 API 与自动化工具，实现几秒钟内完成各平台草稿箱就绪。</p>
+  `;
+
+  caseData['case-2'].article = `
+    <h4>一、拒绝简单机械搬运的“同质化陷阱”</h4>
+    <p>很多自媒体矩阵之所以反响平平，是因为在不同生态中只是机械地粘贴同一段文字。X 的用户追求极速观点交锋，公众号读者渴望严谨深度的方法论，小红书用户注重即时视觉抓力，即刻创作者更青睐未经雕琢的真实思考碎片。</p>
+    <div class="article-callout">
+      <strong>飞轮理念：</strong>同一核心命题，按平台文化“量身剪裁”，让各平台互为支点，形成互相引流与共振的内容飞轮。
+    </div>
+    <h4>二、跨生态协同的四维坐标</h4>
+    <p>1. <strong>X (Twitter)</strong>：作为灵感实验田，快速抛出核心论点，收集真实反馈与辩题。</p>
+    <p>2. <strong>微信公众号</strong>：把经受住考验的思考拓展为万字深度研报，沉淀为坚不可摧的行业信任基石。</p>
+    <p>3. <strong>小红书</strong>：提炼为极简设计卡片，实现高效视觉触达与公域泛传播破圈。</p>
+  `;
+
+  caseData['case-3'].article = `
+    <h4>一、为什么创作者应该编写属于自己的轻量脚本？</h4>
+    <p>市面上有很多大而全的 SaaS 软件，但它们往往伴随着繁琐的注册、昂贵的订阅费以及无法定制的黑盒逻辑。事实上，几行几十行的 Python 或 Shell 脚本，往往就能完美消除日常最大的卡点。</p>
+    <div class="article-callout">
+      <strong>极简工程主义：</strong>最可靠的代码是行数最少的代码。零多余依赖，在本地命令行或快捷键中一键触发。
+    </div>
+    <h4>二、开源与持续复利</h4>
+    <p>经过实战打磨的自动化工具，会逐步在 GitHub 仓库开源发布。通过开源共享，工具能够接受各方同行的实测检验，并在反馈中不断优化进化。</p>
+  `;
+
+  // Reader View Mode Tabs
+  const tabBtnTopo = document.getElementById('tab-btn-topo');
+  const tabBtnArticle = document.getElementById('tab-btn-article');
+  const panelTopo = document.getElementById('modal-panel-topo');
+  const panelArticle = document.getElementById('modal-panel-article');
+  const articleBody = document.getElementById('modal-article-body');
+
+  if (tabBtnTopo && tabBtnArticle && panelTopo && panelArticle) {
+    tabBtnTopo.addEventListener('click', () => {
+      tabBtnTopo.classList.add('active');
+      tabBtnArticle.classList.remove('active');
+      panelTopo.classList.remove('hidden');
+      panelArticle.classList.add('hidden');
+    });
+
+    tabBtnArticle.addEventListener('click', () => {
+      tabBtnArticle.classList.add('active');
+      tabBtnTopo.classList.remove('active');
+      panelArticle.classList.remove('hidden');
+      panelTopo.classList.add('hidden');
+    });
+  }
 
   detailButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -676,6 +751,14 @@ function initShowcaseModal() {
       if (modalCategory) modalCategory.textContent = data.category;
       if (modalTitle) modalTitle.textContent = data.title;
       if (modalSummary) modalSummary.textContent = data.summary;
+
+      // Reset to topology tab default
+      if (tabBtnTopo && tabBtnArticle && panelTopo && panelArticle) {
+        tabBtnTopo.classList.add('active');
+        tabBtnArticle.classList.remove('active');
+        panelTopo.classList.remove('hidden');
+        panelArticle.classList.add('hidden');
+      }
 
       if (modalTopology) {
         modalTopology.innerHTML = data.topology.map(step => `
@@ -693,10 +776,317 @@ function initShowcaseModal() {
         `).join('');
       }
 
+      if (articleBody && data.article) {
+        articleBody.innerHTML = data.article;
+      }
+
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     });
   });
 }
+
+/* --------------------------------------------------------------------------
+   15. Number Count-up Ticker Animation (IntersectionObserver)
+   -------------------------------------------------------------------------- */
+function initCountUp() {
+  const statsRibbon = document.getElementById('stats-ribbon');
+  if (!statsRibbon) return;
+
+  const statNums = statsRibbon.querySelectorAll('.stat-num[data-count-target]');
+  let hasAnimated = false;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+        obs.unobserve(entry.target);
+
+        statNums.forEach(el => {
+          const target = parseInt(el.getAttribute('data-count-target'), 10);
+          const prefix = el.getAttribute('data-count-prefix') || '';
+          const suffix = el.getAttribute('data-count-suffix') || '';
+          const duration = 1400; // ms
+          const startTime = performance.now();
+
+          function updateNumber(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(easeOut * target);
+
+            el.textContent = `${prefix}${current}${suffix}`;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateNumber);
+            } else {
+              el.textContent = `${prefix}${target}${suffix}`;
+            }
+          }
+
+          requestAnimationFrame(updateNumber);
+        });
+      }
+    });
+  }, {
+    threshold: 0.25
+  });
+
+  observer.observe(statsRibbon);
+}
+
+/* --------------------------------------------------------------------------
+   16. GitHub Live Status Auto Fetcher
+   -------------------------------------------------------------------------- */
+function initGithubLiveStatus() {
+  const commitStatusEl = document.getElementById('github-commit-status');
+  const liveBadgeEl = document.getElementById('github-live-badge');
+  if (!commitStatusEl) return;
+
+  // Try fetching latest public commit info from GitHub API
+  fetch('https://api.github.com/repos/wkn001/website/commits?per_page=1')
+    .then(res => {
+      if (!res.ok) throw new Error('API limit or not found');
+      return res.json();
+    })
+    .then(data => {
+      if (Array.isArray(data) && data.length > 0) {
+        const commitDate = new Date(data[0].commit.committer.date);
+        const now = new Date();
+        const diffHours = Math.floor((now - commitDate) / (1000 * 60 * 60));
+        
+        let timeText = '刚刚推送';
+        if (diffHours >= 24) {
+          const diffDays = Math.floor(diffHours / 24);
+          timeText = `${diffDays} 天前更新`;
+        } else if (diffHours > 0) {
+          timeText = `${diffHours} 小时前更新`;
+        } else {
+          timeText = '刚刚活跃提交';
+        }
+
+        commitStatusEl.textContent = `最新提交: ${timeText}`;
+        if (liveBadgeEl) liveBadgeEl.textContent = '实时同步中';
+      } else {
+        commitStatusEl.textContent = '仓库代码活跃就绪';
+      }
+    })
+    .catch(() => {
+      // Graceful fallback without errors
+      commitStatusEl.textContent = '代码持续维护更新中';
+    });
+}
+
+/* --------------------------------------------------------------------------
+   17. Interactive Workflow ROI Calculator
+   -------------------------------------------------------------------------- */
+function initCalculator() {
+  const piecesSlider = document.getElementById('calc-pieces-slider');
+  const timeSlider = document.getElementById('calc-time-slider');
+  const piecesDisplay = document.getElementById('calc-pieces-display');
+  const timeDisplay = document.getElementById('calc-time-display');
+  const savedHoursEl = document.getElementById('calc-saved-hours');
+  const daysTextEl = document.getElementById('calc-days-text');
+  const applyBtn = document.getElementById('calc-apply-cta');
+
+  if (!piecesSlider || !timeSlider) return;
+
+  function recalculate() {
+    const pieces = parseInt(piecesSlider.value, 10);
+    const time = parseInt(timeSlider.value, 10);
+
+    if (piecesDisplay) piecesDisplay.textContent = `${pieces} 篇 / 周`;
+    if (timeDisplay) timeDisplay.textContent = `${time} 分钟 / 篇`;
+
+    // 75% mechanical reduction formula: pieces * time * 0.75 * 52 / 60
+    const annualHours = Math.round((pieces * time * 0.75 * 52) / 60);
+    const annualDays = (annualHours / 8).toFixed(1);
+
+    if (savedHoursEl) savedHoursEl.textContent = annualHours;
+    if (daysTextEl) {
+      daysTextEl.innerHTML = `相当于每年凭空多出 <strong>${annualDays} 个完整工作日</strong>`;
+    }
+  }
+
+  [piecesSlider, timeSlider].forEach(slider => {
+    slider.addEventListener('input', () => {
+      recalculate();
+      if (typeof playTick === 'function') playTick(680, 0.008);
+    });
+  });
+
+  recalculate();
+
+  // CTA button auto-fill to contact form
+  if (applyBtn) {
+    applyBtn.addEventListener('click', () => {
+      const pieces = piecesSlider.value;
+      const time = timeSlider.value;
+      const annualHours = Math.round((pieces * time * 0.75 * 52) / 60);
+
+      const contactSection = document.getElementById('contact');
+      const messageInput = document.getElementById('sender-message');
+
+      if (messageInput) {
+        messageInput.value = `你好！我对每周产出约 ${pieces} 篇、年预计省时约 ${annualHours} 小时的自动化工作流方案很感兴趣，希望与威特流开展合作与工具流交流。`;
+        // Trigger auto-save
+        messageInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          if (messageInput) messageInput.focus();
+        }, 600);
+      }
+
+      showToast('已为你自动带入计算方案并定位至留言区！');
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18. Command Palette (Raycast / Linear style Ctrl+K)
+   -------------------------------------------------------------------------- */
+function initCommandPalette() {
+  const paletteModal = document.getElementById('cmd-palette-modal');
+  const triggerBtn = document.getElementById('cmd-palette-btn');
+  const searchInput = document.getElementById('cmd-palette-input');
+  const items = document.querySelectorAll('#cmd-results .cmd-item');
+
+  if (!paletteModal) return;
+
+  function openPalette() {
+    paletteModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.focus();
+    }
+    filterItems('');
+    if (typeof playTick === 'function') playTick(700, 0.02);
+  }
+
+  function closePalette() {
+    paletteModal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', openPalette);
+  }
+
+  // Global shortcut Ctrl+K or Cmd+K
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (paletteModal.classList.contains('hidden')) {
+        openPalette();
+      } else {
+        closePalette();
+      }
+    }
+  });
+
+  // Filter items in real time
+  function filterItems(query) {
+    const q = query.trim().toLowerCase();
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (!q || text.includes(q)) {
+        item.classList.remove('hidden-by-filter');
+      } else {
+        item.classList.add('hidden-by-filter');
+      }
+    });
+
+    // Select first visible
+    const firstVisible = Array.from(items).find(el => !el.classList.contains('hidden-by-filter'));
+    items.forEach(i => i.classList.remove('selected'));
+    if (firstVisible) firstVisible.classList.add('selected');
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      filterItems(e.target.value);
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      const visibleItems = Array.from(items).filter(el => !el.classList.contains('hidden-by-filter'));
+      if (!visibleItems.length) return;
+
+      const currentIndex = visibleItems.findIndex(el => el.classList.contains('selected'));
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const nextIndex = (currentIndex + 1) % visibleItems.length;
+        visibleItems.forEach(i => i.classList.remove('selected'));
+        visibleItems[nextIndex].classList.add('selected');
+        visibleItems[nextIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prevIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+        visibleItems.forEach(i => i.classList.remove('selected'));
+        visibleItems[prevIndex].classList.add('selected');
+        visibleItems[prevIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const selected = visibleItems[currentIndex >= 0 ? currentIndex : 0];
+        if (selected) executeAction(selected);
+      }
+    });
+  }
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      executeAction(item);
+    });
+  });
+
+  function executeAction(item) {
+    const action = item.getAttribute('data-action');
+    const target = item.getAttribute('data-target');
+
+    closePalette();
+
+    if (action === 'nav' && target) {
+      const el = document.querySelector(target);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else if (action === 'toggle-theme') {
+      const themeBtn = document.getElementById('theme-toggle');
+      if (themeBtn) themeBtn.click();
+    } else if (action === 'toggle-sound') {
+      const soundBtn = document.getElementById('sound-toggle');
+      if (soundBtn) soundBtn.click();
+    } else if (action === 'copy-email') {
+      const copyBtn = document.getElementById('copy-email-btn');
+      if (copyBtn) copyBtn.click();
+    } else if (action === 'open-wechat') {
+      const wechatModal = document.getElementById('wechat-modal');
+      if (wechatModal) {
+        wechatModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   19. Top Reading Progress Bar
+   -------------------------------------------------------------------------- */
+function initReadingProgressBar() {
+  const progressBar = document.getElementById('reading-progress-bar');
+  if (!progressBar) return;
+
+  window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0) {
+      const progress = (window.scrollY / totalHeight) * 100;
+      progressBar.style.width = `${Math.min(progress, 100)}%`;
+    }
+  }, { passive: true });
+}
+
 
 
