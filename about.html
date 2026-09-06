@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于主理人 · 威特流 witflow | 极客宣言与数字哲学</title>
+  <meta name="description" content="witflow 威特流主理人自白与极客宣言：为什么坚信系统大于意志力？拆解单兵作战背后的自动化流水线、核心信条、桌面装备与合作准则。">
+  
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="关于主理人 · 威特流 witflow | 极客宣言与数字哲学">
+  <meta property="og:description" content="Wit in, Flow out. 为什么坚信系统大于意志力？拆解单兵作战背后的自动化流水线与数字哲学。">
+  <meta property="og:url" content="https://wkn001.github.io/website/about.html">
+  <meta property="og:image" content="https://wkn001.github.io/website/assets/logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0B0D0C">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Reading Progress Indicator -->
+  <div id="reading-progress-bar" class="reading-progress-bar"></div>
+
+  <!-- Floating Navigation Bar (Unified Minimal Dock) -->
+  <header id="navbar-wrapper" class="navbar-wrapper">
+    <nav class="navbar glass">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img">
+        <div class="brand-title-group">
+          <span class="logo-text-en">witflow</span>
+          <span class="logo-text-zh">威特流</span>
+        </div>
+        <span class="status-dot" title="活跃运行中"></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">首页概览</a>
+        <a href="index.html#pipeline" class="nav-link">工作流程</a>
+        <a href="index.html#stack" class="nav-link">技术军火库</a>
+        <a href="index.html#matrix" class="nav-link">社媒矩阵</a>
+        <a href="index.html#showcase" class="nav-link">精选内容</a>
+        <a href="about.html" class="nav-link active">关于主理人</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Command Palette Trigger (Raycast style Ctrl+K) -->
+        <button id="cmd-palette-btn" class="cmd-palette-trigger" title="全站快捷指令 (Ctrl+K)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="cmd-shortcut-text">搜索</span>
+          <kbd class="cmd-kbd-badge">⌘K</kbd>
+        </button>
+
+        <!-- Web Audio Micro-sound Toggle -->
+        <button id="sound-toggle" class="icon-btn" aria-label="微音效开关" title="切换交互微音效">
+          <svg class="sound-on-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="sound-off-icon hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="切换主题" title="切换深色/浅色模式">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path><path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path><path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="icon-btn mobile-toggle" aria-label="打开移动端导航" title="打开导航菜单">
+          <svg class="menu-open-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+          <svg class="menu-close-icon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+
+        <a href="index.html#contact" class="cta-btn sm desktop-cta">
+          <span>开始连接</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer glass hidden">
+      <div class="drawer-links">
+        <a href="index.html" class="drawer-link">首页概览</a>
+        <a href="index.html#pipeline" class="drawer-link">工作流程</a>
+        <a href="index.html#stack" class="drawer-link">技术军火库</a>
+        <a href="index.html#matrix" class="drawer-link">社媒矩阵</a>
+        <a href="index.html#showcase" class="drawer-link">精选内容</a>
+        <a href="about.html" class="drawer-link active">关于主理人</a>
+        <a href="index.html#contact" class="drawer-link drawer-cta">商务与交流</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Editorial Content -->
+  <main class="about-main">
+    <div class="about-container">
+      
+      <!-- Article Header -->
+      <section class="about-hero">
+        <div class="about-tag-row">
+          <span class="about-pill">👤 主理人自白 · Manifesto</span>
+          <span class="about-pill">⏱️ 3 分钟速读</span>
+          <span class="about-pill">⚡ 常青沉淀</span>
+        </div>
+        
+        <h1 class="about-title">系统大于意志力。<br>一个关于内容流水线与单兵作战的长期实验。</h1>
+        
+        <p class="about-lead">
+          嗨，我是 <strong>witflow 威特流</strong> 的主理人。<br>
+          在这个注意力被碎片切得稀碎、算法投喂泛滥的时代，我试图通过软件工程思维与自动化工具链，构建一个<strong>高吞吐、高纯度、可持续流转的个人生产力闭环</strong>。
+        </p>
+      </section>
+
+      <!-- Section 1: The Narrative -->
+      <article class="about-prose">
+        <p>
+          在开始写下第一行自动化分发代码之前，我和绝大多数创作者一样，曾经被深深困在<strong>“搬运工式创作”</strong>的泥潭里：
+          辛辛苦苦写完一篇几千字的深度母稿，接下来却要花两三个小时，手动把它切分成各个平台的排版格式、一张张压缩图片、调整行距、挨个复制粘贴到不同的草稿箱……
+        </p>
+        <p>
+          那种感觉让人沮丧——明明你的脑力应该用于<strong>捕捉前沿洞察、推演逻辑架构、打磨不可替代的认知</strong>，但你的身体却在充当各平台之间机械廉价的人肉剪贴板。
+        </p>
+
+        <!-- Manifesto Highlight Box -->
+        <div class="manifesto-quote-card glass spotlight-card">
+          <div class="manifesto-quote-text">
+            “人脑是用来思考与创造的，不是用来充当剪贴板与搬运工的。把任何重复执行超过 3 次的机械动作，全部固化为工程流水线。”
+          </div>
+          <div class="manifesto-quote-author">—— witflow 核心戒律</div>
+        </div>
+
+        <p>
+          于是，威特流诞生了。它的名字来源于 <strong>Wit in, Flow out</strong>（智慧进入，结果流出）：
+          我们深信，真正高级的自媒体与数字创作，从来不是拼谁每天熬夜更久、谁意志力更顽强，而是<strong>比拼谁拥有更高效、7×24小时默默流转的底层工程系统</strong>。
+        </p>
+
+        <!-- Section 2: Core Principles -->
+        <h2 class="about-section-heading">威特流三大底层信条</h2>
+        <div class="principles-stack">
+          <!-- Principle 1 -->
+          <div class="principle-card glass spotlight-card">
+            <div class="principle-num">RULE 01 / PRINCIPLE</div>
+            <h3 class="principle-card-title">系统永远大于意志力（System > Willpower）</h3>
+            <p class="principle-card-desc">
+              意志力是极其有限且不可靠的高耗能资源，任何依赖“咬牙坚持”的工作流终究会因疲惫而崩塌。只有把习惯固化为脚本、自动化管线与触发器，系统才能在你睡觉时持续运转。
+            </p>
+          </div>
+
+          <!-- Principle 2 -->
+          <div class="principle-card glass spotlight-card">
+            <div class="principle-num">RULE 02 / PRINCIPLE</div>
+            <h3 class="principle-card-title">单一真理源（Single Source of Truth）</h3>
+            <p class="principle-card-desc">
+              拒绝在微信后台、小红书网页端或飞书各自零散开工。以本地纯文本 Markdown 作为唯一的“母稿源”，所有长图文、摘要切片、X Thread 均由流水线自动裁剪派生，保持知识资产的纯粹可控。
+            </p>
+          </div>
+
+          <!-- Principle 3 -->
+          <div class="principle-card glass spotlight-card">
+            <div class="principle-num">RULE 03 / PRINCIPLE</div>
+            <h3 class="principle-card-title">坚持一手实操验证（Skin in the Game）</h3>
+            <p class="principle-card-desc">
+              拒绝二手信息翻译与空泛口号。页面和社媒上写出的每一个自动化方案、每一行脚本和每一张拓扑图，都是我在生产力环境中反复跑通并交付过的真实经验。
+            </p>
+          </div>
+        </div>
+
+        <!-- Section 3: Workspace Setup & Arsenal -->
+        <h2 class="about-section-heading">主理人桌面装备与数字生产力配置</h2>
+        <p>很多朋友常问我平时的工作环境。以下是我目前保障单兵作战高效流转的软硬件配置清单：</p>
+        
+        <div class="setup-matrix">
+          <!-- Setup 1: Hardware -->
+          <div class="setup-card glass spotlight-card">
+            <div class="setup-card-header">
+              <span style="font-size: 1.3rem;">💻</span>
+              <h4 class="setup-card-title">硬件环境 · Hardware</h4>
+            </div>
+            <ul class="setup-items-list">
+              <li class="setup-item-row">
+                <span class="setup-key">主力工作站</span>
+                <span class="setup-val">MacBook Pro (M-Series)</span>
+              </li>
+              <li class="setup-item-row">
+                <span class="setup-key">显示系统</span>
+                <span class="setup-val">4K 双屏高效信息分窗</span>
+              </li>
+              <li class="setup-item-row">
+                <span class="setup-key">键入设备</span>
+                <span class="setup-val">客制化机械键盘 (轻压力线性轴)</span>
+              </li>
+              <li class="setup-item-row">
+                <span class="setup-key">指点工具</span>
+                <span class="setup-val">Logitech MX Master 3S</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Setup 2: Software Ecosystem -->
+          <div class="setup-card glass spotlight-card">
+            <div class="setup-card-header">
+              <span style="font-size: 1.3rem;">⚙️</span>
+              <h4 class="setup-card-title">核心工具链 · Toolchain</h4>
+            </div>
+            <ul class="setup-items-list">
+              <li class="setup-item-row">
+                <span class="setup-key">母稿知识库</span>
+                <span class="setup-val">Obsidian (双链本地优先)</span>
+              </li>
+              <li class="setup-item-row">
+                <span class="setup-key">快速调度</span>
+                <span class="setup-val">Raycast (自定义极客脚本)</span>
+              </li>
+              <li class="setup-item-row">
+                <span class="setup-key">AI Agent 编辑</span>
+                <span class="setup-val">Cursor / VS Code</span>
+              </li>
+              <li class="setup-item-row">
+                <span class="setup-key">自动化引擎</span>
+                <span class="setup-val">Python 3 + Node.js CLI</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 4: Collaboration Guidelines -->
+        <h2 class="about-section-heading">合作准则 · 如何与我建立连接</h2>
+        <p>为了彼此的时间效率最大化，我崇尚<strong>坦诚、透明与交付结果</strong>。以下是威特流的合作准则：</p>
+
+        <div class="collab-grid">
+          <!-- Welcome -->
+          <div class="collab-column collab-welcome glass">
+            <div class="collab-header">
+              <span>✓ 极其欢迎的合作类型</span>
+            </div>
+            <ul class="collab-list">
+              <li>优质生产力工具、软硬件的一手深度实测与联名共创</li>
+              <li>自媒体工作流定制化工程落地与技术咨询</li>
+              <li>面向独立创作者和技术同行的深度研报与知识联合输出</li>
+              <li>志同道合的数字游民、效率极客跨平台交流</li>
+            </ul>
+          </div>
+
+          <!-- Pass -->
+          <div class="collab-column collab-pass glass">
+            <div class="collab-header">
+              <span>✕ 坚决婉拒的类型</span>
+            </div>
+            <ul class="collab-list">
+              <li>违背用户利益、未经过亲自实操测试的推广</li>
+              <li>纯二手概念炒作、贩卖焦虑的泛内容营销</li>
+              <li>缺乏尊重与实质准备的空泛无意义闲聊</li>
+              <li>任何与“系统工程与效率提升”相悖的消耗性事项</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Actions -->
+        <div class="about-action-bar">
+          <a href="index.html#contact" class="btn primary-btn">
+            <span>发起商务合作 / 交流 ➔</span>
+          </a>
+          <button class="btn secondary-btn" id="about-copy-email-btn" data-email="contact@witflow.com">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>复制商务邮箱</span>
+          </button>
+          <a href="index.html" class="btn ghost-btn">
+            <span>返回主页概览</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="brand-logo footer-logo">
+          <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img">
+          <div class="brand-title-group">
+            <span class="logo-text-en">witflow</span>
+            <span class="logo-text-zh">威特流</span>
+          </div>
+        </div>
+        <p class="footer-slogan">Wit in, Flow out. · Where Engineering Precision Meets Creative Flow.</p>
+        <p class="vps-info">🚀 生产就绪: GitHub Pages 边缘分发 · 常青名片</p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">主站首页</a>
+          <a href="index.html#pipeline" class="footer-link">工作流程</a>
+          <a href="index.html#stack" class="footer-link">数字军火库</a>
+          <a href="index.html#matrix" class="footer-link">社媒矩阵</a>
+          <a href="about.html" class="footer-link active">关于主理人</a>
+        </div>
+        <p class="copyright">© 2026 witflow 威特流. All Rights Reserved. 智慧进入，结果流出。</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Command Palette Modal (Raycast & Linear style Ctrl+K) -->
+  <div id="cmd-palette-modal" class="modal-overlay hidden cmd-palette-overlay" role="dialog" aria-modal="true">
+    <div class="cmd-palette-box glass">
+      <div class="cmd-search-header">
+        <svg class="cmd-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="cmd-palette-input" class="cmd-input" placeholder="输入搜索板块、快速复制或执行操作..." autocomplete="off">
+        <kbd class="cmd-esc-badge">Esc</kbd>
+      </div>
+
+      <div class="cmd-results-list" id="cmd-results">
+        <div class="cmd-group-title">快捷导航 · NAVIGATE</div>
+        <div class="cmd-item" data-action="nav-page" data-url="index.html">
+          <span class="cmd-icon">🏠</span>
+          <span class="cmd-item-title">返回主页概览</span>
+          <span class="cmd-item-tag">主页</span>
+        </div>
+        <div class="cmd-item" data-action="nav-page" data-url="index.html#pipeline">
+          <span class="cmd-icon">⚡</span>
+          <span class="cmd-item-title">创作工作流程与终端演示</span>
+          <span class="cmd-item-tag">工作流</span>
+        </div>
+        <div class="cmd-item" data-action="nav-page" data-url="index.html#stack">
+          <span class="cmd-icon">🛠️</span>
+          <span class="cmd-item-title">极客技术与数字军火库</span>
+          <span class="cmd-item-tag">军火库</span>
+        </div>
+        <div class="cmd-item" data-action="nav-page" data-url="index.html#matrix">
+          <span class="cmd-icon">🌐</span>
+          <span class="cmd-item-title">全网社媒分发矩阵</span>
+          <span class="cmd-item-tag">矩阵</span>
+        </div>
+        <div class="cmd-item" data-action="nav-page" data-url="about.html">
+          <span class="cmd-icon">👤</span>
+          <span class="cmd-item-title">关于主理人与极客宣言 (当前页)</span>
+          <span class="cmd-item-tag">关于</span>
+        </div>
+
+        <div class="cmd-group-title">功能指令 · ACTIONS</div>
+        <div class="cmd-item" data-action="toggle-theme">
+          <span class="cmd-icon">🌗</span>
+          <span class="cmd-item-title">切换深色 / 浅色模式</span>
+          <span class="cmd-item-tag">Theme</span>
+        </div>
+        <div class="cmd-item" data-action="toggle-sound">
+          <span class="cmd-icon">🔊</span>
+          <span class="cmd-item-title">开启 / 静音按键微音效</span>
+          <span class="cmd-item-tag">Audio</span>
+        </div>
+        <div class="cmd-item" data-action="copy-email">
+          <span class="cmd-icon">📋</span>
+          <span class="cmd-item-title">一键复制商务邮箱 (contact@witflow.com)</span>
+          <span class="cmd-item-tag">Email</span>
+        </div>
+      </div>
+
+      <div class="cmd-footer">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> 切换选项</span>
+        <span><kbd>↵ Enter</kbd> 确认执行</span>
+        <span><kbd>Esc</kbd> 关闭面板</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Floating Button -->
+  <button id="back-to-top" class="back-to-top-btn hidden" aria-label="返回顶部" title="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Global Toast Notification System -->
+  <div id="toast" class="toast-notification hidden" role="status" aria-live="polite">
+    <div class="toast-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <span class="toast-msg">已成功复制到剪贴板！</span>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // Specific hook for about page copy email button
+    const aboutCopyBtn = document.getElementById('about-copy-email-btn');
+    if (aboutCopyBtn) {
+      aboutCopyBtn.addEventListener('click', () => {
+        const email = aboutCopyBtn.getAttribute('data-email') || 'contact@witflow.com';
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(email).then(() => {
+            if (typeof showToast === 'function') showToast(`已复制商务邮箱 (${email}) 至剪贴板！`);
+          });
+        } else {
+          const temp = document.createElement('textarea');
+          temp.value = email;
+          document.body.appendChild(temp);
+          temp.select();
+          try {
+            document.execCommand('copy');
+            if (typeof showToast === 'function') showToast(`已复制商务邮箱 (${email}) 至剪贴板！`);
+          } catch(e) {}
+          document.body.removeChild(temp);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -3005,3 +3005,260 @@ button {
   color: #FFFFFF !important;
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
 }
+
+/* --------------------------------------------------------------------------
+   26. Editorial About Page (about.html)
+   -------------------------------------------------------------------------- */
+.about-main {
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+}
+
+.about-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.about-hero {
+  padding: 3rem 0 2rem;
+  text-align: left;
+}
+
+.about-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.about-pill {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--brand-forest-light);
+  color: var(--brand-forest);
+  border: 1px solid var(--border-subtle);
+}
+
+.about-title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-bottom: 1.2rem;
+}
+
+.about-lead {
+  font-size: 1.18rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.about-prose {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-main);
+}
+
+.about-prose p {
+  margin-bottom: 1.5rem;
+}
+
+.manifesto-quote-card {
+  margin: 2.5rem 0;
+  padding: 2rem 2.25rem;
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--brand-amber);
+  background: var(--bg-card);
+  position: relative;
+}
+
+.manifesto-quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.manifesto-quote-author {
+  font-size: 0.86rem;
+  color: var(--brand-amber);
+  font-weight: 600;
+  font-style: italic;
+}
+
+.about-section-heading {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 3.5rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text-main);
+}
+
+.about-section-heading::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--brand-forest);
+}
+
+/* Principles Cards in About */
+.principles-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.principle-card {
+  padding: 1.75rem 1.9rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.principle-card:hover {
+  transform: translateX(4px);
+  border-color: var(--border-focus);
+}
+
+.principle-num {
+  font-family: 'Plus Jakarta Sans', monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--brand-amber);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.05em;
+}
+
+.principle-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.principle-card-desc {
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Setup Matrix */
+.setup-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.setup-card {
+  padding: 1.5rem 1.6rem;
+  border-radius: var(--radius-md);
+}
+
+.setup-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.setup-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.setup-items-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.setup-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+
+.setup-key {
+  color: var(--text-muted);
+}
+
+.setup-val {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Dos & Don'ts */
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.collab-column {
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
+}
+
+.collab-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.collab-welcome .collab-header {
+  color: var(--brand-forest);
+}
+
+.collab-pass .collab-header {
+  color: var(--text-muted);
+}
+
+.collab-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.about-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .setup-matrix,
+  .collab-grid {
+    grid-template-columns: 1fr;
+  }
+}

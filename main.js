@@ -1058,6 +1058,9 @@ function initCommandPalette() {
     if (action === 'nav' && target) {
       const el = document.querySelector(target);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else if (action === 'nav-page') {
+      const url = item.getAttribute('data-url');
+      if (url) window.location.href = url;
     } else if (action === 'open-poster') {
       const openPosterBtn = document.getElementById('open-poster-btn');
       if (openPosterBtn) openPosterBtn.click();
