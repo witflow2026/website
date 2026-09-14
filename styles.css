@@ -1047,6 +1047,7 @@ button {
 .platform-icon.github { background: #24292E; color: #FFFFFF; }
 .platform-icon.toutiao { background: #F85959; color: #FFFFFF; }
 .platform-icon.jike { background: #FFE411; color: #111111; }
+.platform-icon.bilibili { background: #00AEEC; color: #FFFFFF; }
 
 .platform-badge {
   font-size: 0.75rem;
@@ -3216,5 +3217,103 @@ button {
 @media (max-width: 640px) {
   .collab-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   React Bits-inspired micro-interactions
+   Kept framework-free so the static site remains easy to deploy and roll back.
+   -------------------------------------------------------------------------- */
+.glare-hover {
+  position: relative;
+  isolation: isolate;
+}
+
+.glare-hover::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: -42%;
+  width: 28%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 28%,
+    rgba(255, 255, 255, 0.26) 50%,
+    rgba(255, 255, 255, 0.04) 72%,
+    transparent 100%
+  );
+  transform: translateX(-180%) rotate(18deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.glare-hover:hover::after,
+.glare-hover:focus-within::after {
+  opacity: 1;
+  animation: witflowGlare 1.05s cubic-bezier(0.16, 1, 0.3, 1) 1;
+}
+
+@keyframes witflowGlare {
+  0% { transform: translateX(-180%) rotate(18deg); }
+  100% { transform: translateX(620%) rotate(18deg); }
+}
+
+.border-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 58deg,
+    rgba(var(--brand-forest-rgb), 0.1) 70deg,
+    rgba(var(--brand-forest-rgb), 0.88) 82deg,
+    rgba(var(--brand-amber-rgb), 0.9) 98deg,
+    rgba(var(--brand-forest-rgb), 0.1) 116deg,
+    transparent 132deg 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.72;
+  pointer-events: none;
+  z-index: 2;
+  transform: rotate(0deg);
+  transform-origin: center;
+  animation: witflowBorderGlow 6s linear infinite;
+}
+
+@keyframes witflowBorderGlow {
+  to { transform: rotate(360deg); }
+}
+
+.terminal-window.border-glow::before {
+  opacity: 0.52;
+}
+
+.border-glow:hover::before,
+.border-glow:focus-visible::before {
+  opacity: 1;
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .glare-hover:hover::after,
+  .glare-hover:focus-within::after,
+  .border-glow::before {
+    animation: none;
+  }
+
+  .glare-hover::after {
+    display: none;
   }
 }
