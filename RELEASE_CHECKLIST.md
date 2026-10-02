@@ -22,6 +22,10 @@
 
 当前生产网站尚未修改。
 
+## GitHub 同步状态
+
+本地分支 `codex/long-term-site-foundation` 已保存。HTTPS 推送因本机缺少凭据失败；GitHub 集成写入接口返回 403 `Resource not accessible by integration`，因此尚未创建远程分支或 PR。需要为该仓库恢复 Git 推送或集成写入权限，然后推送此分支。完整 Git 历史另外保存在 `witflow-source-history-2026-10-02.bundle`。
+
 ## 账户安全（需账户持有人操作或提供已登录访问）
 
 - 核对 GitHub、Cloudflare、域名注册商的双重验证或通行密钥，并保存恢复方式。
