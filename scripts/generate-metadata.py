@@ -60,6 +60,7 @@ for page in config['pages']:
     e = lambda s: escape(s,quote=True)
     data = [
         '<!-- GENERATED SEO START -->',
+        f'<link rel="alternate" type="application/rss+xml" title="witflow 实战文章" href="{origin}/feed.xml">',
         f'<title>{e(page["title"])}</title>',
         f'<meta name="description" content="{e(page["description"])}">',
         f'<link rel="canonical" href="{e(url)}">',

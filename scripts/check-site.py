@@ -68,6 +68,15 @@ ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
 sitemap=ET.parse(DIST/'sitemap.xml')
 locations={n.text for n in sitemap.findall('.//s:loc',ns)}
 assert locations=={origin+p['path'] for p in pages}, 'Sitemap differs from page registry'
+feed=ET.parse(DIST/'feed.xml')
+items=feed.findall('./channel/item')
+assert {item.findtext('link') for item in items}=={origin+p['path'] for p in pages if p['type']=='Article'}, 'RSS article URLs mismatch'
+assert len({item.findtext('guid') for item in items})==len(items), 'Duplicate RSS GUID'
+for item in items:
+    from email.utils import parsedate_to_datetime
+    assert parsedate_to_datetime(item.findtext('pubDate')).tzinfo is not None, 'RSS date lacks timezone'
+with urlopen('http://127.0.0.1:8766/feed.xml') as response:
+    assert response.status==200 and response.read()==(DIST/'feed.xml').read_bytes()
 for file in DIST.rglob('*'):
     if file.is_file():
         assert not any(part in ['.git','tmp','scripts','docs','__pycache__'] for part in file.parts)

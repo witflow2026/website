@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>witflow 威特流 · 外贸实战文章</title>
+    <link>https://witflow.trade/articles/</link>
+    <description>询盘审查、价格谈判与外贸工作方法。</description>
+    <language>zh-CN</language>
+    <atom:link href="https://witflow.trade/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>谈价格前，先列出可以置换的筹码</title>
+      <link>https://witflow.trade/articles/02-negotiation-chips</link>
+      <description>面对海外买家的目标价要求，先核实报价条件，再从交期、批量、规格和付款方式整理可讨论的选项。文中数字与邮件为示意。</description>
+      <guid isPermaLink="true">https://witflow.trade/articles/02-negotiation-chips</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>长询盘审查：先识别技术和合同风险</title>
+      <link>https://witflow.trade/articles/01-long-inquiry-audit</link>
+      <description>面对篇幅较长的技术规范，先整理测试、包装、交期和违约条款，再交由相关负责人确认。文中条款与数字均为示意。</description>
+      <guid isPermaLink="true">https://witflow.trade/articles/01-long-inquiry-audit</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

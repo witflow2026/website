@@ -46,3 +46,9 @@ PDF 可直接使用。重新制作 PDF 才需要 ReportLab 和生成脚本指定
 线上由 Cloudflare 提供服务，具体项目与发布方式尚未通过后台确认。若使用 Cloudflare Pages，可设置构建命令 `python3 scripts/build-site.py`、输出目录 `dist`；其他托管方式需要等效配置无扩展名路由、跳转与安全响应头。先核对实际项目再发布，不凭旧 VPS 文档猜测环境。
 
 上线与账户步骤见 [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)。标签 `snapshot/online-20261002` 标记恢复后的线上展示基线，不是托管后台备份。原始静态文件另有本地备份。历史说明已移入 `docs/legacy/`，仅作历史参考。
+
+## 阅读入口与订阅
+
+首页提供按询盘、谈判和跟进划分的阅读路线及最近更新。`feed.xml` 由 `scripts/generate-feed.py` 从 `site-pages.json` 的 Article 页面生成，构建时自动更新；新增文章只需登记真实标题、摘要和发布日期。RSS GUID 使用稳定的正式网址。
+
+账户与本人素材步骤见 `PERSONAL_NEXT_STEPS.md`。
