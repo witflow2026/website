@@ -1,1135 +1,141 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>witflow 威特流 · 效率工作流与全网自媒体矩阵</title>
-  <meta name="description" content="witflow 威特流 - Wit in, Flow out. 用工程化思维探索效率工具链、自动化工作流与全网自媒体矩阵。">
-  
-  <!-- Open Graph / Meta for Social Shares (WeChat, Twitter, Telegram) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>威特流 Witflow｜外贸 AI 工作流、提示词与实战笔记</title>
+  <meta name="description" content="威特流记录海外 B2B 销售中的真实问题，分享外贸 AI 提示词、工作流与轻量工具。先在业务中验证，再整理成可复用的方法。">
+  <link rel="canonical" href="https://witflow.trade/">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://witflow.com/">
-  <meta property="og:title" content="witflow 威特流 · 探索数字内容与效率工作流">
-  <meta property="og:description" content="Wit in, Flow out. · 智慧进入，结果流出。专注数字工作流自动化、工具链工程与全网多平台自媒体矩阵。">
-  <meta property="og:image" content="assets/logo.png">
-
-  <!-- Twitter / X Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@witflow">
-  <meta name="twitter:title" content="witflow 威特流 · Wit in, Flow out.">
-  <meta name="twitter:description" content="用工程化思维打造高效流畅的数字系统与内容生态。智慧进入，结果流出。">
-  <meta name="twitter:image" content="assets/logo.png">
-
-  <!-- Theme Color for Mobile Browsers -->
-  <meta name="theme-color" content="#1E3A2F" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0B0D0C" media="(prefers-color-scheme: dark)">
-
-  <!-- Favicon & Apple Touch Icons -->
-  <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta property="og:url" content="https://witflow.trade/">
+  <meta property="og:title" content="威特流 Witflow｜把外贸实战经验，整理成可复用的方法">
+  <meta property="og:description" content="海外 B2B 销售视角下的外贸 AI 工作流、提示词与实战笔记。">
+  <meta property="og:image" content="https://witflow.trade/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="威特流 Witflow｜外贸 AI 工作流与实战笔记">
+  <meta name="twitter:description" content="先在业务中验证，再整理成可复用的方法。">
+  <meta name="twitter:image" content="https://witflow.trade/assets/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
-
-  <!-- PWA Web App Manifest -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Schema.org JSON-LD Structured Data for Search Engines -->
+  <link rel="stylesheet" href="homepage.css?v=1">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "witflow 威特流",
-    "alternateName": "witflow",
-    "url": "https://wkn001.github.io/website/",
-    "description": "Wit in, Flow out. 用工程化思维探索效率工具链、自动化工作流与全网自媒体矩阵。",
-    "inLanguage": "zh-CN",
-    "publisher": {
-      "@type": "Organization",
-      "name": "witflow 威特流",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://wkn001.github.io/website/assets/logo.png"
-      }
-    }
-  }
+  {"@context":"https://schema.org","@type":"WebSite","name":"witflow 威特流","url":"https://witflow.trade/","description":"海外 B2B 销售视角下的外贸 AI 工作流与实战笔记"}
   </script>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <script src="homepage.js?v=1" defer></script>
 </head>
 <body>
-
-  <!-- Top Reading Progress Indicator (Magic UI inspired) -->
-  <div id="reading-progress-bar" class="reading-progress-bar"></div>
-
-  <!-- Floating Navigation Bar -->
-  <header id="navbar-wrapper" class="navbar-wrapper">
-    <nav class="navbar glass">
-      <a href="#hero" class="brand-logo">
-        <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img">
-        <div class="brand-title-group">
-          <span class="logo-text-en">witflow</span>
-          <span class="logo-text-zh">威特流</span>
-        </div>
-        <span class="status-dot" title="活跃运行中"></span>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="威特流，返回顶部">
+        <img src="assets/logo.png" alt="" width="32" height="32">
+        <span>wit<span class="accent">flow</span><small>威特流</small></span>
       </a>
-
-      <div class="nav-links">
-        <a href="#bento" class="nav-link">核心主张</a>
-        <a href="#pipeline" class="nav-link">工作流程</a>
-        <a href="#stack" class="nav-link">技术军火库</a>
-        <a href="#matrix" class="nav-link">社媒矩阵</a>
-        <a href="#showcase" class="nav-link">精选内容</a>
-        <a href="about.html" class="nav-link">关于主理人</a>
-        <a href="#faq" class="nav-link">常见问题</a>
-      </div>
-
-      <div class="nav-actions">
-        <!-- Command Palette Trigger (Raycast style Ctrl+K) -->
-        <button id="cmd-palette-btn" class="cmd-palette-trigger" title="全站快捷指令 (Ctrl+K)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <span class="cmd-shortcut-text">搜索</span>
-          <kbd class="cmd-kbd-badge">⌘K</kbd>
-        </button>
-
-        <!-- Web Audio Micro-sound Toggle (Linear/Raycast style) -->
-        <button id="sound-toggle" class="icon-btn" aria-label="微音效开关" title="切换交互微音效">
-          <svg class="sound-on-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          <svg class="sound-off-icon hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-        </button>
-
-        <!-- Theme Toggle -->
-        <button id="theme-toggle" class="icon-btn" aria-label="切换主题" title="切换深色/浅色模式">
-          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2"></path><path d="M12 20v2"></path>
-            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
-            <path d="M2 12h2"></path><path d="M20 12h2"></path>
-            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
-          </svg>
-          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"></path>
-          </svg>
-        </button>
-
-        <!-- Mobile Menu Toggle Button (Visible on mobile) -->
-        <button id="mobile-menu-btn" class="icon-btn mobile-toggle" aria-label="打开移动端导航" title="打开导航菜单">
-          <svg class="menu-open-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
-          <svg class="menu-close-icon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6 6 18"></path>
-            <path d="m6 6 12 12"></path>
-          </svg>
-        </button>
-
-        <a href="#contact" class="cta-btn sm desktop-cta">
-          <span>开始连接</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-        </a>
-      </div>
-    </nav>
-
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobile-drawer" class="mobile-drawer glass hidden">
-      <div class="drawer-links">
-        <a href="#hero" class="drawer-link">首页</a>
-        <a href="#bento" class="drawer-link">核心主张</a>
-        <a href="#pipeline" class="drawer-link">工作流程</a>
-        <a href="#stack" class="drawer-link">技术军火库</a>
-        <a href="#matrix" class="drawer-link">社媒矩阵</a>
-        <a href="#showcase" class="drawer-link">精选内容</a>
-        <a href="about.html" class="drawer-link">关于主理人</a>
-        <a href="#faq" class="drawer-link">常见问题</a>
-        <a href="#contact" class="drawer-link drawer-cta">商务与交流</a>
-      </div>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="#core">核心业务</a><a href="#about">关于作者</a><a href="#method">方法论</a>
+        <a href="tools.html">Prompt 工具箱</a><a href="#matrix">内容平台</a>
+        <a href="#showcase">精选长文</a><a href="#resources">免费资源</a><a href="#faq">常见问答</a><a href="#contact">联系</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="打开导航菜单" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden>
+      <a href="#core">核心业务</a><a href="#about">关于作者</a><a href="#method">方法论</a>
+      <a href="tools.html">Prompt 工具箱</a><a href="#matrix">内容平台</a><a href="#showcase">精选长文</a>
+      <a href="#resources">免费资源</a><a href="#faq">常见问答</a><a href="#contact">联系</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- Hero Section (Awwwards / Land-book Inspired) -->
-    <section id="hero" class="hero-section">
-      <!-- Ambient Background Dot Grid & Radial Glow -->
-      <div class="hero-grid-bg" aria-hidden="true"></div>
-      <canvas id="hero-ambient-canvas" class="hero-ambient-canvas" aria-hidden="true"></canvas>
-      <div class="hero-glow-orb glow-top" aria-hidden="true"></div>
-      <div class="hero-glow-orb glow-bottom" aria-hidden="true"></div>
-
-      <div class="container hero-container">
-        <!-- Hero Logo Emblem & Slogan -->
-        <div class="hero-brand-emblem">
-          <div class="hero-logo-frame">
-            <img src="assets/logo.png" alt="witflow 威特流 Logo" class="hero-logo-img">
-          </div>
-          <div class="slogan-tag">
-            <span class="slogan-en shimmer-text">Wit in, Flow out.</span>
-            <span class="slogan-divider">·</span>
-            <span class="slogan-zh">智慧进入，结果流出</span>
-          </div>
-        </div>
-
-        <!-- Pill Badge -->
-        <div class="pill-badge">
-          <span class="pulse-beacon"></span>
-          <span class="pill-text shimmer-text">Wit in, Flow out. · 探索数字内容与效率工作流</span>
-        </div>
-
-        <!-- Main Typography -->
-        <h1 class="hero-title">
-          <span class="title-en">witflow</span>
-          <span class="title-zh">威特流</span>
-        </h1>
-
-        <p class="hero-subtitle">
-          用<strong>工程化思维</strong>打造高效流畅的数字系统与内容生态。<br>
-          聚焦<strong>效率工具链、工作流自动化与全网自媒体矩阵</strong>，让智慧输入，让结果自然流出。
-        </p>
-
-        <!-- CTA Action Buttons -->
-        <div class="hero-cta-group">
-          <a href="#matrix" class="btn primary-btn border-glow">
-            <span>探索社媒矩阵</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </a>
-          <a href="#bento" class="btn ghost-btn">
-            <span>浏览核心主张</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-          </a>
-        </div>
-
-        <!-- Architecture Highlights Ribbon (Engineering Principles) -->
-        <div class="stats-ribbon glass" id="stats-ribbon">
-          <div class="stat-item">
-            <span class="stat-badge-text">Single Source</span>
-            <span class="stat-label">本地纯文本单一母稿</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-badge-text">Local-First</span>
-            <span class="stat-label">无平台锁定的独立资产</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-badge-text">CLI & Scripts</span>
-            <span class="stat-label">工程化流水线分发</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-badge-text">Open Source</span>
-            <span class="stat-label">一手实操与代码复现</span>
-          </div>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="eyebrow">// WIT IN, FLOW OUT · TRADE WORKFLOWS</p>
+        <h1 id="hero-title">把外贸实战经验，<br><em>整理成可复用的方法。</em></h1>
+        <p class="hero-lede">面向外贸业务员与 SOHO，分享提示词、工作流和轻量工具。先在业务中验证，再把有用的方法写清楚。</p>
+        <div class="hero-actions"><a class="button button-primary" href="#resources">查看免费资源 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#about">认识作者 <span aria-hidden="true">↓</span></a></div>
+        <div class="stats" aria-label="网站概览">
+          <div><strong>5 年+</strong><span>海外 B2B 销售经历</span></div>
+          <div><strong>SOHO</strong><span>单兵工作视角</span></div>
+          <div><strong>4</strong><span>站内免费提示词</span></div>
+          <div><strong>2</strong><span>站内实战长文</span></div>
         </div>
       </div>
-
-      <!-- Subtle Background Grid/Orb (Aceternity UI Inspired) -->
-      <div class="hero-grid-bg"></div>
-      <div class="ambient-glow"></div>
     </section>
 
-    <!-- Bento Grid Section (Aceternity UI / Magic UI Inspired) -->
-    <section id="bento" class="section bento-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Core Tenets</span>
-          <h2 class="section-title">核心业务与内容定位</h2>
-          <p class="section-desc">不贩卖空泛口号，以真实工程实践、效率工具链与全网内容矩阵为基石。</p>
+    <section class="section" id="core" aria-labelledby="core-title">
+      <div class="wrap">
+        <p class="eyebrow">01 / 核心方向</p>
+        <div class="section-intro"><h2 id="core-title">从具体业务问题出发</h2><p>询盘、谈判、跟进与内容整理：先弄清楚问题，再决定哪些步骤值得交给 AI 或脚本。</p></div>
+        <div class="feature-grid">
+          <article><span class="feature-number">01 / INQUIRY</span><h3>长询盘初筛</h3><p>从技术规格、付款条件和违约条款入手，先整理需要人工确认的问题。</p><a href="articles/01-long-inquiry-audit.html">看工作流 <span aria-hidden="true">↗</span></a></article>
+          <article><span class="feature-number">02 / NEGOTIATION</span><h3>谈判筹码整理</h3><p>把价格、交期、批量和付款条件放在同一张清单里，辅助准备回信。</p><a href="articles/02-negotiation-chips.html">看邮件示例 <span aria-hidden="true">↗</span></a></article>
+          <article><span class="feature-number">03 / TOOLKIT</span><h3>可复制的提示词</h3><p>目前收录四个外贸场景模板。使用时请替换示例数字，并核对 AI 输出。</p><a href="tools.html">打开工具箱 <span aria-hidden="true">↗</span></a></article>
+          <article><span class="feature-number">04 / PRACTICE</span><h3>轻量工作流</h3><p>把重复步骤写成脚本和操作清单，减少资料整理与多平台内容分发的摩擦。</p><a href="https://github.com/witflow2026" target="_blank" rel="noopener noreferrer">查看 GitHub <span aria-hidden="true">↗</span></a></article>
         </div>
-
-        <div class="bento-grid">
-          <!-- Bento 1: Large Card (Workflow Automation & Digital Engineering) -->
-          <div class="bento-card bento-card-large spotlight-card">
-            <div class="bento-badge">核心主张</div>
-            <div class="bento-content">
-              <div class="card-icon-box">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/><path d="M2 12h20"/><path d="m5 7-3 5 3 5"/><path d="m19 7 3 5-3 5"/></svg>
-              </div>
-              <h3 class="bento-title">工作流自动化与效率工程</h3>
-              <p class="bento-text">
-                深信“系统大于意志力”。致力于构建高度自动化、可复用的数字工作流与信息流，将复杂、割裂的多步骤流程整合成顺畅的生产力管道，让创造力自然流动。
-              </p>
-              <div class="pill-group">
-                <span class="tag-pill">自动化流水线</span>
-                <span class="tag-pill">工作流工程</span>
-                <span class="tag-pill">开发与脚本</span>
-                <span class="tag-pill">效率工具集</span>
-              </div>
-            </div>
-            <div class="bento-visual visual-engineering">
-              <div class="grid-overlay"></div>
-            </div>
+        <div class="demo" aria-labelledby="demo-title">
+          <div class="demo-heading"><div><span class="eyebrow">INTERACTIVE EXAMPLE</span><h3 id="demo-title">询盘拆解 · 示意案例</h3></div><span class="demo-note">预设文字演示，不连接 AI，也不代表真实客户</span></div>
+          <div class="demo-tabs" role="tablist" aria-label="选择询盘示意场景">
+            <button id="case-tab-0" class="demo-tab" type="button" role="tab" aria-selected="true" aria-controls="case-panel" tabindex="0" data-case="0">最低价施压</button>
+            <button id="case-tab-1" class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="case-panel" tabindex="-1" data-case="1">复杂长询盘</button>
+            <button id="case-tab-2" class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="case-panel" tabindex="-1" data-case="2">远期账期</button>
           </div>
-
-          <!-- Bento 2: Medium Card (Unified Media Presence) -->
-          <div class="bento-card spotlight-card">
-            <div class="bento-badge">矩阵连接</div>
-            <div class="card-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
-            </div>
-            <h3 class="bento-title">全网矩阵协同分发</h3>
-            <p class="bento-text">
-              打破单点平台局限，在 GitHub、Twitter/X、微信公众号、即刻和小红书建立差异化内容触角，兼顾即时探讨与长期数字资产沉淀。
-            </p>
-            <div class="code-chip">
-              <code>Multi-Channel · Unified Presence</code>
-            </div>
-          </div>
-
-          <!-- Bento 3: Medium Card (Strict Verification & Real Experience) -->
-          <div class="bento-card spotlight-card">
-            <div class="bento-badge">创作准则</div>
-            <div class="card-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <h3 class="bento-title">事实与一手实践驱动</h3>
-            <p class="bento-text">
-              拒绝二手信息搬运与浮躁虚夸。所有分享与输出均基于亲身实践、代码验证与深度逻辑梳理，用扎实可靠的可复现经验构建长效可信度。
-            </p>
-            <ul class="check-list">
-              <li>坚持一手实操与代码复现</li>
-              <li>重逻辑、讲人话、拒绝信息垃圾</li>
-            </ul>
-          </div>
-
-          <!-- Bento 4: Wide Card (Multi-platform Matrix) -->
-          <div class="bento-card bento-card-wide spotlight-card">
-            <div class="bento-badge">长期主义</div>
-            <div class="bento-content-row">
-              <div>
-                <h3 class="bento-title">深耕系统 · 智慧进入，结果流出</h3>
-                <p class="bento-text">
-                  从日常碎片探索到结构化知识沉淀，以工程化思维迭代自媒体品牌，持续输出有密度、有启发的高品质内容。
-                </p>
-              </div>
-              <a href="#matrix" class="card-action-link">
-                <span>浏览平台矩阵</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-              </a>
-            </div>
+          <div class="demo-panel" id="case-panel" role="tabpanel" aria-labelledby="case-tab-0" tabindex="0">
+            <div><span class="field-label">客户输入 · 示例</span><p class="demo-quote" id="case-input">“Target price is $85/unit, or we go to supplier B.”</p></div>
+            <div><span class="field-label">先核对什么</span><p id="case-check">确认目标价、数量、规格和另一供应商报价是否有可比依据。</p></div>
+            <div class="demo-decision"><span class="field-label">下一步建议</span><p id="case-action">列出可调整的交期、批量和付款条件，核实内部可行性后再回信。</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Pipeline / Process Section (Mobbin / SaaSFrame Inspired) -->
-    <section id="pipeline" class="section pipeline-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Methodology</span>
-          <h2 class="section-title">「从洞察到交付」创作工作流</h2>
-          <p class="section-desc">遵循 Wit in, Flow out 逻辑，将灵感敏锐捕捉并转化为确定性产出</p>
-        </div>
+    <section class="section" id="about" aria-labelledby="about-title"><div class="wrap">
+      <p class="eyebrow">02 / 关于作者</p><h2 id="about-title">写这些内容的人，先是个外贸销售</h2>
+      <div class="about-grid"><div class="about-copy"><p>我有 <strong>5 年+ 海外 B2B 销售经历</strong>，接触过快消品、机械设备和五金建材，服务过欧美、东南亚和非洲市场。</p><p>日常工作包括审技术规格书、跨时区谈判、参加国际展会和跟进长周期订单。这里记录我如何把具体问题拆开，整理成可复用的提示词、脚本与检查清单。</p><p>威特流是个人的外贸 AI 工作笔记。案例中的客户、价格与条款如未明确注明，均为示意，不代表真实交易。</p></div>
+      <dl class="fact-list"><div><dt>背景</dt><dd>5 年+ 海外 B2B 销售</dd></div><div><dt>接触品类</dt><dd>快消品、机械设备、五金建材</dd></div><div><dt>服务市场</dt><dd>欧美、东南亚、非洲</dd></div><div><dt>工作视角</dt><dd>外贸业务员与 SOHO 单兵工作</dd></div><div><dt>做法</dt><dd>业务验证 → 方法整理 → 脚本与清单</dd></div></dl></div>
+    </div></section>
 
-        <div class="pipeline-flow">
-          <!-- Step 1 -->
-          <div class="flow-step">
-            <div class="step-marker">01</div>
-            <div class="step-card glass">
-              <h4 class="step-title">洞察挖掘与问题定义</h4>
-              <p class="step-desc">敏锐捕捉效率瓶颈、数字工具痛点与行业趋势，拒绝自嗨式自言自语，直击真实需求。</p>
-            </div>
-          </div>
+    <section class="section" id="method" aria-labelledby="method-title"><div class="wrap">
+      <p class="eyebrow">03 / 方法论</p><div class="section-intro"><h2 id="method-title">从洞察到交付</h2><p>一份内容可以去不同平台，但每个平台都需要适合它的表达方式。</p></div>
+      <ol class="method-list"><li><span>01</span><div><h3>从业务问题出发</h3><p>先记录询盘、谈判、跟进和资料整理中的具体卡点。</p></div></li><li><span>02</span><div><h3>实际验证</h3><p>区分已验证的做法、推断和仍待确认的条件。</p></div></li><li><span>03</span><div><h3>整理成工具</h3><p>把可重复使用的步骤写成提示词、脚本或检查清单。</p></div></li><li><span>04</span><div><h3>按平台改写</h3><p>保留事实边界，把同一个问题转成适合不同平台的内容。</p></div></li></ol>
+    </div></section>
 
-          <!-- Step 2 -->
-          <div class="flow-step">
-            <div class="step-marker">02</div>
-            <div class="step-card glass">
-              <h4 class="step-title">动手实践与逻辑复现</h4>
-              <p class="step-desc">亲身跑通代码、工具与配置方案，拒绝纸上谈兵，确保每一条结论都有可复现的操作依据。</p>
-            </div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="flow-step">
-            <div class="step-marker">03</div>
-            <div class="step-card glass">
-              <h4 class="step-title">流程提炼与工具固化</h4>
-              <p class="step-desc">将零散经验提炼为脚本、模板与标准工作流，沉淀为随时可调用、可复用的数字生产力资产。</p>
-            </div>
-          </div>
-
-          <!-- Step 4 -->
-          <div class="flow-step">
-            <div class="step-marker">04</div>
-            <div class="step-card glass">
-              <h4 class="step-title">多端适配与矩阵分发</h4>
-              <p class="step-desc">同一核心思考，按不同平台调性量身定制：X 的短评思辨、公众号的长文复盘、即刻的灵感探讨。</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactive Terminal Simulator (CLI Pipeline Engine Demo) -->
-        <div class="terminal-container">
-          <div class="terminal-header-bar">
-            <div class="terminal-badge-group">
-              <span class="pulse-beacon sm"></span>
-              <span class="terminal-badge-title">实时流水线模拟执行器 · INTERACTIVE CLI</span>
-            </div>
-            <div class="terminal-quick-actions">
-              <button class="term-btn" data-cmd="build"><span>▶ 构建多端</span></button>
-              <button class="term-btn" data-cmd="optimize"><span>⚡ 格式优化</span></button>
-              <button class="term-btn" data-cmd="status"><span>📊 管线健康</span></button>
-              <button class="term-btn text-only" data-cmd="clear"><span>清屏</span></button>
-            </div>
-          </div>
-
-          <div class="terminal-window glass border-glow">
-            <div class="terminal-window-bar">
-              <div class="term-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
-              <div class="term-window-title">witflow-engine@pipeline-v2: ~ (zsh)</div>
-              <div class="term-actions-hint">支持点击上方按钮或输入</div>
-            </div>
-            <div class="terminal-body" id="terminal-screen" tabindex="0">
-              <div class="term-log-line muted">witflow 内容流水线内核 [版本 2.4.1-release]</div>
-              <div class="term-log-line muted">单兵自媒体自动化架构就绪。点击上方快捷指令进行实时模拟。</div>
-              <div class="term-divider"></div>
-              <div class="term-output-area" id="terminal-output">
-                <!-- Executed outputs will append here -->
-              </div>
-              <div class="term-input-line">
-                <span class="term-prompt">witflow@macbook ~ %</span>
-                <span class="term-active-cmd" id="term-active-cmd"></span>
-                <span class="term-cursor">█</span>
-                <input type="text" id="term-hidden-input" class="term-hidden-input" autocomplete="off" spellcheck="false" aria-label="命令行输入">
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="section" id="matrix" aria-labelledby="matrix-title"><div class="wrap">
+      <p class="eyebrow">04 / 内容阵地</p><div class="section-intro"><h2 id="matrix-title">在你常用的平台见面</h2><p>站内放方法与资源；各平台分享不同长度、不同形式的更新。</p></div>
+      <div class="platform-grid">
+        <div class="platform-card"><span>长文 / 微信</span><h3>微信公众号</h3><p>方法拆解与工作笔记。</p><button class="text-action qr-trigger" type="button">查看二维码 <span aria-hidden="true">↗</span></button></div>
+        <a class="platform-card" href="https://www.xiaohongshu.com/user/profile/63c7acd70000000026010fc0" target="_blank" rel="noopener noreferrer"><span>图文 / 社区</span><h3>小红书</h3><p>图文卡片与实操步骤。</p><b>前往主页 ↗</b></a>
+        <a class="platform-card" href="https://www.toutiao.com/c/user/token/CiyQLXFSPxvnW2S6nI90jooI-JXR-fX4o1oVY1OlZ1WLgP4PCgXgTorA4TUB5BpJCjwAAAAAAAAAAAAAUObbMn04lYPIkXTFLZGPlVncFvExhrnkIFIk7dBWNzImAlkGyNlDbQw3P1ZI33EZMBEQxKWcDhjDxYPqBCIBA-oT3dc=/" target="_blank" rel="noopener noreferrer"><span>文章 / 洞察</span><h3>今日头条</h3><p>外贸业务问题与 AI 提效观察。</p><b>前往主页 ↗</b></a>
+        <a class="platform-card" href="https://x.com/1ngN4" target="_blank" rel="noopener noreferrer"><span>短动态 / 全球</span><h3>X</h3><p>工具发现与简短判断。</p><b>前往主页 ↗</b></a>
+        <a class="platform-card" href="https://github.com/witflow2026" target="_blank" rel="noopener noreferrer"><span>代码 / 开源</span><h3>GitHub</h3><p>脚本与工程实践。</p><b>查看仓库 ↗</b></a>
+        <a class="platform-card" href="https://web.okjike.com/u/8E9A13FF-F097-4EDF-B161-416586598E4A" target="_blank" rel="noopener noreferrer"><span>动态 / 交流</span><h3>即刻</h3><p>创作过程与工具心得。</p><b>前往主页 ↗</b></a>
       </div>
-    </section>
+    </div></section>
 
-    <!-- Tech Stack & Gear Arsenal Section -->
-    <section id="stack" class="section stack-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Arsenal & Stack</span>
-          <h2 class="section-title">威特流 · 极客数字军火库</h2>
-          <p class="section-desc">工欲善其事，必先利其器。拆解支撑威特流高效流转与自动化生产的底层硬核工具链</p>
-        </div>
+    <section class="section" id="showcase" aria-labelledby="showcase-title"><div class="wrap">
+      <p class="eyebrow">05 / 精选内容</p><div class="section-intro"><h2 id="showcase-title">先从这两篇读起</h2><p>围绕长询盘审查和价格谈判，把问题、判断顺序和示例写完整。</p></div>
+      <div class="article-list"><article><span>01 / 询盘审查</span><div><h3>长询盘审查：先识别技术和合同风险</h3><p>面对复杂规格书，先做初筛，再请技术、财务或法务确认关键条款。</p><a href="articles/01-long-inquiry-audit.html">阅读全文 ↗</a></div></article><article><span>02 / 商务谈判</span><div><h3>谈价格前，先列出可以置换的筹码</h3><p>用交期、批量、规格和付款条件准备谈判。文中数据是示例。</p><a href="articles/02-negotiation-chips.html">阅读全文 ↗</a></div></article></div>
+    </div></section>
 
-        <div class="stack-grid">
-          <!-- Stack Category 1 -->
-          <div class="stack-card glass spotlight-card">
-            <div class="stack-card-header">
-              <div class="stack-icon-frame">📝</div>
-              <div>
-                <h3 class="stack-card-title">知识源点 · Source of Truth</h3>
-                <p class="stack-card-subtitle">本地优先，文本唯一真理源</p>
-              </div>
-            </div>
-            <div class="stack-tags-list">
-              <div class="stack-item" title="核心笔记与网状双链系统">
-                <span class="stack-item-name">Obsidian</span>
-                <span class="stack-item-role">本地知识库</span>
-              </div>
-              <div class="stack-item" title="通用跨平台轻量文本源">
-                <span class="stack-item-name">Markdown</span>
-                <span class="stack-item-role">单一母稿格式</span>
-              </div>
-              <div class="stack-item" title="AI Agent 驱动的代码高亮与批量排版工程">
-                <span class="stack-item-name">Cursor / VS Code</span>
-                <span class="stack-item-role">AI 工程编辑器</span>
-              </div>
-            </div>
-          </div>
+    <section class="section" id="resources" aria-labelledby="resources-title"><div class="wrap">
+      <p class="eyebrow">06 / 免费资源</p><div class="section-intro"><h2 id="resources-title">拿去试用的工具与模板</h2><p>以下内容无需注册。请按自己的产品、客户和公司政策调整，并核验关键事实。</p></div>
+      <div class="resource-grid"><a href="tools.html"><span>提示词 / 4 个场景</span><h3>外贸 Prompt 工具箱</h3><p>价格谈判、长询盘、跟进和账期场景的可复制提示词。</p><b>打开工具箱 ↗</b></a><a href="articles/02-negotiation-chips.html"><span>邮件示例</span><h3>4D 筹码置换</h3><p>在谈判文章中查看英文回信示例，发送前请自行核实条款。</p><b>查看示例 ↗</b></a><a href="articles/01-long-inquiry-audit.html"><span>审查流程</span><h3>长询盘三阶段审查</h3><p>按技术、付款与履约风险整理澄清问题。</p><b>阅读流程 ↗</b></a><a href="https://github.com/witflow2026" target="_blank" rel="noopener noreferrer"><span>代码与脚本</span><h3>GitHub 仓库</h3><p>查看公开的脚本和工程实践，使用前先检查适用范围。</p><b>查看仓库 ↗</b></a></div>
+      <div class="resource-cta"><p>有具体业务问题想交流？</p><button class="button button-outline qr-trigger" type="button">查看微信联系方式 <span aria-hidden="true">↗</span></button></div>
+    </div></section>
 
-          <!-- Stack Category 2 -->
-          <div class="stack-card glass spotlight-card">
-            <div class="stack-card-header">
-              <div class="stack-icon-frame">⚙️</div>
-              <div>
-                <h3 class="stack-card-title">流水线引擎 · Pipeline Core</h3>
-                <p class="stack-card-subtitle">批处理裁剪与排版自动化</p>
-              </div>
-            </div>
-            <div class="stack-tags-list">
-              <div class="stack-item" title="多平台差异化格式转换主引擎">
-                <span class="stack-item-name">Python 3</span>
-                <span class="stack-item-role">批处理主引擎</span>
-              </div>
-              <div class="stack-item" title="自建 CLI 命令行工具链与静态站点">
-                <span class="stack-item-name">Node.js</span>
-                <span class="stack-item-role">脚本运行时</span>
-              </div>
-              <div class="stack-item" title="多设备无缝版本追踪与历史还原">
-                <span class="stack-item-name">Git / GitHub</span>
-                <span class="stack-item-role">版本管理与协作</span>
-              </div>
-            </div>
-          </div>
+    <section class="section" id="faq" aria-labelledby="faq-title"><div class="wrap">
+      <p class="eyebrow">07 / 常见问答</p><h2 id="faq-title">使用前，先说清边界</h2>
+      <div class="faq-list"><details><summary>这里的“询盘引擎”会实时分析我的客户吗？</summary><p>不会。首页是三组预设示意案例，不接收或处理客户资料。处理真实询盘时，请先检查保密要求，并由业务、技术和财务人员复核结论。</p></details><details><summary>没有编程基础，能使用这些资源吗？</summary><p>提示词可以直接复制、替换示例信息后试用。脚本通常需要一定配置；请先阅读说明，不确定时不要直接处理客户或公司数据。</p></details><details><summary>案例中的价格、交期和客户背景真实吗？</summary><p>未特别注明的演示数据均为示意。它们用于解释判断顺序，不是报价、交付或付款承诺。</p></details><details><summary>怎样联系作者？</summary><p>可以使用下方邮箱，或打开微信二维码。请简要说明你的业务场景和希望讨论的问题。</p></details></div>
+    </div></section>
 
-          <!-- Stack Category 3 -->
-          <div class="stack-card glass spotlight-card">
-            <div class="stack-card-header">
-              <div class="stack-icon-frame">⚡</div>
-              <div>
-                <h3 class="stack-card-title">敏捷调度 · Quick Triggers</h3>
-                <p class="stack-card-subtitle">毫秒级闪念剪藏与一键批处理</p>
-              </div>
-            </div>
-            <div class="stack-tags-list">
-              <div class="stack-item" title="全局快捷呼出自定义流水线指令">
-                <span class="stack-item-name">Raycast</span>
-                <span class="stack-item-role">系统快捷启动器</span>
-              </div>
-              <div class="stack-item" title="本地多图无损压缩与图床同步">
-                <span class="stack-item-name">Sharp / Pillow</span>
-                <span class="stack-item-role">图像自动化处理</span>
-              </div>
-              <div class="stack-item" title="开箱即用的轻量终端脚本">
-                <span class="stack-item-name">Zsh / Shell</span>
-                <span class="stack-item-role">原生环境驱动</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Stack Category 4 -->
-          <div class="stack-card glass spotlight-card">
-            <div class="stack-card-header">
-              <div class="stack-icon-frame">🤖</div>
-              <div>
-                <h3 class="stack-card-title">智能赋能 · AI Augmentation</h3>
-                <p class="stack-card-subtitle">大模型深度推理与多模态语态迁移</p>
-              </div>
-            </div>
-            <div class="stack-tags-list">
-              <div class="stack-item" title="Anthropic 顶尖旗舰，高阶 Context Cache 与深度长文架构重构">
-                <span class="stack-item-name">Claude Fable 5.1</span>
-                <span class="stack-item-role">长程工程与长文重构</span>
-              </div>
-              <div class="stack-item" title="OpenAI 关键级推理旗舰，自主计算机操作与多步骤系统调度">
-                <span class="stack-item-name">GPT-6 Astra</span>
-                <span class="stack-item-role">自主系统执行与推演</span>
-              </div>
-              <div class="stack-item" title="原生内置 Thinking Mode 思考开关，全长思维链概念推导与极致精炼">
-                <span class="stack-item-name">DeepSeek V4-Pro</span>
-                <span class="stack-item-role">原生思维链与精炼</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Social Matrix Link Tree (shadcn/ui & HyperUI Inspired) -->
-    <section id="matrix" class="section matrix-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Network</span>
-          <h2 class="section-title">威特流 · 全网平台入口</h2>
-          <p class="section-desc">选择你常用的平台，关注并开启交流与互动</p>
-        </div>
-
-        <div class="matrix-grid">
-          <!-- 微信公众号 -->
-          <div class="matrix-card glass" data-platform="wechat">
-            <div class="card-top">
-              <div class="platform-icon wechat">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 2C4.36 2 1 4.91 1 8.5c0 2.05 1.08 3.87 2.76 5.09L3 17l3.64-1.04c.59.18 1.21.28 1.86.28.2 0 .4-.01.59-.03-.22-.57-.35-1.18-.35-1.82 0-3.25 3.19-5.89 7.12-5.89.54 0 1.06.05 1.57.15C17.07 4.96 13.15 2 8.5 2zm-2.25 4a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm4.5 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM15.5 9.5c-3.59 0-6.5 2.46-6.5 5.5s2.91 5.5 6.5 5.5c.57 0 1.11-.08 1.63-.23L20 21.5l-.7-2.62c1.47-1.03 2.2-2.48 2.2-3.88 0-3.04-2.91-5.5-6.5-5.5zm-2 3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
-              </div>
-              <span class="platform-badge">官方图文</span>
-            </div>
-            <h3 class="platform-name">微信公众号</h3>
-            <p class="platform-desc">深度长文、方法论拆解、数字工作流与个人成长复盘。</p>
-            <button class="matrix-action-btn show-qr-btn" data-target="wechat-modal">
-              <span>扫码关注 / 复制</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </button>
-          </div>
-
-          <!-- 小红书 -->
-          <a href="https://www.xiaohongshu.com" target="_blank" rel="noopener" class="matrix-card glass" data-platform="red">
-            <div class="card-top">
-              <div class="platform-icon redbook">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M8 12h8" stroke="#fff" stroke-width="2"/><path d="M12 8v8" stroke="#fff" stroke-width="2"/></svg>
-              </div>
-              <span class="platform-badge">视觉与洞察</span>
-            </div>
-            <h3 class="platform-name">小红书</h3>
-            <p class="platform-desc">视觉化知识卡片、桌面效率工具与数码实践日常。</p>
-            <div class="matrix-action-btn">
-              <span>直达主页</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </a>
-
-          <!-- Twitter / X -->
-          <a href="https://twitter.com" target="_blank" rel="noopener" class="matrix-card glass" data-platform="x">
-            <div class="card-top">
-              <div class="platform-icon x-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              </div>
-              <span class="platform-badge">全球连接</span>
-            </div>
-            <h3 class="platform-name">Twitter / X</h3>
-            <p class="platform-desc">科技见闻速递、效率灵感、短动态与独立开发者探讨。</p>
-            <div class="matrix-action-btn">
-              <span>@witflow</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </a>
-
-          <!-- GitHub -->
-          <a href="https://github.com/wkn001/website" target="_blank" rel="noopener" class="matrix-card glass" data-platform="github">
-            <div class="card-top">
-              <div class="platform-icon github">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              </div>
-              <span class="platform-badge" id="github-live-badge">持续构建中</span>
-            </div>
-            <h3 class="platform-name">GitHub</h3>
-            <p class="platform-desc">自动化脚本、发布配置、效率工具与工程代码沉淀。</p>
-            <div id="github-live-info" class="github-live-info">
-              <span class="live-indicator-dot"></span>
-              <span class="live-info-text" id="github-commit-status">代码活跃同步中</span>
-            </div>
-            <div class="matrix-action-btn">
-              <span>直达 @wkn001/website</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </a>
-
-          <!-- 即刻 -->
-          <a href="https://web.okjike.com" target="_blank" rel="noopener" class="matrix-card glass" data-platform="jike">
-            <div class="card-top">
-              <div class="platform-icon jike">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M8 12a4 4 0 0 0 8 0" stroke="#fff" stroke-width="2" fill="none"/></svg>
-              </div>
-              <span class="platform-badge">灵感随笔</span>
-            </div>
-            <h3 class="platform-name">即刻 (Jike)</h3>
-            <p class="platform-desc">独立创作者手记、工具链调优心得与日常高频互动。</p>
-            <div class="matrix-action-btn">
-              <span>动态互联</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </a>
-
-          <!-- 哔哩哔哩 -->
-          <a href="https://www.bilibili.com/" target="_blank" rel="noopener" class="matrix-card glass" data-platform="bilibili">
-            <div class="card-top">
-              <div class="platform-icon bilibili">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 6 2"/><path d="m16 4 2-2"/><rect x="3" y="5" width="18" height="15" rx="4"/><circle cx="9" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1" fill="currentColor" stroke="none"/><path d="M8 16c1.3 1 2.7 1 4 0 1.3 1 2.7 1 4 0"/></svg>
-              </div>
-              <span class="platform-badge">视频与教程</span>
-            </div>
-            <h3 class="platform-name">哔哩哔哩</h3>
-            <p class="platform-desc">AI 工作流、自动化工具与外贸实操视频。</p>
-            <div class="matrix-action-btn">
-              <span>直达主页</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Showcase / Selected Works (Editorial / Godly Inspired) -->
-    <section id="showcase" class="section showcase-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Featured Works</span>
-          <h2 class="section-title">精选内容与方法沉淀</h2>
-          <p class="section-desc">坚持亲测驱动与一手实操，记录数字工作流与技术演进中的高价值样板</p>
-        </div>
-
-        <!-- Filter Tabs & Poster Trigger (Magic UI / shadcn style) -->
-        <div class="filter-tabs-row">
-          <div class="filter-tabs-group">
-            <button class="filter-tab active" data-filter="all">全部内容</button>
-            <button class="filter-tab" data-filter="workflow">效率工作流</button>
-            <button class="filter-tab" data-filter="matrix">矩阵运营</button>
-            <button class="filter-tab" data-filter="tools">独立工程</button>
-          </div>
-          <button id="open-poster-btn" class="btn sm secondary-btn poster-trigger-btn" title="一键生成威特流精美社交金句海报">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-            <span>生成金句海报</span>
-          </button>
-        </div>
-
-        <div class="showcase-grid">
-          <!-- Case 1 -->
-          <div class="showcase-card glass glare-hover" data-category="workflow" data-case-id="case-1">
-            <div class="showcase-thumb thumb-1">
-              <span class="badge-overlay">效率工作流</span>
-            </div>
-            <div class="showcase-body">
-              <span class="category-tag">系统构建</span>
-              <h4 class="showcase-title">单兵作战系统：如何用脚本与自动化接管繁琐的排版分发？</h4>
-              <p class="showcase-summary">系统拆解从素材收集、信息过滤到排版分发的流水线设计，用代码和自动化替代机械劳动。</p>
-              <div class="card-meta">
-                <span>⚡ 生产力实测</span>
-                <span>🛠️ 工具流闭环</span>
-                <button class="card-detail-btn" data-case="case-1">拆解架构 ➔</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case 2 -->
-          <div class="showcase-card glass glare-hover" data-category="matrix" data-case-id="case-2">
-            <div class="showcase-thumb thumb-2">
-              <span class="badge-overlay">矩阵运营</span>
-            </div>
-            <div class="showcase-body">
-              <span class="category-tag">方法论</span>
-              <h4 class="showcase-title">跨平台内容架构：单一母稿如何低损耗适配不同平台调性？</h4>
-              <p class="showcase-summary">剖析如何在 X、公众号、小红书与即刻实现差异化定位，让深度沉淀与轻量传播互为支撑。</p>
-              <div class="card-meta">
-                <span>📘 架构逻辑</span>
-                <span>🌐 全网协同</span>
-                <button class="card-detail-btn" data-case="case-2">拆解架构 ➔</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case 3 -->
-          <div class="showcase-card glass glare-hover" data-category="tools" data-case-id="case-3">
-            <div class="showcase-thumb thumb-3">
-              <span class="badge-overlay">开源实践</span>
-            </div>
-            <div class="showcase-body">
-              <span class="category-tag">独立工程</span>
-              <h4 class="showcase-title">用轻量化工具解决真实问题：我的自媒体定制脚本实践</h4>
-              <p class="showcase-summary">分享从零编写的批处理与发布脚本，如何消除跨平台日常摩擦，构建平滑无阻的内容流转闭环。</p>
-              <div class="card-meta">
-                <span>💻 源码驱动</span>
-                <span>🚀 极简主义</span>
-                <button class="card-detail-btn" data-case="case-3">拆解架构 ➔</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case 4 -->
-          <div class="showcase-card glass glare-hover" data-category="workflow" data-case-id="case-4">
-            <div class="showcase-thumb thumb-4">
-              <span class="badge-overlay">信息架构</span>
-            </div>
-            <div class="showcase-body">
-              <span class="category-tag">深度思考</span>
-              <h4 class="showcase-title">信息降噪实践：从 RSS 订阅源到本地纯文本资产库的高效管线</h4>
-              <p class="showcase-summary">从 RSS 订阅源精简到自动化标签分拣，建立个人知识资产库，把注意力留给真正重要的创造。</p>
-              <div class="card-meta">
-                <span>🧠 认知减负</span>
-                <span>📈 长期复利</span>
-                <button class="card-detail-btn" data-case="case-4">拆解架构 ➔</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section (shadcn/ui Accordion Inspired) -->
-    <section id="faq" class="section faq-section">
-      <div class="container faq-container">
-        <div class="section-header">
-          <span class="section-tag">FAQ</span>
-          <h2 class="section-title">常见问题解答</h2>
-          <p class="section-desc">关于威特流的品牌定位、合作方式与内容生态的更多细节</p>
-        </div>
-
-        <div class="faq-accordion">
-          <!-- Item 1 -->
-          <div class="faq-item glass">
-            <button class="faq-trigger" aria-expanded="false">
-              <span class="faq-question">witflow 威特流的核心定位是什么？</span>
-              <span class="faq-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-              </span>
-            </button>
-            <div class="faq-content">
-              <p class="faq-answer">
-                威特流（witflow）是一个专注<strong>效率工作流自动化、工具链工程与全网自媒体矩阵</strong>的科技与个人品牌。我们秉承<strong>“Wit in, Flow out.（智慧进入，结果流出）”</strong>的理念，用工程化思维消除创作者和开发者的重复劳动，让高密度的思考与工具在全网顺畅流动。
-              </p>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="faq-item glass">
-            <button class="faq-trigger" aria-expanded="false">
-              <span class="faq-question">你们分享的内容涵盖哪些平台与方向？</span>
-              <span class="faq-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-              </span>
-            </button>
-            <div class="faq-content">
-              <p class="faq-answer">
-                我们目前布局了 5 大核心渠道：<strong>GitHub</strong>（开源脚本与工程代码）、<strong>Twitter / X</strong>（即时思考与前沿连接）、<strong>微信公众号</strong>（深度长文与方法论）、<strong>即刻</strong>（创作者手记与工具调优）以及 <strong>小红书</strong>（视觉化知识卡片与数码日常）。
-              </p>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="faq-item glass">
-            <button class="faq-trigger" aria-expanded="false">
-              <span class="faq-question">如何与威特流开展商务或内容共创合作？</span>
-              <span class="faq-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-              </span>
-            </button>
-            <div class="faq-content">
-              <p class="faq-answer">
-                我们非常欢迎契合品牌理念的技术工具推荐、软硬件实测、自媒体商业合作与跨平台联合创作者。你可以通过本页下方的<strong>一键复制商务邮箱</strong>发送详细需求，或<strong>扫码添加微信</strong>直接交流。
-              </p>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="faq-item glass">
-            <button class="faq-trigger" aria-expanded="false">
-              <span class="faq-question">网站中提到的工作流与自动化脚本会开源吗？</span>
-              <span class="faq-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-              </span>
-            </button>
-            <div class="faq-content">
-              <p class="faq-answer">
-                是的！我们坚信“开源与分享是最好的检验方式”。经过实战验证的批处理工具、自媒体发布流水线与工作流模板，会逐步整理并开源发布至我们的 <strong>GitHub 仓库</strong>中，供同行和创作者免费参考与复用。
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact & Collaboration Section (shadcn/ui Inspired) -->
-    <section id="contact" class="section contact-section">
-      <div class="container contact-container">
-        <div class="contact-box glass">
-          <div class="contact-header">
-            <span class="section-tag">Get in touch</span>
-            <h2 class="contact-title">连接思考与实践 · 携手创造价值</h2>
-            <p class="contact-desc">
-              无论你是寻求自媒体商务合作、探讨工作流与效率工具，还是项目联合共创，欢迎随时与 <strong>witflow 威特流</strong> 建立联系。
-            </p>
-          </div>
-
-          <div class="contact-actions">
-            <!-- Copy Email Button -->
-            <button class="btn copy-email-btn" id="copy-email-btn" data-email="contact@witflow.com">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              <span id="copy-btn-text">点击复制商务邮箱</span>
-            </button>
-
-            <!-- WeChat Trigger -->
-            <button class="btn ghost-btn show-qr-btn" data-target="wechat-modal">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              <span>微信直接沟通</span>
-            </button>
-          </div>
-
-          <!-- Quick Message Form (shadcn/ui Form Style) -->
-          <form id="quick-contact-form" class="quick-form glass">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="sender-name" class="form-label">你的称呼</label>
-                <input type="text" id="sender-name" class="form-input" placeholder="例如：Alex / 某品牌伙伴" required>
-              </div>
-              <div class="form-group">
-                <label for="sender-email" class="form-label">联系邮箱</label>
-                <input type="email" id="sender-email" class="form-input" placeholder="name@example.com" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="sender-message" class="form-label">合作意向 / 交流留言</label>
-              <textarea id="sender-message" class="form-textarea" rows="3" placeholder="简述你的合作需求、技术交流探讨或想法..." required></textarea>
-            </div>
-            <div class="form-footer-row">
-              <button type="submit" class="btn primary-btn form-submit-btn">
-                <span>一键提交留言</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-              </button>
-              <span id="form-draft-badge" class="draft-indicator hidden">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                <span>已自动保存本地草稿</span>
-              </span>
-            </div>
-          </form>
-
-          <div class="contact-footnote">
-            <span>💡 优先处理：自媒体商务合作、效率工具与工作流探讨、内容共创交流</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="section contact" id="contact" aria-labelledby="contact-title"><div class="wrap">
+      <p class="eyebrow">08 / 联系与交流</p><h2 id="contact-title">有具体问题，<br>我们从问题聊起。</h2><p>欢迎讨论外贸工作流、团队提效问题与内容合作。请勿通过公开邮件发送客户机密资料。</p>
+      <div class="contact-actions"><a class="button button-primary" href="/cdn-cgi/l/email-protection#492a26273d282a3d093e203d2f25263e673d3b282d2c763a3c2b232c2a3d741e203d2f25263e6c7b796c0c7c6c080c6c70716c0c7e6c0b0d6c70786c0c7d6c0b086c087d6c0c7f6c0b7c6c7178">发送邮件 ↗</a><button class="button button-outline qr-trigger" type="button">微信直接沟通 ↗</button></div>
+      <p class="contact-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c5a6aaabb1a4a6b185b2acb1a3a9aab2ebb1b7a4a1a0">[email&#160;protected]</a></p>
+    </div></section>
   </main>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <div class="footer-left">
-        <div class="brand-logo footer-logo">
-          <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img">
-          <div class="brand-title-group">
-            <span class="logo-text-en">witflow</span>
-            <span class="logo-text-zh">威特流</span>
-          </div>
-        </div>
-        <p class="footer-slogan">Wit in, Flow out. · Where Engineering Precision Meets Creative Flow.</p>
-        <p class="vps-info">🚀 生产就绪: GitHub Pages 边缘分发 · 持续交付</p>
-      </div>
+  <footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand"><img src="assets/logo.png" alt="" width="30" height="30"><div><strong>witflow 威特流</strong><small>Wit in, Flow out. · Where Engineering Precision Meets Creative Flow.</small></div></div><div class="footer-links"><a href="tools.html">工具箱</a><a href="#about">关于作者</a><a href="privacy.html">隐私与免责声明</a></div><small>© 2026 witflow</small></div></footer>
 
-      <div class="footer-right">
-        <div class="footer-nav">
-          <a href="#hero">回到顶部</a>
-          <a href="#bento">核心主张</a>
-          <a href="#pipeline">内容管线</a>
-          <a href="#matrix">社媒矩阵</a>
-          <a href="about.html">关于主理人</a>
-          <a href="#contact">商务合作</a>
-        </div>
-        <p class="copyright">© 2026 witflow 威特流. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modal: WeChat QR Dialog -->
-  <div id="wechat-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
-    <div class="modal-card glass">
-      <button class="modal-close-btn" aria-label="关闭弹窗">&times;</button>
-      <div class="modal-header">
-        <div class="modal-icon wechat">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 2C4.36 2 1 4.91 1 8.5c0 2.05 1.08 3.87 2.76 5.09L3 17l3.64-1.04c.59.18 1.21.28 1.86.28.2 0 .4-.01.59-.03-.22-.57-.35-1.18-.35-1.82 0-3.25 3.19-5.89 7.12-5.89.54 0 1.06.05 1.57.15C17.07 4.96 13.15 2 8.5 2zm-2.25 4a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm4.5 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM15.5 9.5c-3.59 0-6.5 2.46-6.5 5.5s2.91 5.5 6.5 5.5c.57 0 1.11-.08 1.63-.23L20 21.5l-.7-2.62c1.47-1.03 2.2-2.48 2.2-3.88 0-3.04-2.91-5.5-6.5-5.5zm-2 3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
-        </div>
-        <h3 class="modal-title">关注微信公众号 / 添加威特流</h3>
-        <p class="modal-desc">扫码关注最新图文，或长按复制微信号直接交流</p>
-      </div>
-
-      <div class="qr-box">
-        <!-- Real WeChat QR code image if placed at assets/wechat-qr.png, fallback to SVG placeholder -->
-        <img id="real-wechat-qr" src="assets/wechat-qr.png" alt="微信二维码" class="real-qr-img hidden">
-        <div class="qr-placeholder" id="svg-wechat-qr">
-          <div class="qr-corner top-left"></div>
-          <div class="qr-corner top-right"></div>
-          <div class="qr-corner bottom-left"></div>
-          <div class="qr-dots-grid"></div>
-          <div class="qr-center-logo">
-            <img src="assets/logo.png" alt="witflow" class="qr-center-img">
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-copy-box">
-        <span class="wechat-id-label">官方微信号:</span>
-        <code class="wechat-id-code" id="wechat-id-val">witflow_official</code>
-        <button class="btn sm copy-sub-btn" id="copy-wechat-btn" data-copy="witflow_official">复制微信号</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal: Showcase Detail Dialog (Logic & Architecture Reader) -->
-  <div id="showcase-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
-    <div class="modal-card showcase-modal-card glass">
-      <button class="modal-close-btn" aria-label="关闭弹窗">&times;</button>
-      <div class="showcase-modal-header">
-        <span class="category-tag modal-category-badge" id="modal-category">效率工作流</span>
-        <h3 class="modal-title" id="modal-title">工作流逻辑与系统架构拆解</h3>
-        <p class="modal-desc" id="modal-summary">深度拆解工作流核心原理与实战经验</p>
-        
-        <!-- Reader View Switcher Tabs -->
-        <div class="modal-tabs-bar">
-          <button class="modal-tab-btn active" id="tab-btn-topo">
-            <span>🧩 系统拓扑简报</span>
-          </button>
-          <button class="modal-tab-btn" id="tab-btn-article">
-            <span>📖 沉浸深度长文</span>
-          </button>
-          <button class="modal-tab-btn modal-copy-md-btn" id="modal-copy-md-btn" title="一键复制完整 Markdown 母稿至剪贴板">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-            <span>复制母稿 (Markdown)</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="showcase-modal-body">
-        <!-- Panel 1: Topology -->
-        <div id="modal-panel-topo" class="modal-view-panel active">
-          <div class="flow-breakdown">
-            <h5 class="breakdown-heading">🧩 系统流转拓扑（System Pipeline）：</h5>
-            <div class="topology-steps" id="modal-topology">
-              <!-- Dynamic topology steps inserted by JS -->
-            </div>
-          </div>
-
-          <div class="takeaways-box">
-            <h5 class="breakdown-heading">💡 核心实操沉淀与复用经验：</h5>
-            <ul class="takeaways-list" id="modal-takeaways">
-              <!-- Dynamic takeaways inserted by JS -->
-            </ul>
-          </div>
-        </div>
-
-        <!-- Panel 2: Deep Dive Reader View -->
-        <div id="modal-panel-article" class="modal-view-panel hidden">
-          <div class="article-reader-content" id="modal-article-body">
-            <!-- Dynamic full markdown-style article inserted by JS -->
-          </div>
-        </div>
-      </div>
-
-      <div class="showcase-modal-footer">
-        <a href="#matrix" class="btn primary-btn modal-action-btn" id="modal-action-btn">
-          <span>前往全网平台深入探讨</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal: Brand Quote Shareable Poster Generator -->
-  <div id="poster-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
-    <div class="modal-card poster-modal-card glass">
-      <button class="modal-close-btn" aria-label="关闭弹窗">&times;</button>
-      <div class="poster-modal-header">
-        <span class="category-tag">Social Share</span>
-        <h3 class="modal-title">生成威特流 · 极客金句海报</h3>
-        <p class="modal-desc">挑选启发性思想切片，实时渲染高清社交卡片，一键保存或复制</p>
-      </div>
-
-      <div class="poster-modal-body">
-        <!-- Quote Selector -->
-        <div class="poster-quote-selector">
-          <span class="poster-selector-label">选择分享金句：</span>
-          <div class="quote-pills-list" id="quote-pills-list">
-            <button class="quote-pill active" data-quote="0">01 流水线哲学</button>
-            <button class="quote-pill" data-quote="1">02 人脑不当搬运工</button>
-            <button class="quote-pill" data-quote="2">03 系统大于意志力</button>
-          </div>
-        </div>
-
-        <!-- Canvas Poster Preview Area -->
-        <div class="poster-canvas-wrapper">
-          <canvas id="poster-canvas" width="600" height="750" class="poster-canvas"></canvas>
-        </div>
-      </div>
-
-      <div class="poster-modal-footer">
-        <button id="copy-poster-btn" class="btn primary-btn poster-action-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-          <span>复制海报图片</span>
-        </button>
-        <button id="download-poster-btn" class="btn secondary-btn poster-action-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-          <span>保存到本地</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Command Palette Modal (Raycast & Linear style Ctrl+K) -->
-  <div id="cmd-palette-modal" class="modal-overlay hidden cmd-palette-overlay" role="dialog" aria-modal="true">
-    <div class="cmd-palette-box glass">
-      <div class="cmd-search-header">
-        <svg class="cmd-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="cmd-palette-input" class="cmd-input" placeholder="输入搜索板块、快速复制或执行操作..." autocomplete="off">
-        <kbd class="cmd-esc-badge">Esc</kbd>
-      </div>
-
-      <div class="cmd-results-list" id="cmd-results">
-        <!-- Navigation Group -->
-        <div class="cmd-group-title">快捷导航 · NAVIGATE</div>
-        <div class="cmd-item" data-action="nav" data-target="#hero">
-          <span class="cmd-icon">🏠</span>
-          <span class="cmd-item-title">返回页面首屏</span>
-          <span class="cmd-item-tag">Top</span>
-        </div>
-        <div class="cmd-item" data-action="nav" data-target="#bento">
-          <span class="cmd-icon">🍱</span>
-          <span class="cmd-item-title">核心业务与主张</span>
-          <span class="cmd-item-tag">定位</span>
-        </div>
-        <div class="cmd-item" data-action="nav" data-target="#pipeline">
-          <span class="cmd-icon">⚙️</span>
-          <span class="cmd-item-title">内容工程流水线</span>
-          <span class="cmd-item-tag">管线</span>
-        </div>
-        <div class="cmd-item" data-action="nav" data-target="#stack">
-          <span class="cmd-icon">🛠️</span>
-          <span class="cmd-item-title">极客数字军火库与工具链</span>
-          <span class="cmd-item-tag">技术栈</span>
-        </div>
-        <div class="cmd-item" data-action="nav" data-target="#matrix">
-          <span class="cmd-icon">🌐</span>
-          <span class="cmd-item-title">全网社媒矩阵入口</span>
-          <span class="cmd-item-tag">5大平台</span>
-        </div>
-        <div class="cmd-item" data-action="nav" data-target="#showcase">
-          <span class="cmd-icon">📑</span>
-          <span class="cmd-item-title">精选内容与方法沉淀</span>
-          <span class="cmd-item-tag">案例</span>
-        </div>
-        <div class="cmd-item" data-action="nav" data-target="#faq">
-          <span class="cmd-icon">❓</span>
-          <span class="cmd-item-title">常见问题解答</span>
-          <span class="cmd-item-tag">FAQ</span>
-        </div>
-        <div class="cmd-item" data-action="nav" data-target="#contact">
-          <span class="cmd-icon">✉️</span>
-          <span class="cmd-item-title">商务合作与快速留言</span>
-          <span class="cmd-item-tag">联络</span>
-        </div>
-        <div class="cmd-item" data-action="nav-page" data-url="about.html">
-          <span class="cmd-icon">👤</span>
-          <span class="cmd-item-title">关于主理人与极客宣言 (About)</span>
-          <span class="cmd-item-tag">主理人</span>
-        </div>
-
-        <!-- Actions Group -->
-        <div class="cmd-group-title">功能指令 · ACTIONS</div>
-        <div class="cmd-item" data-action="open-poster">
-          <span class="cmd-icon">🖼️</span>
-          <span class="cmd-item-title">生成精美社交金句分享海报</span>
-          <span class="cmd-item-tag">海报</span>
-        </div>
-        <div class="cmd-item" data-action="toggle-theme">
-          <span class="cmd-icon">🌗</span>
-          <span class="cmd-item-title">切换深色 / 浅色模式</span>
-          <span class="cmd-item-tag">Theme</span>
-        </div>
-        <div class="cmd-item" data-action="toggle-sound">
-          <span class="cmd-icon">🔊</span>
-          <span class="cmd-item-title">开启 / 静音按键微音效</span>
-          <span class="cmd-item-tag">Audio</span>
-        </div>
-        <div class="cmd-item" data-action="copy-email">
-          <span class="cmd-icon">📋</span>
-          <span class="cmd-item-title">一键复制商务邮箱 (contact@witflow.com)</span>
-          <span class="cmd-item-tag">Email</span>
-        </div>
-        <div class="cmd-item" data-action="open-wechat">
-          <span class="cmd-icon">💬</span>
-          <span class="cmd-item-title">弹出官方微信公众号二维码</span>
-          <span class="cmd-item-tag">WeChat</span>
-        </div>
-      </div>
-
-      <div class="cmd-footer">
-        <span><kbd>↑</kbd> <kbd>↓</kbd> 切换选项</span>
-        <span><kbd>↵ Enter</kbd> 确认执行</span>
-        <span><kbd>Esc</kbd> 关闭面板</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Back to Top Floating Button -->
-  <button id="back-to-top" class="back-to-top-btn hidden" aria-label="返回顶部" title="返回顶部">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-  </button>
-
-  <!-- Toast Notification System (shadcn/ui style) -->
-  <div id="toast" class="toast-notification hidden" role="status" aria-live="polite">
-    <div class="toast-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-    </div>
-    <span class="toast-msg">已成功复制到剪贴板！</span>
-  </div>
-
-  <script src="main.js"></script>
-</body>
+  <div class="modal" id="wechat-modal" role="dialog" aria-modal="true" aria-labelledby="wechat-title" hidden><div class="modal-backdrop" data-close-modal></div><div class="modal-box"><button class="modal-close" type="button" aria-label="关闭微信联系方式" data-close-modal>×</button><p class="eyebrow">CONTACT / WECHAT</p><h2 id="wechat-title">微信联系威特流</h2><p>扫码关注公众号，或添加个人微信交流。</p><div class="qr-grid"><figure><img src="assets/qr-wechat-official.jpg" alt="威特流公众号二维码" width="160" height="160"><figcaption>微信公众号</figcaption></figure><figure><img src="assets/qr-wechat-personal.jpg" alt="个人微信二维码" width="160" height="160"><figcaption>个人微信</figcaption></figure></div><div class="wechat-id"><span>微信号：<strong>wit_flow</strong></span><button id="copy-wechat" type="button">复制微信号</button></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></div></div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>

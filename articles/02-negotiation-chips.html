@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>谈价格前，先列出可以置换的筹码 · witflow 威特流</title>
+  <meta name="description" content="面对海外买家的目标价要求，先核实报价条件，再从交期、批量、规格和付款方式整理可讨论的选项。文中数字与邮件为示意。">
+  <link rel="canonical" href="https://witflow.trade/articles/02-negotiation-chips.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/logo.png">
+  <link rel="stylesheet" href="../styles.css?v=3.3">
+</head>
+<body>
+
+  <!-- Top Reading Progress Indicator -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar glass">
+      <a href="../index.html" class="brand-logo">
+        <img src="../assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img" width="28" height="28">
+        <div class="brand-title-group">
+          <span class="logo-text-en">witflow</span>
+          <span class="logo-text-zh">威特流</span>
+        </div>
+        <span class="status-dot" title="活跃运行中"></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">返回首页</a>
+        <a href="../tools.html" class="nav-link">Prompt 工具箱</a>
+        <a href="../index.html#showcase" class="nav-link active">精选长文</a>
+        <a href="../index.html#faq" class="nav-link">常见解答</a>
+        <a href="../index.html#contact" class="nav-link">商务与交流</a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="切换主题" title="切换深色/浅色模式">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path><path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path><path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+        <a href="../index.html#contact" class="cta-btn sm">
+          <span>联系作者</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="icon-btn mobile-menu-toggle" aria-label="打开移动端导航菜单" aria-expanded="false">
+          <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+          <svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu-drawer" class="mobile-menu-drawer glass hidden" aria-label="移动端导航菜单">
+      <div class="mobile-menu-inner">
+        <a href="../index.html" class="mobile-nav-link">返回首页</a>
+        <a href="../tools.html" class="mobile-nav-link">⚡ Prompt 工具箱</a>
+        <a href="../index.html#showcase" class="mobile-nav-link" style="color: var(--accent-primary); font-weight: 600;">精选长文</a>
+        <a href="../index.html#faq" class="mobile-nav-link">常见解答</a>
+        <a href="../index.html#contact" class="mobile-nav-link">商务与交流</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="article-container">
+    <div class="article-back-nav">
+      <a href="../index.html#showcase" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        <span>返回精选内容列表</span>
+      </a>
+    </div>
+
+    <article>
+      <header class="article-header">
+        <span class="article-category">商务博弈与谈判 · 深度长文</span>
+        <h1 class="article-main-title">谈价格前，先列出可以置换的筹码</h1>
+        <div class="article-meta-row">
+          <span class="article-meta-item">✍️ witflow 威特流</span>
+          <span class="article-meta-item">📅 2026-09-17</span>
+          <span class="article-meta-item">⏱️ 约 5 分钟阅读</span>
+          <span class="article-meta-item">🏷️ 谈判模型 · 守价实战</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p class="lead-paragraph">
+          “你们价格太贵了，其他供应商更便宜。”<br>
+          遇到这样的反馈，先核实对方比较的是不是同一规格、数量和交付条件，再决定是否调整报价。下文的客户话术、数字与邮件均为示意，不代表真实交易或我方承诺。
+        </p>
+
+        <div class="article-callout warning">
+          <div class="article-callout-title">⚠️ 改价前先核实三件事</div>
+          <p>
+            1. <strong>报价依据</strong>：双方讨论的规格、质量要求与数量是否一致；<br>
+            2. <strong>可调整条件</strong>：交期、批量、包装与付款安排是否有实际余地；<br>
+            3. <strong>履约能力</strong>：任何新条件是否经过生产、财务等相关人员确认。
+          </p>
+        </div>
+
+        <h2>一、四维谈判筹码置换模型（4D Negotiation Chips）</h2>
+        <p>
+          可以把价格与非价格条件放在同一张清单里讨论。<strong>任何让步都要先核算成本，并确认新的交付条件可执行。</strong>
+        </p>
+
+        <h3>维度 1：交期置换（Delivery Lead Time）</h3>
+        <p>
+          如果目标价较低，可询问客户对交期是否有弹性；如果需要加急，也应先核对排产能力和额外成本。具体天数与费用由实际订单决定，不能直接套用示例数字。
+        </p>
+
+        <h3>维度 2：批量与锁价周期（Volume & Pricing Tier）</h3>
+        <p>
+          采购量可能影响单位成本，但是否能形成阶梯报价，需要核算原料、产能和库存。与客户讨论数量前，先确认内部可接受的起订量与报价有效期。
+        </p>
+
+        <h3>维度 3：技术公差与包装配置（Specification & Packaging）</h3>
+        <p>
+          包装或非关键规格的调整可能影响成本，但任何技术参数变更都应由客户和技术人员确认，不得自行降低图纸要求。
+        </p>
+
+        <h3>维度 4：付款条件与账期（Payment Terms）</h3>
+        <p>
+          付款比例和账期会影响资金占用与收款风险。可将它们列为讨论项，具体方案须经财务、风控和相关合作机构核实。
+        </p>
+
+        <h2>二、一封英文回信示例</h2>
+
+        <div class="article-code-panel">
+          <div class="article-code-header">
+            <span>示意模板：先核对条件 · Email Example</span>
+            <span>English Email</span>
+          </div>
+          <div class="article-code-body">Dear [Client Name],
+
+Thank you for your candid feedback regarding the price. 
+
+We understand your focus on cost. Our current quotation is based on [confirmed specifications], [order quantity], and [approved delivery terms].
+
+If your target price is [target price], we can review whether changes to volume, non-critical specifications, or delivery timing could support an alternative offer. Any revised price or timeline would require internal confirmation.
+
+Could you share your expected quantity and required delivery date so we can assess the available options?</div>
+        </div>
+
+        <h2>三、用大模型深度推理模拟采购总监压力测试</h2>
+        <p>
+          在给客户回信之前，可以用 AI 模拟可能的追问；它不能证明客户真实意图：
+        </p>
+        <p>
+          “请模拟一名采购负责人，针对上述回信提出可能的追问；区分可直接回答的问题、需要内部确认的条件，以及证据不足的推测。”
+        </p>
+
+        <div class="article-share-cta">
+          <h3>掌握更多外贸提效实战工作流</h3>
+          <p>从被动降价到主动置换，用工程化思维搭建你的外贸作战系统。</p>
+          <a href="../tools.html" class="cta-btn sm">
+            <span>前往实战 Prompt 工具箱</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="brand-logo footer-logo">
+          <img src="../assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img" width="28" height="28">
+          <div class="brand-title-group">
+            <span class="logo-text-en">witflow</span>
+            <span class="logo-text-zh">威特流</span>
+          </div>
+        </div>
+        <p class="footer-slogan">Wit in, Flow out. · 外贸 AI 工作流与实战笔记。</p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-nav">
+          <a href="../index.html">回到首页</a>
+          <a href="../tools.html">Prompt 工具箱</a>
+          <a href="../index.html#contact">联系交流</a>
+          <a href="../privacy.html">隐私与免责声明</a>
+        </div>
+        <p class="copyright">© 2026 witflow 威特流. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top-btn glass hidden" aria-label="回到页面顶部" title="返回页面顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <script src="../main.js?v=2.6"></script>
+</body>
+</html>
