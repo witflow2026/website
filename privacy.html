@@ -1,164 +1,62 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>隐私与免责声明 · witflow 威特流</title>
-  <meta name="description" content="witflow 威特流官方网站关于隐私保护、内容版权及工具使用的免责声明。">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
-  <link rel="stylesheet" href="styles.css?v=3.3">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="icon" href="/assets/favicon-32.png">
+  <link rel="stylesheet" href="/homepage.css?v=1">
+  <link rel="stylesheet" href="/content-pages.css?v=1">
+
+  <!-- GENERATED SEO START -->
+  <title>隐私与使用说明 · witflow 威特流</title>
+  <meta name="description" content="威特流网站的基础请求处理、主题偏好存储、联系信息用途，以及提示词、工具和示例内容的使用说明。">
+  <link rel="canonical" href="https://witflow.trade/privacy">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="witflow 威特流">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:url" content="https://witflow.trade/privacy">
+  <meta property="og:title" content="隐私与使用说明 · witflow 威特流">
+  <meta property="og:description" content="威特流网站的基础请求处理、主题偏好存储、联系信息用途，以及提示词、工具和示例内容的使用说明。">
+  <meta property="og:image" content="https://witflow.trade/assets/logo.png">
+  <meta property="og:image:alt" content="witflow 威特流标志">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="隐私与使用说明 · witflow 威特流">
+  <meta name="twitter:description" content="威特流网站的基础请求处理、主题偏好存储、联系信息用途，以及提示词、工具和示例内容的使用说明。">
+  <meta name="twitter:image" content="https://witflow.trade/assets/logo.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "隐私与使用说明 · witflow 威特流", "url": "https://witflow.trade/privacy", "description": "威特流网站的基础请求处理、主题偏好存储、联系信息用途，以及提示词、工具和示例内容的使用说明。", "inLanguage": "zh-CN"}</script>
+  <!-- GENERATED SEO END -->
 </head>
 <body>
-
-  <!-- Top Reading Progress Indicator -->
-  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
-
-  <!-- Floating Navigation Bar -->
-  <header class="navbar-wrapper">
-    <nav class="navbar glass">
-      <a href="index.html" class="brand-logo">
-        <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img" width="28" height="28">
-        <div class="brand-title-group">
-          <span class="logo-text-en">witflow</span>
-          <span class="logo-text-zh">威特流</span>
-        </div>
-      </a>
-
-      <div class="nav-links">
-        <a href="index.html" class="nav-link">返回首页</a>
-        <a href="tools.html" class="nav-link">Prompt 工具箱</a>
-        <a href="index.html#showcase" class="nav-link">精选长文</a>
-      </div>
-
-      <div class="nav-actions">
-        <button id="theme-toggle" class="icon-btn" aria-label="切换主题">
-          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2"></path><path d="M12 20v2"></path>
-            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
-            <path d="M2 12h2"></path><path d="M20 12h2"></path>
-            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
-          </svg>
-          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"></path>
-          </svg>
-        </button>
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="icon-btn mobile-menu-toggle" aria-label="打开移动端导航菜单" aria-expanded="false">
-          <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
-          <svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Mobile Drawer Menu -->
-    <div id="mobile-menu-drawer" class="mobile-menu-drawer glass hidden" aria-label="移动端导航菜单">
-      <div class="mobile-menu-inner">
-        <a href="index.html" class="mobile-nav-link">返回首页</a>
-        <a href="tools.html" class="mobile-nav-link">⚡ Prompt 工具箱</a>
-        <a href="index.html#showcase" class="mobile-nav-link">精选长文</a>
-        <a href="index.html#contact" class="mobile-nav-link">商务与交流</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="article-container">
-    <div class="article-back-nav">
-      <a href="index.html" class="back-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-        <span>返回首页</span>
-      </a>
-    </div>
-
-    <article>
-      <header class="article-header">
-        <h1 class="article-main-title">隐私与免责声明</h1>
-        <div class="article-meta-row">
-          <span class="article-meta-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            最后更新于：2026年9月
-          </span>
-        </div>
-      </header>
-
-      <div class="article-content">
-        <p>感谢您访问 <strong>witflow 威特流</strong> 官方网站。为了保护您的权益并明确我们在内容与工具提供上的责任边界，请您在继续使用本站前阅读以下说明。</p>
-
-        <h2>1. 隐私保护声明</h2>
-        <p>
-          本网站（witflow.trade）作为一个纯静态展示站点，<strong>不要求用户注册，不收集任何个人身份识别信息（PII）</strong>。
-        </p>
-        <p>
-          当您通过页面上的邮件或微信联系我们时，您提供的联系方式及沟通内容仅用于商业洽谈与问题解答，我们承诺不会将其用于任何与您意愿无关的营销推送，也绝不会将其出售或泄露给第三方。
-        </p>
-
-        <h2>2. 工具与内容免责声明</h2>
-        <div class="article-callout warning">
-          <div class="article-callout-title">⚠️ 核心提示</div>
-          <p style="margin:0; font-size: 0.95rem;">本站（含“Prompt 工具箱”及各长文案例）提供的所有模型指令、推演逻辑、风控策略及商业建议，<strong>仅供学术交流与业务参考</strong>。</p>
-        </div>
-        <p>
-          <strong>不替代专业意见：</strong> 针对外贸实战中的付款方式设计、远期账期风险、信用保险核算及国际违约责任，本站工具与示例<strong>不能替代</strong>专业法律、财务或信保机构的正式意见。
-        </p>
-        <p>
-          <strong>不承担决策后果：</strong> 真实外贸交易环境高度复杂且瞬息万变。因使用本站提供的 Prompt 模板或策略指导而产生的任何商业决策及财务后果，由用户自行承担。本站及作者对任何直接、间接的商业损失不承担法律责任。
-        </p>
-        <p>
-          <strong>案例示意说明：</strong> 本站演示和文章中的客户话术、单价、交期及条款示例用于解释判断顺序，不代表特定真实交易，也不构成报价或履约承诺。
-        </p>
-
-        <h2>3. 版权与知识产权</h2>
-        <p>
-          “witflow 威特流”品牌及本站所有原创文字内容、Prompt 模板架构、原创图片，版权均归原作者所有。
-        </p>
-        <p>
-          我们鼓励基于开源精神的知识分享。若需在其他自媒体平台、出版物或商业培训中引用本站内容，请必须注明出处（附带链接 <code>https://witflow.trade</code>）。未经书面许可，严禁恶意搬运、洗稿或将内容用于直接牟利。
-        </p>
-        
-        <p><br>如有任何关于本声明的疑问，欢迎通过 <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e1828e8f95808295a1968895878d8e96cf9593808584">[email&#160;protected]</a></code> 与我们联系。</p>
-      </div>
-    </article>
-  </main>
-
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <div class="footer-left">
-        <div class="brand-logo footer-logo">
-          <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img" width="28" height="28">
-          <div class="brand-title-group">
-            <span class="logo-text-en">witflow</span>
-            <span class="logo-text-zh">威特流</span>
-          </div>
-        </div>
-        <p class="footer-slogan">Wit in, Flow out. · 外贸 AI 工作流与实战笔记。</p>
-      </div>
-
-      <div class="footer-right">
-        <div class="footer-nav">
-          <a href="index.html">回到首页</a>
-          <a href="tools.html">Prompt 工具箱</a>
-          <a href="privacy.html">隐私与免责声明</a>
-        </div>
-        <p class="copyright">© 2026 witflow 威特流. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="back-to-top-btn glass hidden" aria-label="回到页面顶部" title="返回页面顶部">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-  </button>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js?v=2.6"></script>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="witflow 威特流主页"><img src="/assets/logo.png" alt="" width="32" height="32"><span>wit<span class="accent">flow</span><small>威特流</small></span></a>
+    <nav class="page-nav" aria-label="主导航"><a href="/about">关于作者</a><a href="/articles/">实战文章</a><a href="/tools">工具箱</a><a href="/#contact">联系</a></nav>
+  </div></header>
+  <main id="main" class="wrap content-main">
+    <p class="eyebrow">PRIVACY / USE</p>
+    <h1>隐私与使用说明</h1>
+    <p><time datetime="2026-10-02">最后更新：2026-10-02</time></p>
+    <p class="content-lede">这里说明网站如何处理基础请求、页面偏好与联系信息，以及提示词和示例内容的使用方式。</p>
+    <h2>访问与基础请求</h2>
+    <p>本站是静态内容与轻量工具网站，不要求注册。当前页面未嵌入由本站自行设置的用户行为分析脚本。</p>
+    <p>网站通过 Cloudflare 提供网络交付与基础保护。访问时，服务商可能处理 IP 地址、请求时间、浏览器信息等请求元数据，用于交付、安全与运行维护。具体处理方式由实际服务配置与服务商政策决定，本文不承诺未经核实的日志保存期限。</p>
+    <p>更多服务商说明见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare 隐私政策</a>。</p>
+    <h2>主题偏好与工具输入</h2>
+    <p>部分页面使用浏览器本地存储记住浅色／深色主题选择；可通过清除浏览器的本站数据移除。</p>
+    <p>Prompt 生成器的输入仅在当前页面处理，不发送给本站服务器或 AI 服务，也不写入浏览器本地存储。页面不提供持久化保存；选择复制或下载时，内容会进入你的剪贴板或下载文件。</p>
+    <p>将提示词粘贴到外部 AI 服务后，资料处理遵循该服务的规则。请自行确认资料可用于所选服务，先移除不必要的客户或公司机密。</p>
+    <h2>邮件与微信联系</h2>
+    <p>联系作者时，你提供的联系方式及沟通内容用于回复、业务交流与合作沟通。作者不出售这些信息，也不将其用于未经你同意的营销推送。</p>
+    <p>邮件与微信分别由相应服务商处理。联系时请优先提供问题概况，不要发送密码、支付信息或客户机密文件。</p>
+    <h2>内容与工具的使用</h2>
+    <p>提示词、工作表、文章和预设案例用于业务整理与学习参考，不替代技术、法律、财务或信用审核。AI 输出及对外邮件需由相关人员核实；不要把未批准的条件当作报价或履约承诺。</p>
+    <p>未特别注明的客户话术、价格、交期和条款均为示意，不代表具体真实交易。</p>
+    <h2>版权与引用</h2>
+    <p>本站原创文字和工具由 witflow 威特流整理。引用时请注明作者和原文链接；商业转载或内容合作请先联系作者。</p>
+    <h2>联系与更新</h2>
+    <p>关于本站内容、联系信息或使用方式的问题，可以邮件联系 <a href="mailto:contact@witflow.trade">contact@witflow.trade</a>。新增统计、上传、账号或在线 AI 功能时，本说明会随实际处理方式更新。</p>
+</main>
+  <footer class="site-footer"><div class="wrap footer-inner"><span>© 2026 witflow 威特流</span><nav class="footer-links" aria-label="页脚导航"><a href="/">主页</a><a href="/about">关于作者</a><a href="/privacy">隐私与使用说明</a></nav></div></footer>
 </body>
 </html>

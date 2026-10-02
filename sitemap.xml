@@ -1,27 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://witflow.trade/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-02</lastmod>
   </url>
   <url>
-    <loc>https://witflow.trade/tools.html</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://witflow.trade/about</loc>
+    <lastmod>2026-10-02</lastmod>
   </url>
   <url>
-    <loc>https://witflow.trade/articles/01-long-inquiry-audit.html</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://witflow.trade/tools</loc>
+    <lastmod>2026-10-02</lastmod>
   </url>
   <url>
-    <loc>https://witflow.trade/articles/02-negotiation-chips.html</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://witflow.trade/prompt-builder</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://witflow.trade/articles/</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://witflow.trade/articles/01-long-inquiry-audit</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://witflow.trade/articles/02-negotiation-chips</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://witflow.trade/privacy</loc>
+    <lastmod>2026-10-02</lastmod>
   </url>
 </urlset>

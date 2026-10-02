@@ -1,0 +1,14 @@
+{
+  "origin": "https://witflow.trade",
+  "author": {"name": "witflow 威特流", "url": "https://witflow.trade/about"},
+  "pages": [
+    {"file":"index.html","path":"/","title":"威特流 Witflow｜外贸 AI 工作流、提示词与实战笔记","description":"威特流记录海外 B2B 销售中的实际问题，分享外贸 AI 提示词、工作流与轻量工具。先在业务中验证，再整理成可复用的方法。","type":"WebSite","modified":"2026-10-02"},
+    {"file":"about.html","path":"/about","title":"关于作者 · witflow 威特流","description":"witflow 威特流的个人外贸工作笔记：海外 B2B 销售背景、实践方法，以及提示词和工具的使用方式。","type":"ProfilePage","modified":"2026-10-02"},
+    {"file":"tools.html","path":"/tools","title":"外贸实战 Prompt 与工具箱 · witflow 威特流","description":"价格谈判、长询盘审查、报价跟进和付款条件四个外贸场景的可复制提示词，附可填写的生成器与工作表。","type":"WebPage","modified":"2026-10-02"},
+    {"file":"prompt-builder.html","path":"/prompt-builder","title":"外贸 Prompt 生成器与免费工作表 · witflow 威特流","description":"填写产品、客户诉求和已确认条件，生成完整外贸提示词。支持复制、TXT 下载，并提供三份免费 A4 工作表。","type":"WebPage","modified":"2026-10-02"},
+    {"file":"articles/index.html","path":"/articles/","title":"外贸实战文章与工作笔记 · witflow 威特流","description":"按业务问题阅读威特流的外贸实战文章：长询盘审查、价格谈判，以及可配套使用的提示词和工作表。","type":"CollectionPage","modified":"2026-10-02"},
+    {"file":"articles/01-long-inquiry-audit.html","path":"/articles/01-long-inquiry-audit","title":"长询盘审查：先识别技术和合同风险 · witflow 威特流","description":"面对篇幅较长的技术规范，先整理测试、包装、交期和违约条款，再交由相关负责人确认。文中条款与数字均为示意。","headline":"长询盘审查：先识别技术和合同风险","type":"Article","published":"2026-09-17","modified":"2026-10-02"},
+    {"file":"articles/02-negotiation-chips.html","path":"/articles/02-negotiation-chips","title":"谈价格前，先列出可以置换的筹码 · witflow 威特流","description":"面对海外买家的目标价要求，先核实报价条件，再从交期、批量、规格和付款方式整理可讨论的选项。文中数字与邮件为示意。","headline":"谈价格前，先列出可以置换的筹码","type":"Article","published":"2026-09-17","modified":"2026-10-02"},
+    {"file":"privacy.html","path":"/privacy","title":"隐私与使用说明 · witflow 威特流","description":"威特流网站的基础请求处理、主题偏好存储、联系信息用途，以及提示词、工具和示例内容的使用说明。","type":"WebPage","modified":"2026-10-02"}
+  ]
+}

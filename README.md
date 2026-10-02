@@ -1,70 +1,48 @@
-# witflow 威特流 · 官方网站项目
+# witflow 威特流 · 个人外贸网站
 
-> 本网站为 **witflow 威特流** 官方品牌落地页，融合 Awwwards、Land-book、shadcn/ui、Magic UI、Aceternity UI 等现代设计美学，专注**数字工作流、自动化工具链与全网自媒体矩阵**（Wit in, Flow out. 智慧进入，结果流出）。
+网站：https://witflow.trade/ 。内容包括外贸实战文章、作者介绍、Prompt 工具箱、提示词生成器和免费工作表。
 
----
+此维护版本以 2026-10-02 线上公开的静态文件为基线，整合了此前本地生成器与浅色主题修正。工作电脑上可能仍有未发布原始文件；托管账户和后台配置尚未完整回收。
 
-## 📂 文件目录
+## 修改、构建与预览
 
-```text
-D:\witflow\website\
-├── index.html        # 网页主体结构（SEO 友好、全语义化 HTML5）
-├── styles.css        # 现代设计样式表（自适应、Bento Grid、微动效、双主题）
-├── main.js          # 交互脚本（深浅色切换、聚光灯光效、微信二维码弹窗、Toast）
-└── README.md         # 项目文档与 VPS 部署指南
+需要 Python 3.10 或以上；日常网页构建使用标准库，不需要安装 npm 包。
+
+```sh
+python3 scripts/build-site.py
+python3 scripts/preview-site.py --port 8766
 ```
 
----
+打开 http://127.0.0.1:8766/ 。预览支持无扩展名 URL、旧 HTML 地址永久跳转和 404。在另一个终端验证：
 
-## 🖥️ 1. 本地快速预览
+```sh
+python3 scripts/check-site.py
+node --check homepage.js
+node --check main.js
+node --check prompt-builder.js
+```
 
-* **直接打开**：进入 `D:\witflow\website\`，直接**双击 `index.html`**，即可在 Chrome / Edge / 任意浏览器中浏览。
-* **本地 HTTP 服务预览（可选）**：
-  ```powershell
-  cd D:\witflow\website
-  python -m http.server 8080
-  ```
-  在浏览器访问 `http://localhost:8080`。
+日常流程：同步 GitHub 分支 → 修改源文件 → 构建 → 验证与预览 → 提交 Git → 经预览确认后发布。不要在两台电脑上各自维护未同步的唯一版本。
 
----
+## 文件组织
 
-## 🚀 2. 部署至 Ubuntu VPS（`195.72.189.137`）
+- `index.html`、`homepage.css`、`homepage.js`：主页。
+- `about.html`、`articles/`、`privacy.html`：作者介绍、文章与使用说明。
+- `tools.html`、`styles.css`、`main.js`、`tools-theme.css`：原工具箱与子页。
+- `prompt-builder.*`、`downloads/`：生成器与三份 PDF。
+- `site-pages.json`：页面首选 URL、标题、描述和日期的唯一登记处。
+- `scripts/generate-metadata.py`：生成 canonical、分享信息、JSON-LD 和 sitemap。
+- `scripts/build-site.py`：仅复制允许公开的文件到 `dist/`。
+- `_headers`：根据线上安全响应头整理的 Cloudflare Pages 配置。
 
-你的 VPS 已经具备完整的部署条件，且与当前的 WireGuard（UDP 51821）互不干扰。
+修改文章正文或配套资源时，更新真实修改日期，不要仅因重新部署而刷新日期。新增页面时登记 URL，并添加适当内链。文件保留 `.html` 名称，对外统一使用无扩展名地址。
 
-### 方式 A：使用 Caddy 极速部署（推荐，全自动申请 HTTPS 证书）
+PDF 可直接使用。重新制作 PDF 才需要 ReportLab 和生成脚本指定的中文字体；日常发布无需运行 PDF 脚本。
 
-1. **登录 VPS 安装 Caddy**：
-   ```bash
-   sudo apt update
-   sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
-   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-   sudo apt update
-   sudo apt install -y caddy
-   ```
+## 发布与恢复
 
-2. **从 Windows 本地上传网站文件到 VPS**：
-   在 Windows PowerShell 中执行（带上已验证的 SSH 算法参数）：
-   ```powershell
-   scp -o KexAlgorithms=diffie-hellman-group14-sha256 -r D:\witflow\website\* root@195.72.189.137:/var/www/witflow/
-   ```
+发布目录必须是 `dist/`，不要上传整个仓库。该目录不包含开发脚本、说明文档、临时截图、Git 文件或历史配置。
 
-3. **配置域名与 HTTPS**：
-   在 VPS 上编辑 `/etc/caddy/Caddyfile`：
-   ```caddy
-   your-domain.com {
-       root * /var/www/witflow
-       file_server
-       encode gzip zstd
-   }
-   ```
-   然后执行 `systemctl reload caddy`，Caddy 会自动帮你的域名申请 Let's Encrypt 免费 SSL 证书，支持 HTTPS 访问！
+线上由 Cloudflare 提供服务，具体项目与发布方式尚未通过后台确认。若使用 Cloudflare Pages，可设置构建命令 `python3 scripts/build-site.py`、输出目录 `dist`；其他托管方式需要等效配置无扩展名路由、跳转与安全响应头。先核对实际项目再发布，不凭旧 VPS 文档猜测环境。
 
----
-
-## ⚙️ 3. 核心功能与后续修改
-
-* **修改微信号 / 邮箱**：在 `index.html` 中的 `data-email` 与 `data-copy` 属性处直接替换。
-* **替换社媒链接**：在 `index.html` 的 `#matrix` 区域将各卡片的 `href` 替换为你的真实自媒体主页链接。
-* **切换主题**：点击导航栏右上角图标，支持在**自然温暖（Warm Linen）**与**暗黑科技（Slate Dark）**之间无缝切换。
+上线与账户步骤见 [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)。标签 `snapshot/online-20261002` 标记恢复后的线上展示基线，不是托管后台备份。原始静态文件另有本地备份。历史说明已移入 `docs/legacy/`，仅作历史参考。
