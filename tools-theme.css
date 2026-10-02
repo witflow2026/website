@@ -1,0 +1,27 @@
+/* Scoped correction for the current online tools.html.
+   The existing dark palette and shared site stylesheet are preserved. */
+html:not([data-theme="dark"]) .tools-page .filter-btn.active,
+html:not([data-theme="dark"]) .tools-page .copy-prompt-btn {
+  color: #FBF9F5;
+}
+
+html:not([data-theme="dark"]) .tools-page .prompt-preview-box {
+  background: var(--bg-subtle);
+  color: var(--text-main);
+  border-color: var(--border-focus);
+  scrollbar-color: rgba(26, 56, 43, 0.35) var(--bg-subtle);
+}
+
+html:not([data-theme="dark"]) .tools-page .prompt-preview-box::-webkit-scrollbar-thumb {
+  background: rgba(26, 56, 43, 0.35);
+}
+
+html:not([data-theme="dark"]) .tools-page .tool-meta-tip {
+  color: var(--text-muted);
+}
+
+.tools-page .filter-btn:focus-visible,
+.tools-page .copy-prompt-btn:focus-visible {
+  outline: 2px solid var(--brand-forest);
+  outline-offset: 3px;
+}

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外贸实战 Prompt 与工具箱 · witflow 威特流</title>
+  <meta name="description" content="witflow 威特流的四个外贸场景示例 Prompt：价格谈判、长询盘初筛、报价后跟进与账期风险整理。使用前请核实业务条件和 AI 输出。">
+  <link rel="canonical" href="https://witflow.trade/tools.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css?v=3.3">
+  <link rel="stylesheet" href="tools-theme.css?v=1">
+</head>
+<body class="tools-page">
+
+  <!-- Top Reading Progress Indicator -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Floating Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar glass">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img" width="28" height="28">
+        <div class="brand-title-group">
+          <span class="logo-text-en">witflow</span>
+          <span class="logo-text-zh">威特流</span>
+        </div>
+        <span class="status-dot" title="活跃运行中"></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">返回首页</a>
+        <a href="tools.html" class="nav-link active">Prompt 工具箱</a>
+        <a href="index.html#showcase" class="nav-link">精选长文</a>
+        <a href="index.html#faq" class="nav-link">常见解答</a>
+        <a href="index.html#contact" class="nav-link">商务与交流</a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="切换主题" title="切换深色/浅色模式">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path><path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path><path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+        <a href="index.html#contact" class="cta-btn sm">
+          <span>开始连接</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="icon-btn mobile-menu-toggle" aria-label="打开移动端导航菜单" aria-expanded="false">
+          <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+          <svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu-drawer" class="mobile-menu-drawer glass hidden" aria-label="移动端导航菜单">
+      <div class="mobile-menu-inner">
+        <a href="index.html" class="mobile-nav-link">返回首页</a>
+        <a href="tools.html" class="mobile-nav-link" style="color: var(--accent-primary); font-weight: 600;">⚡ Prompt 工具箱</a>
+        <a href="index.html#showcase" class="mobile-nav-link">精选长文</a>
+        <a href="index.html#faq" class="mobile-nav-link">常见解答</a>
+        <a href="index.html#contact" class="mobile-nav-link">商务与交流</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Subpage Hero -->
+    <section class="subpage-hero">
+      <div class="container subpage-header">
+        <span class="section-tag">TRADE AI TOOLKIT</span>
+        <h1 class="subpage-title">外贸实战 Prompt 与工具箱</h1>
+        <p class="subpage-desc">
+          这里收录四个外贸场景的示例 Prompt。复制后请按实际产品、客户和公司政策调整，先检查保密要求，再核验 AI 输出。
+        </p>
+
+        <!-- Filter Tabs -->
+        <div class="tools-filter-bar">
+          <button class="filter-btn active" data-filter="all">全部 Prompt (4)</button>
+          <button class="filter-btn" data-filter="price">价格谈判守价 (1)</button>
+          <button class="filter-btn" data-filter="inquiry">长询盘排雷 (1)</button>
+          <button class="filter-btn" data-filter="followup">报价后跟进 (1)</button>
+          <button class="filter-btn" data-filter="payment">账期与风控 (1)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="container">
+      <div class="tools-grid">
+
+        <!-- Tool 1: 价格谈判 -->
+        <div class="tool-card glass spotlight-card" data-category="price">
+          <div class="tool-card-header">
+            <span class="tool-category-badge">价格谈判 · 筹码置换</span>
+          </div>
+          <h3 class="tool-card-title">四维筹码置换守价推演 Prompt</h3>
+          <p class="tool-card-desc">
+            假设客户提出目标价 $85，并提到其他供应商报价。先核实报价是否可比，再整理交期、规格、批量与付款条件，准备回信草稿。
+          </p>
+          <div class="prompt-preview-box">你现在是一名熟悉海外 B2B 销售的商务谈判助理。请将以下内容作为示例情境处理，不要自行假定客户背景或我方交付能力。
+面对客户的目标价要求（例如：“Target price is [价格]，其他供应商更便宜”），请帮我整理【四维筹码置换备选方案】：
+
+1. 列出需要核实的采购动机、报价可比性和供应链转换成本；证据不足时不要替客户下结论。
+2. 筹码置换方案：如经内部核算后拟调整价格，可以讨论哪些非价格条件？
+   - 交付周期（具体天数须以实际排产能力为准）
+   - 订单批量与阶梯锁价
+   - 技术公差与包装规格
+   - 付款比例与汇率锁定
+3. 撰写双语邮件草稿：只使用已经核实的交期、价格和质量条件；待确认的信息以问题列出，不写成承诺。</div>
+          <div class="tool-card-footer">
+            <span class="tool-meta-tip">推荐适配：具备深度思考链的大模型 (Reasoning LLMs)</span>
+            <button class="copy-prompt-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>复制此 Prompt</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 2: 长询盘排雷 -->
+        <div class="tool-card glass spotlight-card" data-category="inquiry">
+          <div class="tool-card-header">
+            <span class="tool-category-badge">长询盘 · 技术排雷</span>
+          </div>
+          <h3 class="tool-card-title">复杂长询盘条款初筛 Prompt</h3>
+          <p class="tool-card-desc">
+            面对篇幅较长的 Technical Specification，可先提取测试、认证、交期与违约条款，整理需要技术和商务负责人核实的问题。
+          </p>
+          <div class="prompt-preview-box">你是一名帮助整理长询盘条款的助理，不代替工程、法务或财务判断。输入前请确认资料可用于所选模型。以下括号内均为示例，请审查客户长询盘技术附件文本：
+
+【审查目标】：
+1. 找出【与我方常规产品或报价依据不同】的技术要求（如测试条件、绝缘等级、温度范围等），并标注原文位置。
+2. 标出所有涉及【履约风险与违约金/罚则】的隐蔽条款（如延期交货每日0.5%违约金、空运补货责任）。
+3. 检查【特殊包装、测试报告与第三方监造】要求（如SGS现场验货、熏蒸木箱标识）。
+4. 输出《技术澄清清单（Clarification List）》，标注原文位置和不确定项，供我方技术及商务负责人在报价前核实。</div>
+          <div class="tool-card-footer">
+            <span class="tool-meta-tip">推荐适配：长上下文推理大模型</span>
+            <button class="copy-prompt-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>复制此 Prompt</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 3: 客户激活 -->
+        <div class="tool-card glass spotlight-card" data-category="followup">
+          <div class="tool-card-header">
+            <span class="tool-category-badge">客户跟进 · 破冰唤醒</span>
+          </div>
+          <h3 class="tool-card-title">报价后未回复的三步跟进 Prompt</h3>
+          <p class="tool-card-desc">
+            报价发出后暂未收到回复？先确认对方是否收到，再根据已核实的信息安排后续跟进，避免制造虚假的紧迫感。
+          </p>
+          <div class="prompt-preview-box">我上周向海外客户发送了正式商业报价，目前尚未收到回复。
+请帮我制定一套【三步跟进邮件草稿】。以下时间间隔仅为示例，可按客户节奏调整：
+
+- 第一封（报价后第5天 · 简短确认）：询问报价是否收到，以及是否有需要澄清的规格或条款；
+- 第二封（报价后第10天 · 提供选项）：只有在内部确认可行后，才提出替代配置或交期供客户选择；
+- 第三封（报价后第20天 · 确认进度）：询问项目是否暂缓及合适的下次联系时间；不要编造原料涨价、库存期限或排期紧张。</div>
+          <div class="tool-card-footer">
+            <span class="tool-meta-tip">适用于报价后的日常跟进</span>
+            <button class="copy-prompt-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>复制此 Prompt</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 4: 账期风控 -->
+        <div class="tool-card glass spotlight-card" data-category="payment">
+          <div class="tool-card-header">
+            <span class="tool-category-badge">付款方式 · 财务风控</span>
+          </div>
+          <h3 class="tool-card-title">OA 远期账期风险对冲博弈 Prompt</h3>
+          <p class="tool-card-desc">
+            面对 OA 60/90 天账期要求，应先核实买方信用、保险条件、融资成本和现金流。此 Prompt 用于整理待评估的谈判选项。
+          </p>
+          <div class="prompt-preview-box">海外买家要求：“We only accept OA 60 days after Bill of Lading date.”
+作为出口企业，我们在风险可控前提下促成合作。请为我设计【账期博弈置换策略】：
+
+1. 列出需要核实的买方身份、信用资料及信保或银行支持条件，不假设授信已经获批。
+2. 组合对冲方案：
+   - 比较预付款、信用证、出口信保等选项的适用前提；
+   - 如考虑远期融资，列出需要财务、银行或保险机构确认的成本与条件；
+3. 输出商务回函草稿：说明付款条件仍待内部审核，不承诺未经批准的授信、保险或融资安排。</div>
+          <div class="tool-card-footer">
+            <span class="tool-meta-tip">付款条件需由财务和风控复核</span>
+            <button class="copy-prompt-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>复制此 Prompt</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 免责声明 -->
+    <section class="container" style="margin-bottom: 3rem;">
+      <div class="article-callout" style="text-align: center; border-left-color: var(--text-subtle);">
+        <p style="font-size: 0.82rem; color: var(--text-subtle); margin: 0; line-height: 1.7;">
+          ⚠️ 免责声明：本工具箱提供的 Prompt 模板仅供学习与参考。涉及付款方式、账期安排、信用保险和金融结构的推演结果<strong>不替代</strong>正式合同、财务顾问、法律意见和信用审核。模板中的客户话术和数字均为示意，实际操作请以专业机构意见为准。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="brand-logo footer-logo">
+          <img src="assets/logo.png" alt="witflow 威特流 Logo" class="brand-logo-img" width="28" height="28">
+          <div class="brand-title-group">
+            <span class="logo-text-en">witflow</span>
+            <span class="logo-text-zh">威特流</span>
+          </div>
+        </div>
+        <p class="footer-slogan">Wit in, Flow out. · 外贸 AI 工作流与实战笔记。</p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-nav">
+          <a href="index.html">回到首页</a>
+          <a href="tools.html">Prompt 工具箱</a>
+          <a href="index.html#contact">联系交流</a>
+          <a href="privacy.html">隐私与免责声明</a>
+        </div>
+        <p class="copyright">© 2026 witflow 威特流. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn glass hidden" aria-label="回到页面顶部" title="返回页面顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Toast Notification System -->
+  <div id="toast" class="toast-notification hidden" role="status" aria-live="polite">
+    <div class="toast-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <span class="toast-msg">已成功复制到剪贴板！</span>
+  </div>
+
+  <script src="main.js?v=2.6"></script>
+</body>
+</html>
