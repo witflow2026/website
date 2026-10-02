@@ -24,7 +24,9 @@
 
 ## GitHub 同步状态
 
-本地分支 `codex/long-term-site-foundation` 已保存。HTTPS 推送因本机缺少凭据失败；GitHub 集成写入接口返回 403 `Resource not accessible by integration`，因此尚未创建远程分支或 PR。需要为该仓库恢复 Git 推送或集成写入权限，然后推送此分支。完整 Git 历史另外保存在 `witflow-source-history-2026-10-02.bundle`。
+2026-10-02：已通过 GitHub Desktop 将本次完整改动快进推送到 `witflow2026/website` 的 `main` 主分支（网站改动提交 `501d621`）。之前命令行凭据与集成写入权限的限制已通过 Desktop 登录方式解决。完整 Git 历史另外保存在本机 `witflow-source-history-2026-10-02.bundle`。
+
+推送仓库不等于确认生产部署完成；Cloudflare 构建、输出目录及上线后响应仍需核实。
 
 ## 账户安全（需账户持有人操作或提供已登录访问）
 
